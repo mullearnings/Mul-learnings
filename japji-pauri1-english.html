@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japji Sahib — Pauri 1 — English</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #0d1b2a;
+    --navy-mid:   #162840;
+    --navy-light: #1e3a5f;
+    --blue:       #2a5298;
+    --blue-soft:  #3d6bb5;
+    --steel:      #7a9cbf;
+    --cream:      #f5f0e8;
+    --cream-warm: #ede6d6;
+    --white:      #fdfaf5;
+    --border:     #2a529820;
+    --muted:      #5a7a9a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--navy);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .top-border {
+    height: 5px;
+    background: linear-gradient(90deg, var(--navy), var(--blue), var(--steel), var(--blue), var(--navy));
+  }
+
+  nav {
+    background: var(--navy);
+    padding: 1rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-logo span {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    color: var(--steel);
+    margin-right: 0.4rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--steel);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--cream); }
+
+  header {
+    background: var(--navy);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid #ffffff10;
+  }
+
+  .header-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--steel);
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.06em;
+  }
+
+  header .source-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--steel);
+    opacity: 0.8;
+  }
+
+  .ornament {
+    color: var(--steel);
+    opacity: 0.4;
+    letter-spacing: 0.5em;
+    font-size: 0.85rem;
+    display: block;
+    margin: 0.8rem 0 0;
+  }
+
+  /* Tab system */
+  .tab-bar {
+    background: var(--navy-mid);
+    display: flex;
+    border-bottom: 2px solid var(--navy-light);
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    padding: 1rem 1.8rem;
+    background: none;
+    border: none;
+    color: var(--steel);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .tab-btn:hover { color: var(--cream); }
+
+  .tab-btn.active {
+    color: var(--cream);
+    border-bottom-color: var(--steel);
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Main */
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem 6rem;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-bottom: 1.8rem;
+  }
+
+  p { margin-bottom: 1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Key term styling */
+  .term {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 0.95em;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .term-def {
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  /* Bani display */
+  .bani-full {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 1.8rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .bani-full p {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.2rem;
+    color: var(--steel);
+    line-height: 2.2;
+    margin-bottom: 0;
+  }
+
+  /* Line entries */
+  .line-entry {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    box-shadow: 0 1px 8px #0d1b2a06;
+    transition: box-shadow 0.2s;
+    animation: fadeUp 0.45s ease both;
+  }
+
+  .line-entry:hover { box-shadow: 0 4px 20px #2a529814; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .line-gurmukhi {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.15rem;
+    background: var(--navy);
+    color: var(--steel);
+    padding: 1rem 1.7rem;
+    line-height: 1.9;
+  }
+
+  .line-body {
+    padding: 1.4rem 1.7rem 1.6rem;
+  }
+
+  .line-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.7rem;
+  }
+
+  /* Arth text */
+  .arth-text {
+    color: var(--navy);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  /* Clarification note */
+  .clarify {
+    background: var(--cream-warm);
+    border-left: 3px solid var(--steel);
+    padding: 0.9rem 1.3rem;
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.97rem;
+    margin-top: 0.8rem;
+  }
+
+  /* Concept box */
+  .concept-box {
+    background: var(--cream-warm);
+    border-left: 4px solid var(--blue);
+    padding: 1.3rem 1.7rem;
+    margin: 1.5rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .concept-box .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* Vyakhya */
+  .vyakhya-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--navy-light);
+    border-radius: 0 8px 8px 0;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .vyakhya-block h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.7rem;
+  }
+
+  .citation {
+    background: var(--cream-warm);
+    border-left: 3px solid var(--steel);
+    padding: 0.8rem 1.2rem;
+    margin: 1rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .citation .gurmukhi-cite {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1rem;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 0.3rem;
+    line-height: 1.9;
+  }
+
+  .citation .translation {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.97rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .citation .source {
+    font-size: 0.76rem;
+    letter-spacing: 0.07em;
+    color: var(--blue);
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  /* Answer box */
+  .answer-box {
+    background: var(--navy);
+    color: var(--cream);
+    border-radius: 8px;
+    padding: 2rem 2.2rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .answer-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--navy-light), var(--blue-soft), var(--steel), var(--blue-soft), var(--navy-light));
+  }
+
+  .answer-box h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    color: var(--steel);
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+  }
+
+  .answer-box p { opacity: 0.88; }
+
+  .answer-box .hukam {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.3rem;
+    color: #a8c8e8;
+    display: block;
+    margin: 1rem 0 0.5rem;
+  }
+
+  /* Glossary */
+  .glossary-item {
+    display: flex;
+    gap: 1.2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .glossary-item:last-child { border-bottom: none; }
+
+  .glossary-term {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    font-weight: 500;
+    min-width: 140px;
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+  }
+
+  .glossary-def {
+    color: var(--muted);
+    font-size: 0.97rem;
+    line-height: 1.75;
+  }
+
+  /* Summary table */
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.97rem;
+  }
+
+  .summary-table th {
+    background: var(--navy);
+    color: var(--steel);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.2rem;
+    text-align: left;
+  }
+
+  .summary-table td {
+    padding: 0.9rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .summary-table tr:nth-child(even) td { background: var(--cream-warm); }
+  .summary-table tr:last-child td { border-bottom: none; }
+
+  /* LWN section */
+  .lkn-notice {
+    background: var(--cream-warm);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--steel);
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.97rem;
+  }
+
+  .lkn-notice strong { color: var(--navy); font-style: normal; }
+
+  /* Mul of the Matter */
+  .mul-coming {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--steel);
+    opacity: 0.7;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  .mul-coming span {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+
+  /* Divider */
+  .divider {
+    text-align: center;
+    margin: 2.5rem 0;
+    color: var(--steel);
+    opacity: 0.4;
+    letter-spacing: 0.4em;
+    font-size: 0.9rem;
+  }
+
+  /* Reflection */
+  .reflection {
+    background: var(--cream-warm);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+  }
+
+  .reflection .ref-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--navy-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .reflection ul { list-style: none; padding: 0; }
+
+  .reflection ul li {
+    padding: 0.5rem 0 0.5rem 1.6rem;
+    position: relative;
+    color: var(--muted);
+    font-style: italic;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .reflection ul li:last-child { border-bottom: none; }
+
+  .reflection ul li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--blue-soft);
+    font-size: 0.65rem;
+    top: 0.75rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    background: var(--navy);
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  footer .footer-mark {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.4rem;
+    color: var(--steel);
+    display: block;
+    margin-bottom: 0.6rem;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 600px) {
+    main { padding: 2rem 1rem 4rem; }
+    .tab-btn { padding: 0.8rem 1rem; font-size: 0.72rem; }
+    header h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-border"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html"><span>ੴ</span> Mūl Learnings</a>
+  <ul class="nav-links">
+    <li><a href="japji-pauri1-punjabi.html">ਪੰਜਾਬੀ</a></li>
+    <li><a href="index.html">Home</a></li>
+  </ul>
+</nav>
+
+<header>
+  <span class="header-tag">Japji Sahib · Pauri 1 · English Study</span>
+  <h1>The Four Failed Paths &amp; The True Way</h1>
+  <p class="source-line">Bhai Vir Singh · Learn With Nanak · Mūl of the Matter</p>
+  <span class="ornament">✦ ✦ ✦</span>
+</header>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('bani')">The Bani</button>
+  <button class="tab-btn" onclick="showTab('bvs')">Bhai Vir Singh</button>
+  <button class="tab-btn" onclick="showTab('lwn')">Learn With Nanak</button>
+  <button class="tab-btn" onclick="showTab('mul')">Mūl of the Matter</button>
+</div>
+
+<!-- ===================== TAB 1: THE BANI ===================== -->
+<div id="tab-bani" class="tab-content active">
+<main>
+  <span class="section-label">The Sacred Text — Untouched</span>
+  <hr class="section-divider">
+
+  <div class="bani-full">
+    <p>
+      ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ ਜੇ ਸੋਚੀ ਲਖ ਵਾਰ ॥<br>
+      ਚੁਪੈ ਚੁਪ ਨ ਹੋਵਈ ਜੇ ਲਾਇ ਰਹਾ ਲਿਵ ਤਾਰ ॥<br>
+      ਭੁਖਿਆ ਭੁਖ ਨ ਉਤਰੀ ਜੇ ਬੰਨਾ ਪੁਰੀਆ ਭਾਰ ॥<br>
+      ਸਹਸ ਸਿਆਣਪਾ ਲਖ ਹੋਹਿ ਤ ਇਕ ਨ ਚਲੈ ਨਾਲਿ ॥<br>
+      ਕਿਵ ਸਚਿਆਰਾ ਹੋਈਐ ਕਿਵ ਕੂੜੈ ਤੁਟੈ ਪਾਲਿ ॥<br>
+      ਹੁਕਮਿ ਰਜਾਈ ਚਲਣਾ ਨਾਨਕ ਲਿਖਿਆ ਨਾਲਿ ॥੧॥
+    </p>
+  </div>
+
+  <div class="concept-box">
+    <span class="label">A Note on the Bani</span>
+    This is the Bani as it stands — the words of Guru Nanak Dev Ji. No commentary, no interpretation. This tab exists as a reminder that everything in the other tabs is an attempt to understand what these lines mean. The Bani itself is the only ground truth. Read it first. Sit with it. Then explore the interpretations.
+  </div>
+</main>
+</div>
+
+<!-- ===================== TAB 2: BHAI VIR SINGH ===================== -->
+<div id="tab-bvs" class="tab-content">
+<main>
+  <span class="section-label">Bhai Vir Singh — Arth &amp; Vyākhyā</span>
+  <hr class="section-divider">
+
+  <p style="color: var(--muted); font-style: italic; margin-bottom: 2rem;">A faithful translation of Bhai Vir Singh Ji's Steek. Key Punjabi terms are kept where they carry meaning that English cannot fully capture, and explained on first use. These are his words and his interpretation.</p>
+
+  <!-- PRAKATHAN -->
+  <div class="concept-box" style="margin-bottom: 2rem;">
+    <span class="label">Prākathan — Preface</span>
+    Having recited the <em>Salok</em> of "Aad Sach," Guru Ji now recites the first <em>Pauri</em>. In the <em>Mool Mantar</em>, attainment of <em>Akaal Purakh</em> was said to come through the Guru. Guru Ji now explains the means by which that attainment may actually be achieved. First, those methods are described which were tried and proved unsuccessful. Then the successful method is revealed.
+  </div>
+
+  <!-- LINE 1 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ ਜੇ ਸੋਚੀ ਲਖ ਵਾਰ ॥</div>
+    <div class="line-body">
+      <span class="line-label">Arth</span>
+      <p class="arth-text">
+        To attain the <em>Sat Saroop</em> (the True Form), the <em>kooR dī pāl</em> — the wall of falsehood — that stands between us and Him must be broken. That wall cannot be broken by bodily acts. Performing <em>soch</em> — ritual purification and cleansing of the body — does not produce <em>soch</em> of the <em>man</em> (mind). Even if one were to purify oneself a hundred thousand times, the inner wall remains untouched.
+      </p>
+      <div class="clarify">
+        Note: Bhai Vir Singh points to a deliberate double meaning in the word <strong>ਸੋਚੈ</strong>. In one reading it means ritual cleansing of the body (<em>soch</em>). In the other it means thinking and reflection (<em>soch-veechaar</em>). Both meanings apply — and both fail equally, because both are functions of the <em>man</em> (mind) and intellect, which cannot reach the Truth on their own.
+      </div>
+    </div>
+  </div>
+
+  <!-- LINE 2 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਚੁਪੈ ਚੁਪ ਨ ਹੋਵਈ ਜੇ ਲਾਇ ਰਹਾ ਲਿਵ ਤਾਰ ॥</div>
+    <div class="line-body">
+      <span class="line-label">Arth</span>
+      <p class="arth-text">
+        One might reason: if I simply stop speaking, then falsehood is stopped — I have automatically become <em>sachiaar</em> (one who has become truth itself). To this, Guru Ji responds: keeping outwardly silent — observing <em>moun</em> (the vow of silence) — cannot produce the inner <em>chup</em> (stillness, peace) of the <em>man</em>, which is driven by the restless pull of <em>vashnaa</em> (desire and craving). Even if one maintains an unbroken, continuous <em>liv</em> — an inward focus — the surface quiet does not reach the depths.
+      </p>
+      <div class="clarify">
+        <em>Moun</em> is a form of <em>tap</em> (austerity). Like the heron standing motionless at the water's edge — it appears completely still and absorbed, but inside its mind is entirely focused on catching fish. The silence is an act, not a state. The <em>haumai</em> (ego — the deeply rooted sense of "I") does not become quiet just because the mouth does.
+      </div>
+    </div>
+  </div>
+
+  <!-- LINE 3 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਭੁਖਿਆ ਭੁਖ ਨ ਉਤਰੀ ਜੇ ਬੰਨਾ ਪੁਰੀਆ ਭਾਰ ॥</div>
+    <div class="line-body">
+      <span class="line-label">Arth</span>
+      <p class="arth-text">
+        One might then reason: if I observe <em>brat</em> (fasting and self-denial), surely I will become <em>sachiaar</em>. To this, Guru Ji says: by remaining hungry through fasting, the <em>trishnaa</em> (craving — the deep inner hunger that dwells within desires) is never satisfied. Even if one were to receive, as a reward for fasting, the wealth and abundance of all fourteen realms, the <em>trishnaa</em> would only grow. It is the nature of <em>trishnaa</em> that the more it receives, the more it wants.
+      </p>
+      <div class="clarify">
+        <em>Trishnaa</em> is not hunger of the stomach — it is hunger of the ego. It arises directly from <em>haumai</em>. As long as <em>haumai</em> remains, <em>trishnaa</em> remains. The scriptural reward promised for fasting is worldly attainment — but worldly attainment feeds <em>trishnaa</em>, it does not end it. The <em>kooR dī pāl</em> (the wall of falsehood, which is <em>haumai</em>) stays standing.
+      </div>
+    </div>
+  </div>
+
+  <!-- LINE 4 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਸਹਸ ਸਿਆਣਪਾ ਲਖ ਹੋਹਿ ਤ ਇਕ ਨ ਚਲੈ ਨਾਲਿ ॥</div>
+    <div class="line-body">
+      <span class="line-label">Arth</span>
+      <p class="arth-text">
+        One might then abandon all these disciplines and instead apply <em>siyanap</em> (cleverness — the power of the intellect). Surely wisdom, scholarship, the company of learned ones — surely this will break through. To this, Guru Ji says: even if one possesses thousands and hundreds of thousands of <em>siyanapaa</em> — whether it is one's own mental sharpness, study of the scriptures, or learning absorbed from the company of scholars and wise people — because all of it is rooted in <em>haumai</em>, it stays on this side. Not even one of these clever strategies accompanies the soul to the realm of the True Reality.
+      </p>
+      <div class="clarify">
+        <em>Siyanap</em> makes the intellect sharp. It produces great speakers and writers. But it does not dissolve the <em>kooR dī pāl</em> — the wall of falsehood, which is <em>haumai</em>. In fact it strengthens it. The very pride of "I am wise, I am learned, I am a scholar, I am a yogi" — that is <em>haumai</em> in its most sophisticated form. The True Form is <em>agam agochhar</em> — beyond the reach of the mind and intellect entirely.
+      </div>
+    </div>
+  </div>
+
+  <!-- LINE 5 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਕਿਵ ਸਚਿਆਰਾ ਹੋਈਐ ਕਿਵ ਕੂੜੈ ਤੁਟੈ ਪਾਲਿ ॥</div>
+    <div class="line-body">
+      <span class="line-label">Arth</span>
+      <p class="arth-text">
+        Then how does one become <em>sachiaar</em> — one who has become truth itself, who has attained the Sat Saroop? And how is the <em>kooR dī pāl</em> — the wall of falsehood, the <em>haumai</em> — broken? The wall that stands between us and Him, creating the distance?
+      </p>
+      <div class="clarify">
+        This is the turning point of the Pauri. Every door has been closed — ritual, silence, fasting, intellect. All have been shown to fail for the same reason: they are all driven by <em>haumai</em>, and <em>haumai</em> cannot dissolve itself. The question is genuine, not rhetorical. It is the seeker stripped of all their methods, asking with full sincerity.
+      </div>
+    </div>
+  </div>
+
+  <!-- LINE 6 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਹੁਕਮਿ ਰਜਾਈ ਚਲਣਾ ਨਾਨਕ ਲਿਖਿਆ ਨਾਲਿ ॥੧॥</div>
+    <div class="line-body">
+      <span class="line-label">Arth</span>
+      <p class="arth-text">
+        O Nanak — by walking in <em>hukam rajaa'ee</em>: in alignment with the <em>hukam</em> (the Will, the cosmic law and order) of the One who is the master of that <em>hukam</em> and that <em>razaa</em> (sovereign Will) — one becomes <em>sachiaar</em>. And where is this <em>hukam</em>? <em>Likhiaa naal</em> — it is written alongside. Written within the very nature of the <em>jeev</em> (the living being). It is already there, inscribed in the <em>srisht</em> (nature/constitution) of every person.
+      </p>
+      <div class="clarify">
+        Bhai Vir Singh explains: every human being naturally desires that those around them — friends, family, companions — be aligned with them, not against them. This longing for harmony is written into human nature itself. In the same way, the one who seeks the <em>Sat Purakh</em> (the True Being) must walk in alignment with <em>Waheguru's hukam</em> — not against it, not in resistance to it. This alignment — this <em>ankulataa</em> (going with, rather than against) — is the path to becoming <em>sachiaar</em>. It is not a new technique. It is a recognition of what is already written within.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider">· · ·</div>
+
+  <!-- VYAKHYA -->
+  <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--navy); margin-bottom: 1.2rem;">Vyākhyā — Extended Commentary</h3>
+
+  <div class="vyakhya-block">
+    <h4>The Wall is <em>Haumai</em> — Ego</h4>
+    <p>
+      The <em>kooR dī pāl</em> — the wall of falsehood — that stands between the seeker and the <em>Sat Saroop</em> (True Form of Akaal Purakh) is <em>haumai</em>. It is an inner wall, surrounding the innermost self, creating the distance from the True Form. No external act can reach it. In fact <em>karam kaand</em> (ritual religious acts) do not merely fail to remove <em>haumai</em> — they actively feed it.
+    </p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਕਰਮ ਕਰਤ ਬਦੇ ਅਹੰਮੇਵ ॥</span>
+      <span class="translation">"Through the performance of religious acts, ego only grows."</span>
+      <span class="source">— Kabir Ji (Gauri)</span>
+    </div>
+  </div>
+
+  <div class="vyakhya-block">
+    <h4>On <em>Moun</em> — Silence</h4>
+    <p>
+      <em>Moun</em> is a form of <em>tap</em> (austerity). It creates an outward stillness, but the inside keeps churning. The body is made of the three <em>gun</em> (qualities of nature — creation, sustenance, dissolution) and so its needs and drives do not fall silent just because the mouth does. The stream of thoughts and doubts, driven by <em>haumai</em>, does not stop. The <em>antahkaran</em> (the inner faculty of heart and mind) remains in agitation.
+    </p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਤਪੇ ਤਪੀਸਰ ਡੋਲੈ ਚੀਤ ॥</span>
+      <span class="translation">"Even the greatest masters of austerity — their minds still waver."</span>
+      <span class="source">— Kabir Ji (Gond)</span>
+    </div>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਬੋਲੈ ਨਾਹੀ ਹੋਇ ਬੈਠਾ ਮੋਨੀ ॥ ਅੰਤਰਿ ਕਲਪ ਭਵਾਈਐ ਜੋਨੀ ॥</span>
+      <span class="translation">"One sits silent, observing moun — yet inside, the mind keeps wandering through births."</span>
+      <span class="source">— M:5 (Prabhaati, Ashatpadi)</span>
+    </div>
+  </div>
+
+  <div class="vyakhya-block">
+    <h4>On <em>Brat</em> — Fasting</h4>
+    <p>
+      <em>Trishnaa</em> (craving) arises from <em>haumai</em>. As long as <em>haumai</em> remains, <em>trishnaa</em> remains, and the <em>kooR dī pāl</em> stays standing. The scriptural reward for fasting is worldly attainment — but the nature of <em>trishnaa</em> is that the more it is given, the more it demands. <em>Trishnaa</em> ends only through the abandonment of <em>trishnaa</em> itself — not through feeding it, even with spiritual rewards.
+    </p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਭੁਖਿਆ ਭੁਖ ਨ ਉਤਰੈ ਗਲੀ ਭੁਖ ਨ ਜਾਇ ॥ ਨਾਨਕ ਭੁਖਾ ਤਾ ਰਜੈ ਜਾ ਗੁਣ ਕਹਿ ਗੁਣੀ ਸਮਾਇ ॥</span>
+      <span class="translation">"The hungry one is not satisfied by talking about hunger — hunger does not leave through words. O Nanak, the hungry one is truly satisfied only when they sing the virtues of the Virtuous One and merge within Him."</span>
+      <span class="source">— Var Majh, M:2. The only true satiation is merger in the Source.</span>
+    </div>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਸਾਚੁ ਨਾਮੁ ਆਧਾਰੁ ਮੇਰਾ ਜਿਨਿ ਭੁਖਾ ਸਭਿ ਗਵਾਈਆ ॥</span>
+      <span class="translation">"The True Name is my very foundation — it is what has removed all my hungers."</span>
+      <span class="source">— Anand Sahib, M:3</span>
+    </div>
+  </div>
+
+  <div class="vyakhya-block">
+    <h4>On <em>Siyanap</em> — Cleverness and Intellect</h4>
+    <p>
+      <em>Siyanap</em> — the power of the intellect — whether it is one's own mental sharpness, the study of scriptures, or wisdom gained through the company of scholars — makes one a sharp thinker, a capable speaker, a learned writer. But it does not dissolve the <em>kooR dī pāl</em>. In fact, it strengthens <em>haumai</em>. The <em>agam agochhar Sat Saroop</em> — the True Form, beyond reach and beyond perception of the senses — lies entirely beyond the grasp of mind and intellect.
+    </p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹਮ ਬਡ ਕਬਿ ਕੁਲੀਨ ਹਮ ਪੰਡਿਤ ਹਮ ਜੋਗੀ ਸੰਨਿਆਸੀ ॥ ਗਿਆਨੀ ਗੁਨੀ ਸੂਰ ਹਮ ਦਾਤੇ ਇਹ ਬੁਧਿ ਕਬਹਿ ਨ ਨਾਸੀ ॥</span>
+      <span class="translation">"I am a great poet, of noble lineage, a scholar, a yogi, a renunciant. I am the wise one, the virtuous one, the brave one, the generous one — this ego-intellect never perishes."</span>
+      <span class="source">— Ravidas Ji. The achievement list is itself the trap.</span>
+    </div>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਸਹਸ ਸਿਆਣਪ ਨਹ ਮਿਲੈ ਮੇਰੀ ਜਿੰਦੁੜੀਏ ॥ ਜਨ ਨਾਨਕ ਗੁਰਮੁਖਿ ਜਾਤਾ ਰਾਮ ॥</span>
+      <span class="translation">"Through thousands of clever strategies, O my soul, He is not found. Servant Nanak knows Him only as Gurmukh."</span>
+      <span class="source">— M:4, Bihagra</span>
+    </div>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹਿਕਮਤਿ ਹੁਕਮਿ ਨ ਪਾਇਆ ਜਾਇ ॥ ਕਿਉ ਕਰਿ ਸਾਚਿ ਮਿਲਉ ਮੇਰੀ ਮਾਇ ॥</span>
+      <span class="translation">"Through schemes and clever strategies, He cannot be found. How then shall I meet the True One, O my mother?"</span>
+      <span class="source">— Dhana, M:1</span>
+    </div>
+  </div>
+
+  <div class="answer-box">
+    <h4>The True Answer — <em>Hukam</em></h4>
+    <span class="hukam">ਹੁਕਮਿ ਰਜਾਈ ਚਲਣਾ ਨਾਨਕ ਲਿਖਿਆ ਨਾਲਿ</span>
+    <p>Walk in <em>hukam rajaa'ee</em> — in alignment with the sovereign Will that governs all of existence. And where is this <em>hukam</em>? It is <em>likhiaa naal</em> — written alongside, inscribed within the very nature of every living being. It is not a new technique to acquire. It is a recognition of what is already there. The shift is from striving against the natural order to aligning with it — from <em>haumai</em>'s resistance to the conscious, grateful walking in <em>razaa</em> (the Divine Will).</p>
+  </div>
+
+  <div class="divider">· · ·</div>
+
+  <!-- STRING ANALOGY -->
+  <div class="vyakhya-block">
+    <h4>The Music String Analogy — What <em>Ankulataa</em> Actually Means</h4>
+    <p>Bhai Vir Singh illustrates <em>ankulataa</em> (alignment with <em>hukam</em>) with a musical image. If a string on a <em>sitar</em>, <em>sarangi</em>, or <em>sarod</em> is out of tune — <em>besuri</em> (discordant) — it produces no <em>ras</em> (essence, beauty). But when you tune it to the <em>baaj sur</em> (the base or dominant string), bring it into <em>ankulataa</em> with that string, it begins to give out the same note as the <em>baaj</em> — in fact you play the <em>baaj sur</em>, your finger is on the <em>baaj sur</em>, but look below and you can see the sympathetic string vibrating too, giving out the same sound as the <em>baaj</em>. In this way, when one becomes <em>ik svar</em> (of one sound, one frequency) with the <em>Sat Saroop Parmatam Dev</em> — that is, <em>anukool</em> (aligned, in harmony) with Him — then the movement of <em>Sat Sarooptaa</em> (the state of True Form) happens within, and one becomes <em>sachiaar</em>.</p>
+  </div>
+
+  <!-- CLOSING SUMMARY -->
+  <div class="vyakhya-block">
+    <h4>The Root of All Failure — and the One That Works</h4>
+    <p>In all four failed methods — <em>soch</em> (ritual purification), <em>moun</em> (silence), <em>brat</em> (fasting), <em>siyanap</em> (cleverness) — the <em>man</em> (mind) does not go into the <em>dhiaan</em> (contemplation) of the <em>kartaa</em> (the Creator). For the <em>man</em> to go into His <em>dhiaan simran</em> (contemplation and remembrance), to be freed from <em>haumai</em>, to become <em>prem sanyukt</em> (united in love) with Him — this is what it means to become <em>ik svar</em> (one frequency) with the <em>Sat Saroop</em> and to become <em>sachiaar</em>. Therefore, any method that keeps one in the "I" — the ego — and does not join one to the <em>Kartaa Purakh</em>, does not bring about attainment of the <em>param pryojan</em> (the supreme purpose).</p>
+  </div>
+
+  <!-- SAADHAN SECTION -->
+  <div class="vyakhya-block" style="background: var(--navy); color: var(--cream); border-left-color: var(--steel);">
+    <h4 style="color: var(--steel);">Sādhan Pakh — The Means</h4>
+    <p style="opacity: 0.88;">The sincere seeker who wishes to walk in <em>hukam</em> now asks: what is this <em>hukam</em> in which one is to walk, and which is written within?</p>
+    <p style="opacity: 0.88; margin-top: 0.8rem;">The answer: that <em>hukam</em> is the <em>Naam</em> (Name) of the Divine, which the Guru has revealed. As it is said:</p>
+    <div class="citation" style="background: #ffffff10; border-left-color: var(--steel);">
+      <span class="gurmukhi-cite" style="color: #a8c8e8;">ਏਕੋ ਨਾਮੁ ਹੁਕਮੁ ਹੈ ਨਾਨਕ ਸਤਿਗੁਰਿ ਦੀਆ ਬੁਝਾਇ ਜੀਉ ॥</span>
+      <span class="translation" style="color: var(--steel);">"The one <em>Naam</em> is the <em>hukam</em> — O Nanak, the <em>Satguru</em> has made this understood."</span>
+      <span class="source" style="color: var(--muted);">— Sri Raag, M:1</span>
+    </div>
+    <p style="opacity: 0.88; margin-top: 0.8rem;"><em>Naam</em> removes the <em>mail</em> (filth) of <em>kooR</em> (falsehood). Removing the filth of <em>kooR</em> and breaking the <em>kooR dī pāl</em> are one and the same thing. The means by which the filth of falsehood is removed will make one <em>sachiaar</em> — and that means is <em>Naam</em>. As it is said:</p>
+    <div class="citation" style="background: #ffffff10; border-left-color: var(--steel);">
+      <span class="gurmukhi-cite" style="color: #a8c8e8;">ਮਲੁ ਕੂੜੀ ਨਾਮਿ ਉਤਾਰੀਅਨੁ ਜਪਿ ਨਾਮੁ ਹੋਆ ਸਚਿਆਰੁ ॥</span>
+      <span class="translation" style="color: var(--steel);">"The filth of falsehood is washed away by <em>Naam</em>; by reciting <em>Naam</em>, one becomes <em>sachiaar</em>."</span>
+      <span class="source" style="color: var(--muted);">— Var Ram, M:3</span>
+    </div>
+    <p style="opacity: 0.88; margin-top: 0.8rem;">And the Fifth Guru tells us that this command of <em>Naam simran</em> is inscribed deep within your <em>man</em> (mind) and <em>tan</em> (body) from the very source:</p>
+    <div class="citation" style="background: #ffffff10; border-left-color: var(--steel);">
+      <span class="gurmukhi-cite" style="color: #a8c8e8;">ਸਿਮਰਿ ਗੋਵਿੰਦੁ ਮਨਿ ਤਨਿ ਧੁਰਿ ਲਿਖਿਆ ॥</span>
+      <span class="translation" style="color: var(--steel);">"Remember <em>Govind</em> — in mind and body, it is written from the very <em>dhur</em> (the deep source)."</span>
+      <span class="source" style="color: var(--muted);">— Gauri, M:5</span>
+    </div>
+  </div>
+
+  <div class="divider">· · ·</div>
+
+  <!-- ELEVEN FACETS OF HUKAM -->
+  <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--navy); margin-bottom: 0.5rem;">The Facets of <em>Hukam</em></h3>
+  <p style="color: var(--muted); font-style: italic; font-size: 0.97rem; margin-bottom: 1.5rem;"><em>Hukam</em> is one — but for the purpose of understanding, Bhai Vir Singh unfolds eleven dimensions of it. These are grouped into three areas marked in the original Steek as marginal annotations.</p>
+
+  <!-- HUKAM TE HUKAMI -->
+  <div class="concept-box" style="margin-bottom: 1rem;">
+    <span class="label">ਹੁਕਮ ਤੇ ਹੁਕਮੀ — Hukam and the One Who Commands</span>
+  </div>
+
+  <div class="vyakhya-block">
+    <p style="margin-bottom: 1.2rem;"><strong>1.</strong> <em>Hukam</em> is inseparable from <em>Hukami</em> (the One who commands) — it is His own infinite, intrinsic consciousness. Just as He is boundless and beyond expression, so is His <em>hukam</em>. It cannot be measured, it cannot be spoken:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੁ ਨ ਜਾਪੀ ਕੇਤੜਾ ਕਹਿ ਨ ਸਕੀਜੈ ਕਾਰ ॥</span>
+      <span class="translation">"How vast the <em>hukam</em> cannot be known; His workings cannot be spoken."</span>
+      <span class="source">— Sarang Var, M:1</span>
+    </div>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੁ ਨ ਕਹਿਆ ਜਾਈ ॥</span>
+      <span class="translation">"<em>Hukam</em> cannot be spoken."</span>
+      <span class="source">— Japji Sahib, Pauri 2</span>
+    </div>
+
+    <p style="margin: 1.2rem 0 0.8rem;"><strong>2.</strong> This <em>hukam</em> is of the nature of the <em>Sat Saroop</em> (True Form) — it is Truth within Truth:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਸਚਾ ਤੇਰਾ ਹੁਕਮੁ ਸਚਾ ਫੁਰਮਾਣੁ ॥</span>
+      <span class="translation">"True is Your <em>hukam</em>, true is Your command."</span>
+      <span class="source">— Var Asa, M:1</span>
+    </div>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਸਚੇ ਤੇਰੇ ਕਰਣੇ ਸਰਬ ਬੀਚਾਰ ॥</span>
+      <span class="translation">"True are all Your doings and all Your deliberations."</span>
+      <span class="source">— Var Asa, M:1</span>
+    </div>
+  </div>
+
+  <!-- HUKAM TE VISHV -->
+  <div class="concept-box" style="margin-bottom: 1rem;">
+    <span class="label">ਹੁਕਮ ਤੇ ਵਿਸ਼੍ਵ — Hukam and the Universe</span>
+  </div>
+
+  <div class="vyakhya-block">
+    <p style="margin-bottom: 1.2rem;"><strong>3.</strong> This <em>hukam</em> creates multiplicity from the One — it brings forth all of <em>srishti</em> (creation):</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੀ ਹੋਵਨਿ ਆਕਾਰ ..... ॥</span>
+      <span class="translation">"By <em>hukam</em>, forms come into being."</span>
+      <span class="source">— Japji Sahib, Pauri 2</span>
+    </div>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੀ ਸਗਲ ਕਰੇ ਆਕਾਰ ॥</span>
+      <span class="translation">"By <em>hukam</em>, all forms are created."</span>
+      <span class="source">— Var Majh, M:2</span>
+    </div>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੀ ਸ੍ਰਿਸਟਿ ਸਾਜੀਅਨੁ ..... ॥</span>
+      <span class="translation">"By <em>hukam</em>, the world was fashioned."</span>
+      <span class="source">— Var Gujri, M:3</span>
+    </div>
+
+    <p style="margin: 1.2rem 0 0.8rem;"><strong>4.</strong> Having created, <em>hukam</em> sustains:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੁ ਸਾਜਿ ਹੁਕਮੈ ਵਿਚਿ ਰਖੈ ਨਾਨਕ ਸਚਾ ਆਪਿ ॥</span>
+      <span class="translation">"By <em>hukam</em> He creates; within <em>hukam</em> He sustains. O Nanak, He Himself is True."</span>
+      <span class="source">— Var Majh, M:1</span>
+    </div>
+
+    <p style="margin: 1.2rem 0 0.8rem;"><strong>5.</strong> And <em>hukam</em> dissolves — it is the author of creation, sustenance, and dissolution, all in one breath:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੀ ਸਾਜੇ ਹੁਕਮੀ ਢਾਹੇ ਏਕ ਚਸੇ ਮਹਿ ਲਖ ॥</span>
+      <span class="translation">"By <em>hukam</em> He creates; by <em>hukam</em> He destroys — hundreds of thousands in a single instant."</span>
+      <span class="source">— Var Malar, M:1</span>
+    </div>
+  </div>
+
+  <!-- HUKAM TE JEEV -->
+  <div class="concept-box" style="margin-bottom: 1rem;">
+    <span class="label">ਹੁਕਮ ਤੇ ਜੀਵ — Hukam and the Individual Soul</span>
+  </div>
+
+  <div class="vyakhya-block">
+    <p style="margin-bottom: 1.2rem;"><strong>6.</strong> Because the human being carries within them a <em>jot ansh</em> — a spark of the <em>Jyoti Saroop</em> (Light-Form) — this <em>hukam</em> is also written within us. It signals from within: when one is about to do something wrong, it signals "stop," and when one acts rightly, it signals with a sense of joy and ease. The <em>abhyaasi</em> (the one who practises awareness) reads these inner signals like a skilled player in a game of <em>chauphar</em> (an ancient board game) — playing wisely and improving themselves:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੈ ਬੂਝੈ ਚਉਪੜਿ ਖੇਲੈ ਮਨੁ ਜਿਣਿ ਢਾਲੇ ਪਾਸਾ ॥</span>
+      <span class="translation">"One who understands <em>hukam</em> plays the game of <em>chauphar</em> — winning the mind, casting the dice wisely."</span>
+      <span class="source">— Suhi, Kabir Ji</span>
+    </div>
+    <p>One who recognizes this <em>hukam</em>, in the fear of the Lord, abandons vices and gathers virtues:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੁ ਪਛਾਣੈ ਨਾਨਕਾ ਭਉ ਚੰਦਨੁ ਲਾਵੈ ॥ ਗੁਣ ਕਾਮਣ ਕਾਮਣਿ ਕਰੈ ਤਉ ਪਿਆਰੇ ਕਉ ਪਾਵੈ ॥</span>
+      <span class="translation">"O Nanak, one who recognizes <em>hukam</em> applies the sandalwood of divine fear. Making virtues into a charm, one attains the Beloved."</span>
+      <span class="source">— Tilang, M:1</span>
+    </div>
+    <p>The fine inner voice of this <em>hukam</em> — the <em>jeev</em> (soul) must listen for it within themselves.</p>
+
+    <p style="margin: 1.2rem 0 0.8rem;"><strong>7.</strong> A further dimension of this "written within" <em>hukam</em> is revealed by the Guru: it is <em>Naam simran</em> — the remembrance of the Name:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਏਕੋ ਨਾਮੁ ਹੁਕਮੁ ਹੈ ਨਾਨਕ ਸਤਿਗੁਰਿ ਦੀਆ ਬੁਝਾਇ ਜੀਉ ॥</span>
+      <span class="translation">"The one <em>Naam</em> is the <em>hukam</em> — O Nanak, the <em>Satguru</em> has caused this to be understood."</span>
+      <span class="source">— Sri Raag, M:1</span>
+    </div>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੁ ਜਿਨਾ ਨੋ ਮਨਾਇਆ ॥ ਤਿਨ ਅੰਤਰਿ ਸਬਦੁ ਵਸਾਇਆ ॥</span>
+      <span class="translation">"Those to whom <em>hukam</em> was made acceptable — within them the <em>Shabad</em> was caused to dwell."</span>
+      <span class="source">— Sri Raag, M:1</span>
+    </div>
+
+    <p style="margin: 1.2rem 0 0.8rem;"><strong>8.</strong> Where is this <em>hukam</em>? It is written at the <em>dhur</em> — the deep inner place — within mind and body. Because it is in a deep place, the Guru is the one who reveals it. Whether <em>dhur</em> means "from the very depths within" or "from the divine source," in either reading it is the Guru who gives the knowledge of it.</p>
+
+    <p style="margin: 1.2rem 0 0.8rem;"><strong>9.</strong> Without understanding <em>hukam</em>, the <em>jeev</em> remains in suffering:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਜਬ ਲਗੁ ਹੁਕਮੁ ਨ ਬੂਝਤਾ ਤਬ ਹੀ ਲਉ ਦੁਖੀਆ ॥</span>
+      <span class="translation">"For as long as <em>hukam</em> is not understood, for that long one remains in suffering."</span>
+      <span class="source">— Asa, M:5</span>
+    </div>
+
+    <p style="margin: 1.2rem 0 0.8rem;"><strong>10.</strong> <em>Hukam</em> also records the account of joy and sorrow according to one's actions:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਨਾਨਕ ਹੁਕਮੀ ਲਿਖੀਐ ਲੇਖੁ ॥</span>
+      <span class="translation">"O Nanak, by <em>hukam</em>, the account is written."</span>
+      <span class="source">— Var Asa, M:1</span>
+    </div>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮਿ ਚਲਾਏ ਆਪਣੇ ਕਰਮੀ ਵਹੈ ਕਲਾਮ ॥</span>
+      <span class="translation">"By His own <em>hukam</em> He drives; by one's actions the pen of destiny flows."</span>
+      <span class="source">— Sarang Var, M:1</span>
+    </div>
+
+    <p style="margin: 1.2rem 0 0.8rem;"><strong>11.</strong> Finally — <em>hukam</em> is the bringer of <em>kalyaan</em> (wellbeing, liberation). It is <em>bismad</em> (wondrous, beyond description). One who reaches the state of <em>bismad</em> and recognizes it there comes to know the <em>jugti</em> (the means, the way) of the union of <em>jeev</em> and <em>Brahm</em>:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਹੁਕਮੁ ਬਿਸਮਾਦੁ ਹੁਕਮਿ ਪਛਾਣੈ ਜੀਅ ਜੁਗਤਿ ਸਚੁ ਜਾਣੈ ਸੇਈ ॥</span>
+      <span class="translation">"<em>Hukam</em> is wondrous — one who recognizes through <em>hukam</em>, those alone truly know the way of the soul and the Truth."</span>
+      <span class="source">— Sidh Gosht, 23</span>
+    </div>
+  </div>
+
+  <div class="divider">· · ·</div>
+
+  <!-- HUKAM-RAZA -->
+  <div class="vyakhya-block">
+    <h4><em>Hukam</em> and <em>Razaa</em> — What is the Difference?</h4>
+    <p>At their root, <em>hukam</em> and <em>razaa</em> are the same thing. Both terms are used for <em>Waheguru</em>. But why is <em>rajaa'ee</em> used here rather than <em>hukamee</em>? Bhai Vir Singh suggests it is to point to this: whatever <em>Waheguru</em> does through <em>hukam</em>, He does freely, out of His own <em>razaa</em> — His own Will and pleasure. There is no consultation required. As it is said:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਸੋ ਕਰੇ ਜਿ ਤਿਸੈ ਰਜਾਇ ॥</span>
+      <span class="translation">"He does what is in accordance with His own <em>razaa</em>."</span>
+      <span class="source">— Var Asa, M:1</span>
+    </div>
+    <p>Furthermore: He is <em>razaa'ee</em> when He commands, and He remains <em>razaa'ee</em> even after commanding — meaning He remains in <em>prasantaa</em> (joy, contentment) always. When He gives <em>hukam</em>, He does not become <em>vikaari</em> (corrupted) or <em>lipaaiamaan</em> (besmirched). He remains in joy in every condition.</p>
+
+    <p>There is also a distinction between <em>hukam</em> and <em>razaa</em> from the perspective of the <em>jeev</em> — the one who accepts the command. It can be described as a difference of <em>avasthaa</em> (inner state):</p>
+    <ul style="padding-left: 1.5rem; margin: 1rem 0; line-height: 2;">
+      <li><strong>Accepting <em>hukam</em></strong> — the state in which the <em>jeev</em> recognizes the Divine command and walks in accordance with it.</li>
+      <li><strong>Accepting <em>razaa</em></strong> — the state in which one recognizes the pleasure of the Lord and enters into that joy. That is: one recognizes His <em>prasantaa</em> (delight) within the <em>hukam</em>, and merges one's own <em>prasantaa</em> with His.</li>
+    </ul>
+    <p>In Arabic, <em>razaa</em> also means the Divine's own contentment and pleasure. So in whatever thing the Lord finds His <em>prasantaa</em>, the lover finds <em>prasantaa</em> in that same thing. As Guru Arjan Dev Ji told Mian Mir: what you call our suffering is the <em>razaa</em> (pleasure) of the Divine — and in His pleasure we find our pleasure.</p>
+    <p>Those who walk in <em>razaa</em> move beyond their own <em>subhaav</em> (nature) and become so aligned with the nature of the Divine that between the <em>hukamee</em> (the One who commands) and the one who accepts the command, there is nothing but complete and total <em>prasantaa</em>. As Guru Arjan Dev Ji says:</p>
+    <div class="citation">
+      <span class="gurmukhi-cite">ਤੇਰਾ ਕੀਆ ਮੀਠਾ ਲਾਗੈ ॥</span>
+      <span class="translation">"Whatever You do feels sweet to me."</span>
+      <span class="source">— Asa, M:5</span>
+    </div>
+  </div>
+
+  <!-- Glossary -->
+  <div class="divider">· · ·</div>
+  <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; color: var(--navy); margin-bottom: 1.2rem;">Key Terms — Pauri 1</h3>
+
+  <div style="background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem 1.8rem;">
+    <div class="glossary-item">
+      <span class="glossary-term">ਸਚਿਆਰਾ</span>
+      <span class="glossary-def"><em>Sachiaaraa</em> — one who has become truth itself. Not merely someone who tells the truth, but one whose very being is aligned with the Sat Saroop (True Form). The destination of this Pauri.</span>
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">ਕੂੜ ਦੀ ਪਾਲ</span>
+      <span class="glossary-def"><em>KooR dī pāl</em> — the wall of falsehood. This wall is identified as <em>haumai</em>. It stands around the innermost self and creates the distance between the individual and the True Form.</span>
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">ਹਉਮੈ</span>
+      <span class="glossary-def"><em>Haumai</em> — ego; the deeply rooted sense of "I" as a separate self. The root cause behind the failure of all four methods. Not mere arrogance — a fundamental orientation of the self around itself rather than around Reality.</span>
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">ਤ੍ਰਿਸ਼ਨਾ</span>
+      <span class="glossary-def"><em>Trishnaa</em> — craving; the inner hunger of desire. Arises from <em>haumai</em>. Cannot be satisfied by receiving more — it only grows with each satisfaction.</span>
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">ਸਿਆਣਪ</span>
+      <span class="glossary-def"><em>Siyanap</em> — cleverness; the power of the intellect. Includes scholarship, philosophical reasoning, scriptural knowledge. All functions of the mind — and therefore unable to reach what lies beyond the mind.</span>
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">ਹੁਕਮ</span>
+      <span class="glossary-def"><em>Hukam</em> — the Will; the cosmic order and law governing all of existence. Not an external command to obey with reluctance — it is written within the nature of every living being. Walking in <em>hukam</em> means aligning with what is already inscribed within you.</span>
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">ਰਜਾਈ</span>
+      <span class="glossary-def"><em>Razaa / Rajaa'ee</em> — sovereign Will; the pleasure and Will of the Divine. <em>Hukam rajaa'ee</em> together means walking in joyful, grateful alignment with that Will — not reluctant compliance but willing harmony.</span>
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">ਅਨਕੂਲਤਾ</span>
+      <span class="glossary-def"><em>Ankulataa</em> — alignment, going with rather than against. Like a sympathetic string on a sitar tuned to the base string — it vibrates in harmony without resistance. To be <em>anukool</em> with <em>Waheguru's hukam</em> is the path to becoming <em>sachiaar</em>.</span>
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">ਨਾਮ ਸਿਮਰਨ</span>
+      <span class="glossary-def"><em>Naam simran</em> — remembrance and meditation on the Name of the Divine. Identified by Bhai Vir Singh as the <em>hukam</em> already inscribed in the mind and body from the <em>dhur</em> (deep source). The means by which the <em>kooR dī pāl</em> is broken.</span>
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">ਬਿਸਮਾਦ</span>
+      <span class="glossary-def"><em>Bismad</em> — wonder, wondrous awe. Used to describe both <em>hukam</em> and <em>hukami</em>. Reaching this state of recognition leads to knowledge of the way of union between the individual soul and the Divine.</span>
+    </div>
+    <div class="glossary-item">
+      <span class="glossary-term">ਕਲ੍ਯਾਨ</span>
+      <span class="glossary-def"><em>Kalyaan</em> — wellbeing, liberation, the highest good. <em>Hukam</em> is the <em>kalyaan kartaa</em> — the bringer of liberation. Aligning with <em>hukam</em> is not a burden; it is the path to flourishing.</span>
+    </div>
+  </div>
+
+  <div class="reflection">
+    <span class="ref-label">✦ Reflection Pointers</span>
+    <ul>
+      <li>All four failed methods — ritual, silence, fasting, intellect — share one root cause: <em>haumai</em> is still driving them. Where in your own life do you see effort that feels spiritual but is still ego-driven?</li>
+      <li>Bhai Vir Singh says <em>hukam</em> is already <em>likhiaa naal</em> — written within you. What does it mean to stop searching for something that was never absent?</li>
+      <li>The shift from <em>haumai</em> to <em>hukam</em> is described as <em>ankulataa</em> — going with rather than against. What would it feel like to stop resisting the natural order of your life?</li>
+    </ul>
+  </div>
+
+</main>
+</div>
+
+<!-- ===================== TAB 3: LEARN WITH NANAK ===================== -->
+<div id="tab-lwn" class="tab-content">
+<main>
+  <span class="section-label">Learn With Nanak — Amardeep Singh &amp; Vininder Kaur</span>
+  <hr class="section-divider">
+
+  <div class="lkn-notice">
+    This interpretation is from <strong>LearnWithNanak.com</strong> by Amardeep Singh and Vininder Kaur. It is their reading — accessible, philosophical, and grounded in lived experience. It is presented here as one lens among several, not as the definitive interpretation.
+  </div>
+
+  <div class="concept-box">
+    <span class="label">The Context — Pauri 1</span>
+    Thoughts come and go, emotions rise and fall. The mind can get caught in its own entanglements of illusion, causing doubt and confusion. Unrestrained desires create aspirations that never entirely settle. Guru Nanak does not disregard these tendencies — he acknowledges them as part of being human, and reassures that they can be transcended through critical reflection and integrity.
+  </div>
+
+  <!-- Line 1 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ ਜੇ ਸੋਚੀ ਲਖ ਵਾਰ ॥</div>
+    <div class="line-body">
+      <span class="line-label">Learn With Nanak</span>
+      <p class="arth-text">The mind, devoid of a permanent entity, identifies itself with multiple fleeting thoughts which emerge from external stimulants and internal dissatisfaction. This commotion does not allow the mind to transcend to its eternal, pristine state of stillness.</p>
+    </div>
+  </div>
+
+  <!-- Line 2 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਚੁਪੈ ਚੁਪ ਨ ਹੋਵਈ ਜੇ ਲਾਇ ਰਹਾ ਲਿਵ ਤਾਰ ॥</div>
+    <div class="line-body">
+      <span class="line-label">Learn With Nanak</span>
+      <p class="arth-text">Silence refers to the absence of sound. In a spiritual context, it is an internal dimension rather than an external one. An individual can appear externally quiet but can be fraught with internal noise despite being in silent meditation.</p>
+    </div>
+  </div>
+
+  <!-- Line 3 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਭੁਖਿਆ ਭੁਖ ਨ ਉਤਰੀ ਜੇ ਬੰਨਾ ਪੁਰੀਆ ਭਾਰ ॥</div>
+    <div class="line-body">
+      <span class="line-label">Learn With Nanak</span>
+      <p class="arth-text">Worldly illusions arouse desires and insecurities, creating a delusion that material wealth is the path to overall well-being. This misconception leads to a hunger to accumulate resources which never satiates.</p>
+    </div>
+  </div>
+
+  <!-- Line 4 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਸਹਸ ਸਿਆਣਪਾ ਲਖ ਹੋਹਿ ਤ ਇਕ ਨ ਚਲੈ ਨਾਲਿ ॥</div>
+    <div class="line-body">
+      <span class="line-label">Learn With Nanak</span>
+      <p class="arth-text">Knowledge refers to the information gathered from various sources that can become a reason for the intellectual ego and a barrier to moving towards gaining awareness of the unseen and unknown.</p>
+    </div>
+  </div>
+
+  <!-- Line 5 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਕਿਵ ਸਚਿਆਰਾ ਹੋਈਐ ਕਿਵ ਕੂੜੈ ਤੁਟੈ ਪਾਲਿ ॥</div>
+    <div class="line-body">
+      <span class="line-label">Learn With Nanak</span>
+      <p class="arth-text">How can the mind recognize its pristine innate being? How can the barrage of misconceptions be shattered?</p>
+    </div>
+  </div>
+
+  <!-- Line 6 -->
+  <div class="line-entry">
+    <div class="line-gurmukhi">ਹੁਕਮਿ ਰਜਾਈ ਚਲਣਾ ਨਾਨਕ ਲਿਖਿਆ ਨਾਲਿ ॥੧॥</div>
+    <div class="line-body">
+      <span class="line-label">Learn With Nanak</span>
+      <p class="arth-text">According to Nanak, accepting the path of complete harmony with the laws of nature is the ultimate principle of creating a fulfilling self-providence. Those who do not consider themselves separate from the laws of nature rise above ritualistic practices and societal conditioning. They recognize the connection between the cosmic laws and the inherent inner being. Ultimately they attain the truth — which helps them transcend the unreal state of disharmony to the innate quietude of being One with nature.</p>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- ===================== TAB 4: MUL OF THE MATTER ===================== -->
+<div id="tab-mul" class="tab-content">
+<main>
+  <span class="section-label">Mūl of the Matter</span>
+  <hr class="section-divider">
+
+  <div class="mul-coming">
+    <span>ੴ</span>
+    This section is a living space. It will hold a plain-language distillation of Pauri 1 — the essence of what it means, written accessibly, after sitting with both commentaries. It is still developing.
+  </div>
+
+</main>
+</div>
+
+<footer>
+  <span class="footer-mark">ੴ</span>
+  Japji Sahib · Pauri 1 · Mūl Learnings<br>
+  Bhai Vir Singh Steek · LearnWithNanak.com
+</footer>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
