@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction — Japji Sahib — Mūl Learnings</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #080e1a;
+    --navy-mid:  #0d1b2a;
+    --navy-card: #111e30;
+    --navy-lift: #162236;
+    --blue:      #2a5298;
+    --steel:     #7a9cbf;
+    --steel-dim: #4a6a8a;
+    --cream:     #e8eef8;
+    --cream-dim: #b0bdd0;
+    --gold:      #c9a84c;
+    --gold-faint:#2a2010;
+    --rule:      rgba(122,156,191,0.18);
+    --text:      #e8eef8;
+    --text-dim:  #8aa0bc;
+    --text-soft: #5a7090;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── NAV ── */
+  nav {
+    padding: 1.2rem 3.5rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--navy);
+    z-index: 50;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+  .nav-breadcrumb a { color: var(--text-soft); text-decoration: none; transition: color 0.15s; }
+  .nav-breadcrumb a:hover { color: var(--steel); }
+  .nav-breadcrumb .sep { color: var(--text-soft); opacity: 0.4; }
+  .nav-breadcrumb .current { color: var(--cream); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 4rem 3.5rem 3rem;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: end;
+  }
+  .header-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .header-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--steel); }
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 0.8rem;
+  }
+  .page-subtitle {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+  }
+  .header-meta {
+    text-align: right;
+  }
+  .scholar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+  .scholar-dates {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-bottom: 0.8rem;
+  }
+  .edition-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 2px;
+    padding: 0.25rem 0.7rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── SECTION TABS ── */
+  .section-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--rule);
+    padding: 0 3.5rem;
+    background: var(--navy-mid);
+    gap: 0;
+    overflow-x: auto;
+  }
+  .stab {
+    padding: 0.9rem 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+  .stab:hover { color: var(--cream); }
+  .stab.active { color: var(--cream); border-bottom: 2px solid var(--gold); }
+
+  /* ── CONTENT AREA ── */
+  .content-area {
+    flex: 1;
+    padding: 3rem 3.5rem 5rem;
+    max-width: 820px;
+  }
+
+  .section-panel { display: none; animation: fadeUp 0.3s ease both; }
+  .section-panel.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── PROSE ── */
+  .prose-block {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .prose-block:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .prose-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+  }
+  .prose-body {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.9;
+  }
+  .prose-body p { margin-bottom: 0.9rem; }
+  .prose-body p:last-child { margin-bottom: 0; }
+  .prose-body strong { color: var(--cream); font-weight: 600; }
+  .prose-body em { color: var(--steel); font-style: italic; }
+
+  /* ── GRAMMAR BLOCKS ── */
+  .grammar-section {
+    margin-bottom: 2.5rem;
+  }
+  .grammar-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .grammar-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+  .grammar-card {
+    background: var(--navy-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .grammar-card-head {
+    padding: 0.9rem 1.4rem;
+    background: var(--navy-lift);
+    border-bottom: 1px solid var(--rule);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .grammar-card-head .distinction {
+    font-size: 0.65rem;
+    color: var(--text-soft);
+    letter-spacing: 0.1em;
+    font-style: italic;
+    text-transform: none;
+  }
+  .grammar-examples { padding: 0; }
+  .grammar-example {
+    padding: 1.2rem 1.4rem;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .grammar-example:last-child { border-bottom: none; }
+  .ge-left {}
+  .ge-gurmukhi {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+  .ge-gurmukhi .hl {
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .ge-ref {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--text-soft);
+  }
+  .ge-right {}
+  .ge-english {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-style: italic;
+  }
+  .ge-note {
+    font-size: 0.9rem;
+    color: var(--steel);
+    line-height: 1.6;
+    margin-top: 0.4rem;
+  }
+
+  /* ── SCHOLAR NOTE ── */
+  .scholar-note {
+    background: rgba(42,82,152,0.12);
+    border-left: 3px solid var(--blue);
+    padding: 1rem 1.3rem;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-style: italic;
+  }
+  .scholar-note strong {
+    font-style: normal;
+    color: var(--steel);
+  }
+
+  /* ── LIFE TIMELINE ── */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .tl-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    padding-top: 0.15rem;
+    line-height: 1.5;
+  }
+  .tl-content {}
+  .tl-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  .tl-body {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  /* ── PAURI SUMMARY GROUPS ── */
+  .summary-group {
+    margin-bottom: 2.2rem;
+    padding-bottom: 2.2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .summary-group:last-child { border-bottom: none; }
+  .sg-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 0.8rem;
+  }
+  .sg-body {
+    font-size: 1.02rem;
+    color: var(--text-dim);
+    line-height: 1.9;
+  }
+
+  /* ── QA BLOCKS ── */
+  .qa-item {
+    margin-bottom: 2.2rem;
+    padding-bottom: 2.2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .qa-item:last-child { border-bottom: none; }
+  .qa-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+    display: flex;
+    gap: 0.8rem;
+  }
+  .qa-q::before {
+    content: 'Q.';
+    color: var(--gold);
+    flex-shrink: 0;
+    font-weight: 400;
+  }
+  .qa-a {
+    font-size: 1.02rem;
+    color: var(--text-dim);
+    line-height: 1.9;
+    padding-left: 1.8rem;
+    border-left: 2px solid var(--rule);
+  }
+  .qa-ref {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--text-soft);
+    margin-top: 0.6rem;
+    font-style: italic;
+    padding-left: 1.8rem;
+  }
+
+  /* ── NEXT PAGE NAV ── */
+  .page-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3.5rem;
+    border-top: 1px solid var(--rule);
+    margin-top: auto;
+  }
+  .page-nav a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: color 0.15s;
+  }
+  .page-nav a:hover { color: var(--cream); }
+  .page-nav .next { color: var(--steel); }
+  .page-nav .next:hover { color: var(--cream); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.2rem 3.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+
+  @media (max-width: 768px) {
+    nav, .page-header, .content-area, .page-nav, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .section-tabs { padding-left: 1.5rem; }
+    .page-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .header-meta { text-align: left; }
+    .page-title { font-size: 2rem; }
+    .grammar-example { grid-template-columns: 1fr; gap: 0.8rem; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Mūl <span>Learnings</span></a>
+  <div class="nav-breadcrumb">
+    <a href="gurbani-studies.html">Gurbani Studies</a>
+    <span class="sep">/</span>
+    <a href="japji-sahib.html">Japji Sahib</a>
+    <span class="sep">/</span>
+    <span class="current">Introduction</span>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div>
+    <div class="header-eyebrow">Japji Sahib — Before We Begin</div>
+    <h1 class="page-title">Introduction &<br>Context</h1>
+    <div class="page-subtitle">ਜਾਣ-ਪਛਾਣ · ਗੁਰੂ ਨਾਨਕ ਸਾਹਿਬ ਦਾ ਜੀਵਨ-ਸੰਖੇਪ</div>
+  </div>
+  <div class="header-meta">
+    <div class="scholar-name">Prof. Sahib Singh</div>
+    <div class="scholar-dates">1892 — 1977</div>
+    <div class="edition-tag">Japji Sahib Steek · 7th Ed.</div>
+  </div>
+</div>
+
+<!-- SECTION TABS -->
+<div class="section-tabs">
+  <button class="stab active" onclick="showPanel('grammar')">Grammar Notes</button>
+  <button class="stab" onclick="showPanel('life')">Life of Guru Nanak</button>
+  <button class="stab" onclick="showPanel('summary')">Pauri Overview</button>
+  <button class="stab" onclick="showPanel('qa')">Q &amp; A</button>
+</div>
+
+<!-- CONTENT -->
+<div class="content-area">
+
+  <!-- ══ PANEL 1: GRAMMAR NOTES ══ -->
+  <div class="section-panel active" id="panel-grammar">
+
+    <div class="prose-block">
+      <div class="prose-heading">Why Grammar Matters Here</div>
+      <div class="prose-body">
+        <p>Prof. Sahib Singh spent a decade — from 1920 onward — establishing something no one had systematically proven before: that the language of Sri Guru Granth Sahib follows its own specific grammatical rules, just as every language of every land and era follows specific grammar.</p>
+        <p>The Japji Sahib Steek was his second commentary. His warning is direct: <strong>the spellings of Old Punjabi differ considerably from modern Punjabi.</strong> The grammar lives inside those spellings. Miss the spellings, miss the grammar, miss the meaning.</p>
+        <p>He writes: <em>"If readers do not develop the habit of recognizing and identifying the word-spellings of Gurbani, my hard work will not be of full benefit to them."</em></p>
+      </div>
+    </div>
+
+    <div class="grammar-section">
+      <div class="grammar-label">Example 1 — ਸੁਣਿਐ vs ਸੁਣੀਐ</div>
+      <div class="grammar-card">
+        <div class="grammar-card-head">
+          ਸੁਣਿਐ / ਸੁਣੀਐ
+          <span class="distinction">Same root, different grammatical form — different meaning</span>
+        </div>
+        <div class="grammar-examples">
+          <div class="grammar-example">
+            <div class="ge-left">
+              <div class="ge-gurmukhi">ਗਾਵੀਐ <span class="hl">ਸੁਣੀਐ</span> ਮਨਿ ਰਖੀਐ ਭਾਉ ॥</div>
+              <div class="ge-ref">Pauri 5</div>
+            </div>
+            <div class="ge-right">
+              <div class="ge-english">"Sing, and listen, and keep love enshrined in the mind."</div>
+              <div class="ge-note">ਸੁਣੀਐ = impersonal form — "one should listen / let us listen"</div>
+            </div>
+          </div>
+          <div class="grammar-example">
+            <div class="ge-left">
+              <div class="ge-gurmukhi"><span class="hl">ਸੁਣਿਐ</span> ਸਤੁ ਸੰਤੋਖੁ ਗਿਆਨੁ ॥</div>
+              <div class="ge-ref">Pauri 10</div>
+            </div>
+            <div class="ge-right">
+              <div class="ge-english">"By listening — truth, contentment, and wisdom."</div>
+              <div class="ge-note">ਸੁਣਿਐ = absolutive form — "by the act of listening / having listened"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scholar-note">One letter difference in spelling signals a completely different grammatical function — and a different meaning. Miss it and you've misread the verse.</div>
+    </div>
+
+    <div class="grammar-section">
+      <div class="grammar-label">Example 2 — ਭਗਤ vs ਭਗਤਿ</div>
+      <div class="grammar-card">
+        <div class="grammar-card-head">
+          ਭਗਤ / ਭਗਤਿ
+          <span class="distinction">Person vs practice — noun vs abstract noun</span>
+        </div>
+        <div class="grammar-examples">
+          <div class="grammar-example">
+            <div class="ge-left">
+              <div class="ge-gurmukhi">ਅਸੰਖ <span class="hl">ਭਗਤ</span> ਗੁਣ ਗਿਆਨ ਵੀਚਾਰੁ ॥</div>
+              <div class="ge-ref">Pauri 17</div>
+            </div>
+            <div class="ge-right">
+              <div class="ge-english">"Countless <em>devotees</em> contemplate virtues and wisdom."</div>
+              <div class="ge-note">ਭਗਤ = a devotee, the person</div>
+            </div>
+          </div>
+          <div class="grammar-example">
+            <div class="ge-left">
+              <div class="ge-gurmukhi">ਵਿਣੁ ਗੁਣ ਕੀਤੇ <span class="hl">ਭਗਤਿ</span> ਨ ਹੋਇ ॥</div>
+              <div class="ge-ref">Pauri 21</div>
+            </div>
+            <div class="ge-right">
+              <div class="ge-english">"Without cultivating virtues, <em>devotion</em> does not happen."</div>
+              <div class="ge-note">ਭਗਤਿ = devotion, the practice itself</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scholar-note">Read ਭਗਤਿ as ਭਗਤ and you've turned "devotion" into "a devotee" — the entire sentence changes meaning.</div>
+    </div>
+
+    <div class="grammar-section">
+      <div class="grammar-label">Example 3 — ਤੇ vs ਤੈ</div>
+      <div class="grammar-card">
+        <div class="grammar-card-head">
+          ਤੇ / ਤੈ
+          <span class="distinction">Modern "and" vs Classical "from" — easily confused</span>
+        </div>
+        <div class="grammar-examples">
+          <div class="grammar-example">
+            <div class="ge-left">
+              <div class="ge-gurmukhi">ਤਿਸੁ <span class="hl">ਤੇ</span> ਹੋਏ ਲਖ ਦਰੀਆਉ ॥</div>
+              <div class="ge-ref">Pauri 19</div>
+            </div>
+            <div class="ge-right">
+              <div class="ge-english">"From That One, hundreds of thousands of rivers flow."</div>
+              <div class="ge-note">ਤੇ here = "from" — not "and"</div>
+            </div>
+          </div>
+          <div class="grammar-example">
+            <div class="ge-left">
+              <div class="ge-gurmukhi">ਆਖਹਿ ਗੋਪੀ <span class="hl">ਤੈ</span> ਗੋਵਿੰਦ ॥</div>
+              <div class="ge-ref">Pauri 26</div>
+            </div>
+            <div class="ge-right">
+              <div class="ge-english">"The gopis speak — and Govind."</div>
+              <div class="ge-note">ਤੈ = ਅਤੇ = "and" in classical Gurbani usage</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scholar-note"><strong>The rule:</strong> In modern Punjabi, ਤੇ / ਅਤੇ = "and." In Gurbani, ਤੈ = "and" — while ਤੇ = "from." They look similar. They mean opposite things. This is exactly the kind of distinction Prof. Sahib Singh's grammar work makes visible.</div>
+    </div>
+
+  </div>
+
+  <!-- ══ PANEL 2: LIFE OF GURU NANAK ══ -->
+  <div class="section-panel" id="panel-life">
+
+    <div class="prose-block">
+      <div class="prose-heading">Why Start with a Biography?</div>
+      <div class="prose-body">
+        <p>Prof. Sahib Singh opens with a brief life summary because understanding <em>who</em> composed Japji Sahib is inseparable from understanding <em>what</em> Japji Sahib is. This was not composed by a scholar in a library. It emerged from a life of radical, direct engagement with the full spectrum of human spiritual seeking.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="tl-date">Born 1469 CE<br>Sammat 1526<br>Talwandi</div>
+        <div class="tl-content">
+          <div class="tl-heading">Birth & Early Life</div>
+          <div class="tl-body">Father: Baba Kalu Ji, village accountant. One elder sister: Bibi Nanaki Ji, five years older. At age 7, sent to school. At age 9, refused the sacred thread (janeu) ceremony — already rejecting ritual without understanding. At 16, betrothed to the daughter of Baba Mula Ji of Batala. Married at 18.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">1504 CE<br>Sammat 1561<br>Sultanpur</div>
+        <div class="tl-content">
+          <div class="tl-heading">Departure & The Vein River</div>
+          <div class="tl-body">Moved to Sultanpur at invitation of brother-in-law Bhai Jai Ram Ji. Took Bhai Mardana — who sang kirtan — along. Worked as a store-keeper for Nawab Daulat Khan. On 21 Bhadon 1564 (Sammat), at the Vein river, he entered deep contemplation. Seeing the world in its suffering, he decided: he must leave comfort behind and show the world the correct path. The Modekhane account is settled, family entrusted to Baba Mula Ji. He leaves.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">1507–1515 CE<br>First Udaasi<br>8 years</div>
+        <div class="tl-content">
+          <div class="tl-heading">First Journey — Hindu Tirthas (East & South)</div>
+          <div class="tl-body">Visited every major Hindu pilgrimage site. At each tirtha, the message was the same: outer pilgrimage without inner transformation is meaningless. "ਭੇਖੀ ਪ੍ਰਭੁ ਨ ਪਾਈਐ" — God is not found through religious garb. Places visited: Lahore, Haridwar, Ayodhya, Prayag, Varanasi, Gaya, Patna, Assam, Jagannath Puri (via Calcutta), Rameswaram, Sangladip (Sri Lanka), Somnath, Dwarka, Mathura, Vrindavan, Delhi, Panipat, Kurukshetra.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">1517–1518 CE<br>Second Udaasi<br>1 year</div>
+        <div class="tl-content">
+          <div class="tl-heading">Second Journey — Uttarkhand, Siddh Yogis</div>
+          <div class="tl-body">Traveled to the mountain retreats of the Siddh Yogis in Uttarkhand. Engaged them in the famous dialogues that would later become Siddh Gosht. Returned to Kartarpur.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">1518–1521 CE<br>Third Udaasi<br>3 years</div>
+        <div class="tl-content">
+          <div class="tl-heading">Third Journey — West (Mecca, Baghdad)</div>
+          <div class="tl-body">Traveled west wearing blue robes. Pakpattan — received Baba Farid Ji's bani. Mecca — Jion Haji tried to drag him by the feet. Baghdad — sang kirtan in a city that considered music forbidden. Balkh, Kabul, Peshawar. Returned via Eminabad (1521) at the time of Babur's invasion.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">1521–1539 CE<br>Kartarpur<br>18 final years</div>
+        <div class="tl-content">
+          <div class="tl-heading">The Kartarpur Years & Passing</div>
+          <div class="tl-body">Settled permanently at Kartarpur. Composed Asa di Var, Japji Sahib, Oankaar, Siddh Gosht. Bhai Mardana passed away. Baba Lehna (future Guru Angad) came to him in 1532. Named Guru Angad as successor on 2 Assu Sammat 1596 (2 September 1539). Passed into the eternal light on 7 September 1539. Total lifespan: 70 years, 4 months, approximately 19 days.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ PANEL 3: PAURI OVERVIEW ══ -->
+  <div class="section-panel" id="panel-summary">
+
+    <div class="prose-block">
+      <div class="prose-heading">The Architecture of Japji</div>
+      <div class="prose-body">
+        <p>Prof. Sahib Singh groups the 38 Pauris into seven thematic clusters. Japji is not 38 random verses — it has a building structure, each cluster deepening what came before. The central question the entire composition answers: <strong>how does the soul close its distance from the Divine?</strong></p>
+      </div>
+    </div>
+
+    <div class="summary-group">
+      <div class="sg-label">Pauris 1–3 · The Problem & The Law</div>
+      <div class="sg-body">The distance between the soul and the Divine is caused by Maya — falsehood, illusion. The only way to close that distance is to walk in Hukam — the Divine Will, the cosmic law. This principle has operated since creation began. Billions have tried to estimate this Will; none have fully grasped it. Yet within it, infinite gifts flow to infinite beings.</div>
+    </div>
+
+    <div class="summary-group">
+      <div class="sg-label">Pauris 4–7 · What Actually Works</div>
+      <div class="sg-body">Charity, ritual offerings, pilgrimage bathing, pranayam — none of these alone close the distance. The only language in which one can speak to the Divine is Prem — Love. The person who rises at Amrit Vela and connects through remembrance receives what Prof. Sahib Singh calls "Prem-Patola" — the robe of Love. Devotion is not earned. It is received as grace.</div>
+    </div>
+
+    <div class="summary-group">
+      <div class="sg-label">Pauris 8–11 · What Simran Does</div>
+      <div class="sg-body">As awareness connects with Naam, the mind expands. Previous vices drop away. The knowledge locked inside scripture opens spontaneously. The ocean of the world — where a lost soul thrashes blindly — becomes navigable. The mind enters Sahaj: effortless equilibrium.</div>
+    </div>
+
+    <div class="summary-group">
+      <div class="sg-label">Pauris 12–15 · The Transformation Deepens</div>
+      <div class="sg-body">The soul rises above Maya's influence. The Divine is seen everywhere in creation. Fear of death dissolves. The connection with Simran becomes so deep that no obstacle can uproot it. All bonds that created separation from the Divine break.</div>
+    </div>
+
+    <div class="summary-group">
+      <div class="sg-label">Pauris 16–19 · The Blessed & The Infinite</div>
+      <div class="sg-body">The fortunate ones are those who have made the Guru's path their life's purpose. But even they cannot find the limits of creation. No human language contains a word capable of counting what the Divine has made. Language itself is a gift — given for the purpose of praise.</div>
+    </div>
+
+    <div class="summary-group">
+      <div class="sg-label">Pauris 20–27 · Cleansing & Incomprehensibility</div>
+      <div class="sg-body">Maya dirties the mind. Simran is the only cleanser. The Divine's greatness is such that the more you describe it, the greater it appears. No scholar — past, present, or future — can complete the account of what the Divine is.</div>
+    </div>
+
+    <div class="summary-group">
+      <div class="sg-label">Pauris 28–33 · Simran as the Path</div>
+      <div class="sg-body">Simran — devotional remembrance — is the life's purpose. Not yogic garments, not external markers. Simran builds contentment, righteous effort, awareness of death, love for creation, recognition of the Divine in all things.</div>
+    </div>
+
+    <div class="summary-group">
+      <div class="sg-label">Pauris 34–38 · Grace & The Final Teaching</div>
+      <div class="sg-body">Those upon whom grace falls first understand: they came to this earth with a specific duty. The final teaching of the closing Salok: this world is a stage. Those who played only the game of Maya departed separated. Those who played the game of Simran — they succeeded.</div>
+    </div>
+
+  </div>
+
+  <!-- ══ PANEL 4: Q&A ══ -->
+  <div class="section-panel" id="panel-qa">
+
+    <div class="prose-block">
+      <div class="prose-heading">Prof. Sahib Singh's Own Questions</div>
+      <div class="prose-body">
+        <p>At the end of his introduction, Prof. Sahib Singh poses and answers the fundamental questions about Japji Sahib — why it is called what it is, why it opens the Guru Granth Sahib, and why it must be recited daily.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">How does the soul close its distance from the Divine?</div>
+      <div class="qa-a">By walking in Hukam — the Divine Will. Just as a son who continuously follows his father's will has no distance from his father, the soul that aligns with the Divine Will closes the gap. What does not work: charity, pilgrimage bathing, pranayam, life extension. None of these close the distance.</div>
+      <div class="qa-ref">Pauris 1–7</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">How does one walk in Hukam?</div>
+      <div class="qa-a">Through Simran — devotional remembrance and praise. As one walks the Guru's path and engages in Simran, the Divine Will gradually begins to feel sweet rather than burdensome. The key: the awareness must become so deeply absorbed in praise that the mind settles into the Divine and no longer wants to pull away.</div>
+      <div class="qa-ref">Pauris 8–15</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">What is the result of this practice?</div>
+      <div class="qa-a">Not the ability to measure or comprehend the infinite creation — that will never happen. The result is simpler and more profound: the habit of resting in the Divine Will becomes permanent. The soul is no longer fighting reality.</div>
+      <div class="qa-ref">Pauris 16–27</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Why is this composition called "Jap"?</div>
+      <div class="qa-a">The entire composition has one argument: none of the conventional religious paths can reunite the separated soul with the Divine. Only one thing can — Simran, devotional remembrance. That is why the composition is named Jap. The word Jap means exactly this: Simran, Bandagi, Bhajan — remembrance, devotion, praise.</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Why does it open the Guru Granth Sahib?</div>
+      <div class="qa-a">The central foundation of Sikh Dharam is Simran. Simran is the foundational pillar upon which the entire building of Dharam is constructed. The composition that most fully expresses this theme is Japji. So Guru Arjan Sahib placed it at the very beginning of the Guru Granth Sahib.</div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Why recite it every day?</div>
+      <div class="qa-a">As one remembers the Divine, love for the Divine grows. As love grows, the Divine Will begins to feel sweet. As the Will feels sweet, one walks in alignment naturally. Daily recitation is not ritual — it is the practice of building and maintaining this living love. Distance from the Divine is caused by forgetting. Remembrance is the only remedy.</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- PAGE NAVIGATION -->
+<div class="page-nav">
+  <a href="gurbani-studies.html">← Gurbani Studies</a>
+  <a href="mool-mantar.html" class="next">Mool Mantar →</a>
+</div>
+
+<footer>
+  <div class="footer-text">Mūl Learnings · Japji Sahib</div>
+  <div class="footer-text">Prof. Sahib Singh · Japji Sahib Steek</div>
+</footer>
+
+<script>
+  function showPanel(id) {
+    document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
