@@ -323,6 +323,12 @@
     margin-bottom: 1.2rem;
   }
 
+  .card-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
   .card-link {
     font-size: 0.75rem;
     letter-spacing: 0.18em;
@@ -333,6 +339,7 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    text-decoration: none;
   }
 
   .card-link::after {
@@ -341,8 +348,36 @@
     transition: transform 0.2s;
   }
 
-  .card:hover .card-link::after {
+  .card-link:hover::after {
     transform: translateX(4px);
+  }
+
+  .card-link-pa {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.2s;
+  }
+
+  .card-link-pa::after {
+    content: '→';
+    font-size: 0.9rem;
+    font-family: 'Crimson Pro', serif;
+    transition: transform 0.2s;
+  }
+
+  .card-link-pa:hover { color: var(--navy); }
+  .card-link-pa:hover::after { transform: translateX(4px); }
+
+  .card-divider {
+    width: 1px;
+    height: 14px;
+    background: var(--border);
+    display: inline-block;
   }
 
   /* Coming soon card */
@@ -525,7 +560,7 @@
       </a>
 
       <!-- Pauri 1 card — LIVE -->
-      <a class="card" href="japji-pauri1.html">
+      <div class="card">
         <div class="card-top">
           <span class="card-num">01</span>
           <span class="card-gurmukhi">ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ<br>ਹੁਕਮਿ ਰਜਾਈ ਚਲਣਾ</span>
@@ -534,9 +569,13 @@
           <span class="card-label">Pauri 1</span>
           <div class="card-title">The Four Failed Paths &amp; The True Way</div>
           <p class="card-desc">Guru Nanak dismantles ritual purification, silence, fasting, and cleverness as paths to Truth — then reveals the one that actually works: walking in Hukam.</p>
-          <span class="card-link">Read</span>
+          <div class="card-links">
+            <a class="card-link" href="japji-pauri1.html">Read</a>
+            <span class="card-divider"></span>
+            <a class="card-link-pa" href="japji-pauri1-punjabi.html">ਪੜ੍ਹੋ</a>
+          </div>
         </div>
-      </a>
+      </div>
 
       <!-- Pauri 2 card — coming soon -->
       <a class="card coming-soon" href="#">
