@@ -7,41 +7,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --linen:       #f7f2ea;
-    --linen-deep:  #ede6d8;
-    --linen-mid:   #e0d8c8;
-    --plum:        #7a3f8a;
-    --plum-light:  #9b5fa5;
-    --plum-faint:  #f0e4f4;
-    --rose:        #c4708a;
-    --rose-faint:  #f8edf0;
-    --taupe:       #a09080;
-    --ink:         #1e1810;
-    --ink-mid:     #3a3028;
-    --ink-soft:    #6a5a50;
-    --rule:        #d8cfc0;
+    /* Base — warm cream, not bright white */
+    --cream:        #f0ebe0;
+    --cream-deep:   #e4ddd0;
+    --cream-mid:    #d4cdc0;
+
+    /* The blended sunset palette */
+    --plum-deep:    #2a1040;   /* deepest — almost black purple */
+    --aubergine:    #4a2060;   /* rich mid-purple */
+    --lavender:     #7a60b0;   /* Palette 2's lavender */
+    --rose-warm:    #b05080;   /* Palette 3's warmth */
+    --teal:         #3a7080;   /* Palette 2's teal — the missing piece */
+    --petal:        #e8a8c0;   /* soft pink highlight */
+
+    /* Text — deep ink, fully readable */
+    --ink:          #0c0808;
+    --ink-mid:      #221818;
+    --ink-soft:     #4a3838;
+    --ink-faint:    #7a6060;
+
+    /* Rules */
+    --rule:         #c0b0a0;
+    --rule-light:   #d8cfc0;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: var(--linen);
+    background: var(--cream);
     color: var(--ink);
     font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 20px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    font-size: 18px;
   }
 
   /* ── NAV ── */
   nav {
-    padding: 1.4rem 4rem;
+    padding: 1.4rem 5rem;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     border-bottom: 1px solid var(--rule);
-    background: var(--linen);
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 50;
   }
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
@@ -51,11 +63,11 @@
     color: var(--ink);
     text-decoration: none;
   }
-  .nav-logo span { color: var(--plum); }
+  .nav-logo span { color: var(--aubergine); }
   .nav-links { display: flex; gap: 2.5rem; align-items: baseline; }
   .nav-links a {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -64,17 +76,14 @@
   }
   .nav-links a:hover { color: var(--ink); }
   .nav-links a.current {
-    color: var(--plum);
-    border-bottom: 1px solid var(--plum);
+    color: var(--aubergine);
+    border-bottom: 1px solid var(--aubergine);
     padding-bottom: 1px;
   }
 
-  /* ── MAIN ── */
-  main { flex: 1; padding: 0 4rem 6rem; max-width: 1100px; width: 100%; }
-
   /* ── PAGE HEADER ── */
   .page-header {
-    padding: 5rem 0 4rem;
+    padding: 5rem 5rem 4rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
@@ -84,21 +93,16 @@
   }
   .stream-label {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--plum);
+    color: var(--aubergine);
     margin-bottom: 1.4rem;
     display: flex;
     align-items: center;
     gap: 0.8rem;
   }
-  .stream-label::before {
-    content: '';
-    width: 24px;
-    height: 1px;
-    background: var(--plum);
-  }
+  .stream-label::before { content: ''; width: 24px; height: 1px; background: var(--aubergine); }
   .page-title {
     font-family: 'EB Garamond', serif;
     font-size: 3.4rem;
@@ -107,84 +111,62 @@
     line-height: 1.12;
     letter-spacing: -0.01em;
   }
-  .page-title em {
-    font-style: italic;
-    color: var(--plum);
-  }
+  .page-title em { font-style: italic; color: var(--aubergine); }
   .page-desc {
     font-size: 1.15rem;
     color: var(--ink-soft);
     line-height: 1.85;
     margin-bottom: 2rem;
   }
-  .method-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
+  .method-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
   .method-list li {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--taupe);
+    color: var(--ink-faint);
     display: flex;
     align-items: center;
     gap: 0.8rem;
   }
-  .method-list li::before {
-    content: '';
-    width: 18px;
-    height: 1px;
-    background: var(--plum-light);
-    flex-shrink: 0;
-  }
+  .method-list li::before { content: ''; width: 18px; height: 1px; background: var(--lavender); flex-shrink: 0; }
 
-  /* ── STATUS ── */
+  /* ── MAIN ── */
+  main { flex: 1; padding: 0 5rem 6rem; }
+
+  /* ── STATUS BANNER ── */
   .status-banner {
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
-    background: var(--plum-faint);
-    border: 1px solid rgba(122,63,138,0.2);
-    border-radius: 2px;
-    padding: 0.6rem 1.2rem;
+    background: var(--cream-deep);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--aubergine);
+    padding: 0.7rem 1.4rem;
     margin-bottom: 4rem;
   }
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--plum);
-    flex-shrink: 0;
-  }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--aubergine); flex-shrink: 0; }
   .status-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.75rem;
+    font-size: 0.82rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--plum);
+    color: var(--aubergine);
   }
 
   /* ── SECTION HEAD ── */
   .section-head {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--taupe);
+    color: var(--ink-faint);
     margin-bottom: 1.8rem;
     display: flex;
     align-items: center;
     gap: 1rem;
   }
-  .section-head::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-  }
+  .section-head::after { content: ''; flex: 1; height: 1px; background: var(--rule-light); }
 
   /* ── BOOK GRID ── */
   .book-grid {
@@ -196,59 +178,45 @@
     margin-bottom: 4.5rem;
   }
   .book-item {
-    background: var(--linen);
-    padding: 2.2rem 2rem;
+    /* Warm Dusk — Option 5 — lavender-rose tinted boxes */
+    background: #ddd0e8;
+    padding: 2.4rem 2.2rem;
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
     transition: background 0.2s;
   }
-  .book-item:hover { background: var(--plum-faint); }
-  .book-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--taupe);
-  }
+  .book-item:hover { background: #d0c0e0; }
+  .book-num { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--ink-faint); }
   .book-category {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--plum-light);
+    color: var(--aubergine);
   }
   .book-title {
     font-family: 'EB Garamond', serif;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     color: var(--ink);
     line-height: 1.35;
     flex: 1;
   }
-  .book-author {
-    font-family: 'Crimson Pro', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--ink-soft);
-  }
+  .book-author { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 1rem; color: var(--ink-soft); }
   .book-status {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--rose);
+    color: var(--rose-warm);
     margin-top: 0.3rem;
   }
-  .book-accent {
-    height: 2px;
-    border-radius: 1px;
-    margin-top: 0.2rem;
-    width: 32px;
-  }
-  .book-accent.plum  { background: var(--plum); }
-  .book-accent.rose  { background: var(--rose); }
-  .book-accent.taupe { background: var(--taupe); }
+  .book-accent { height: 2px; border-radius: 1px; margin-bottom: 0.3rem; width: 32px; }
+  .ba-plum    { background: var(--aubergine); }
+  .ba-rose    { background: var(--rose-warm); }
+  .ba-teal    { background: var(--teal); }
 
-  /* ── METHODOLOGY ── */
+  /* ── METHODOLOGY — deep violet boxes, cream text ── */
   .method-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -257,51 +225,55 @@
     border: 1px solid var(--rule);
   }
   .method-item {
-    background: var(--linen-deep);
-    padding: 2.2rem 2rem;
+    background: var(--plum-deep);
+    padding: 2.4rem 2.2rem;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
   }
   .method-num {
     font-family: 'EB Garamond', serif;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     font-weight: 400;
     line-height: 1;
-    color: var(--linen-mid);
+    color: var(--aubergine);
   }
   .method-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--plum);
+    color: var(--lavender);
     margin-top: 0.3rem;
   }
   .method-desc {
     font-size: 1.05rem;
-    color: var(--ink-soft);
-    line-height: 1.75;
+    color: #c8b8d8;
+    line-height: 1.8;
   }
+  /* Teal accent on middle method item */
+  .method-item:nth-child(2) .method-num { color: var(--teal); }
+  .method-item:nth-child(2) .method-name { color: #6ab8c8; }
+  .method-item:nth-child(3) .method-num { color: var(--rose-warm); }
+  .method-item:nth-child(3) .method-name { color: var(--petal); }
 
   /* ── FOOTER ── */
   footer {
-    padding: 1.3rem 4rem;
+    padding: 1.3rem 5rem;
     border-top: 1px solid var(--rule);
-    background: var(--linen);
+    background: var(--cream-deep);
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   .footer-left {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--taupe);
+    color: var(--ink-faint);
   }
 
-  /* ANIMATIONS */
   @keyframes appear {
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -312,8 +284,8 @@
   .method-grid   { animation: appear 0.55s 0.26s ease both; }
 
   @media (max-width: 768px) {
-    nav, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .page-header { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0 2.5rem; }
+    nav, .page-header, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .page-header { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2.5rem; }
     .page-title { font-size: 2.4rem; }
     .book-grid, .method-grid { grid-template-columns: 1fr; }
   }
@@ -330,21 +302,22 @@
   </div>
 </nav>
 
-<main>
-  <div class="page-header">
-    <div class="header-left">
-      <div class="stream-label">Stream 02</div>
-      <h1 class="page-title">Books worth<br>reading <em>carefully</em></h1>
-    </div>
-    <div class="header-right">
-      <p class="page-desc">Deep notes on what I read. The argument. The vocabulary. What actually holds up under scrutiny.</p>
-      <ul class="method-list">
-        <li>Core argument, stripped bare</li>
-        <li>Key concepts with the right words</li>
-        <li>Mūl of the matter — no filler</li>
-      </ul>
-    </div>
+<div class="page-header">
+  <div>
+    <div class="stream-label">Stream 02</div>
+    <h1 class="page-title">Books worth<br>reading <em>carefully</em></h1>
   </div>
+  <div>
+    <p class="page-desc">Deep notes on what I read. The argument. The vocabulary. What actually holds up under scrutiny.</p>
+    <ul class="method-list">
+      <li>Core argument, stripped bare</li>
+      <li>Key concepts with the right words</li>
+      <li>Mūl of the matter — no filler</li>
+    </ul>
+  </div>
+</div>
+
+<main>
 
   <div class="status-banner">
     <div class="status-dot"></div>
@@ -356,7 +329,7 @@
   <div class="book-grid">
     <div class="book-item">
       <div class="book-num">001</div>
-      <div class="book-accent plum"></div>
+      <div class="book-accent ba-plum"></div>
       <div class="book-category">Philosophy</div>
       <div class="book-title">A book on ideas</div>
       <div class="book-author">Author name</div>
@@ -364,7 +337,7 @@
     </div>
     <div class="book-item">
       <div class="book-num">002</div>
-      <div class="book-accent rose"></div>
+      <div class="book-accent ba-rose"></div>
       <div class="book-category">History</div>
       <div class="book-title">A book on the past</div>
       <div class="book-author">Author name</div>
@@ -372,7 +345,7 @@
     </div>
     <div class="book-item">
       <div class="book-num">003</div>
-      <div class="book-accent taupe"></div>
+      <div class="book-accent ba-teal"></div>
       <div class="book-category">Literature</div>
       <div class="book-title">A book worth reading</div>
       <div class="book-author">Author name</div>

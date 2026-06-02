@@ -7,59 +7,123 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #080e1a;
-    --navy-mid: #0d1b2a;
-    --navy-light: #162236;
-    --blue: #2a5298;
-    --steel: #7a9cbf;
-    --cream: #e8eef8;
-    --cream-dim: #c8d4e8;
-    --gold: #c9a84c;
-    --text: #e8eef8;
-    --text-dim: #8aa0bc;
+    --navy:      #080e1a;
+    --navy-mid:  #0d1b2a;
+    --navy-card: #0f1e30;
+    --navy-lift: #162236;
+    --navy-high: #1e2e42;
+    --steel:     #7a9cbf;
+    --cream:     #e8eef8;
+    --gold:      #c9a84c;
+    --rule:      rgba(122,156,191,0.18);
+    --text:      #e8eef8;
+    --text-dim:  #90a8c0;
+    --text-soft: #5a7090;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--navy); color: var(--text); font-family: 'Crimson Pro', Georgia, serif; min-height: 100vh; display: flex; flex-direction: column; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
-  nav { padding: 1.2rem 3rem; border-bottom: 1px solid rgba(122,156,191,0.2); display: flex; align-items: center; justify-content: space-between; }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.05em; color: var(--cream); text-decoration: none; }
+  nav {
+    padding: 1.3rem 5rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--navy);
+    z-index: 50;
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.06em; color: var(--cream); text-decoration: none; }
   .nav-logo span { color: var(--gold); }
-  .nav-back { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .nav-back { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-soft); text-decoration: none; transition: color 0.15s; }
   .nav-back:hover { color: var(--cream); }
 
-  .page-header { padding: 4rem 3rem 3rem; border-bottom: 1px solid rgba(122,156,191,0.15); }
-  .breadcrumb { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
-  .breadcrumb a { color: var(--text-dim); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--steel); }
-  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--cream); margin-bottom: 0.6rem; }
-  .page-desc { font-family: 'Crimson Pro', serif; font-size: 1.05rem; color: var(--text-dim); max-width: 580px; line-height: 1.7; }
+  .page-header {
+    padding: 5rem 5rem 4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--steel); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
+  .header-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--steel); }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 300; color: var(--cream); line-height: 1.12; margin-bottom: 0.8rem; }
+  .page-desc { font-size: 1.15rem; color: var(--text-dim); line-height: 1.8; }
 
-  .content { padding: 3rem; flex: 1; max-width: 900px; width: 100%; }
+  main { flex: 1; padding: 4rem 5rem 6rem; }
 
-  .bani-section { margin-bottom: 3.5rem; }
-  .section-label { font-family: 'Cormorant Garamond', serif; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--steel); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
-  .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(122,156,191,0.2); }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--cream); margin-bottom: 0.3rem; }
-  .section-gurmukhi { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 0.95rem; color: var(--text-dim); margin-bottom: 1.5rem; }
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-  .bani-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
-  .bani-card { background: var(--navy-light); border: 1px solid rgba(122,156,191,0.18); border-radius: 4px; padding: 1.4rem 1.5rem; text-decoration: none; color: inherit; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 0.5rem; }
-  .bani-card:hover { border-color: var(--steel); background: rgba(42,82,152,0.15); transform: translateY(-1px); }
-  .bani-card.coming-soon { opacity: 0.45; pointer-events: none; }
-  .card-label { font-family: 'Cormorant Garamond', serif; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
-  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--cream); }
-  .card-gurmukhi { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 0.85rem; color: var(--text-dim); }
-  .card-cta { font-family: 'Cormorant Garamond', serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; }
-  .card.coming-soon .card-cta { color: var(--text-dim); }
-  .badge { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); background: var(--steel); padding: 0.15rem 0.5rem; border-radius: 2px; margin-left: 0.4rem; vertical-align: middle; }
+  /* BANI SECTION */
+  .bani-section { margin-bottom: 5rem; }
+  .bani-title-row {
+    margin-bottom: 2rem;
+  }
+  .bani-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--cream); margin-bottom: 0.3rem; }
+  .bani-gurmukhi { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1rem; font-weight: 300; color: var(--gold); }
 
-  footer { padding: 1.5rem 3rem; border-top: 1px solid rgba(122,156,191,0.15); display: flex; justify-content: space-between; }
-  .footer-left { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--text-dim); }
+  /* CARD GRID — same as homepage streams */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
 
-  @media (max-width: 640px) {
-    nav, .page-header, .content, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .page-title { font-size: 2rem; }
-    .bani-grid { grid-template-columns: 1fr 1fr; }
+  .bani-card {
+    background: var(--navy-card);
+    padding: 2.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    transition: background 0.2s;
+    min-height: 200px;
+  }
+  .bani-card:hover { background: var(--navy-lift); }
+  .bani-card.soon { opacity: 0.38; pointer-events: none; }
+
+  .card-tag { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--steel); }
+  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--cream); line-height: 1.2; flex: 1; }
+  .card-gurmukhi { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 0.95rem; font-weight: 300; color: var(--text-dim); line-height: 1.7; }
+  .card-cta { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; }
+  .card-soon { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); margin-top: 0.3rem; }
+
+  .accent { width: 24px; height: 2px; border-radius: 1px; margin-bottom: 0.3rem; }
+  .a-gold  { background: var(--gold); }
+  .a-steel { background: var(--steel); }
+  .a-dim   { background: var(--text-soft); }
+
+  footer { padding: 1.3rem 5rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; }
+  .footer-text { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); }
+
+  @keyframes appear { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .page-header { animation: appear 0.5s ease both; }
+  main { animation: appear 0.5s 0.1s ease both; }
+
+  @media (max-width: 768px) {
+    nav, .page-header, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .page-title { font-size: 2.2rem; }
+    .card-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -71,83 +135,102 @@
 </nav>
 
 <div class="page-header">
-  <div class="breadcrumb"><a href="index.html">Home</a> · Gurbani Studies</div>
+  <div class="header-eyebrow">Stream 01</div>
   <h1 class="page-title">Gurbani Studies</h1>
   <p class="page-desc">Working through the Bani systematically — each composition studied word by word, across multiple scholars and commentaries.</p>
 </div>
 
-<div class="content">
+<main>
 
-  <!-- JAPJI SAHIB -->
   <div class="bani-section">
     <div class="section-label">Currently studying</div>
-    <div class="section-title">Japji Sahib</div>
-    <div class="section-gurmukhi">ਜਪੁ ਜੀ ਸਾਹਿਬ — Guru Nanak Dev Ji</div>
+    <div class="bani-title-row">
+      <div class="bani-title">Japji Sahib</div>
+      <div class="bani-gurmukhi">ਜਪੁ ਜੀ ਸਾਹਿਬ — Guru Nanak Dev Ji</div>
+    </div>
+    <div class="card-grid">
 
-    <div class="bani-grid">
+      <a href="japji-sahib.html" class="bani-card">
+        <div class="accent a-gold"></div>
+        <div class="card-tag">Full Index</div>
+        <div class="card-title">Japji Sahib</div>
+        <div class="card-gurmukhi">ੴ ਸਤਿਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ...</div>
+        <div class="card-cta">Enter →</div>
+      </a>
+
+      <a href="japji-introduction.html" class="bani-card">
+        <div class="accent a-steel"></div>
+        <div class="card-tag">Before We Begin</div>
+        <div class="card-title">Introduction</div>
+        <div class="card-gurmukhi">ਜਾਣ-ਪਛਾਣ · ਜੀਵਨ-ਸੰਖੇਪ</div>
+        <div class="card-cta">Read →</div>
+      </a>
+
       <a href="mool-mantar.html" class="bani-card">
-        <div class="card-label">Opening</div>
+        <div class="accent a-gold"></div>
+        <div class="card-tag">Opening</div>
         <div class="card-title">Mool Mantar</div>
         <div class="card-gurmukhi">ੴ ਸਤਿਨਾਮੁ...</div>
         <div class="card-cta">Study →</div>
       </a>
 
       <a href="salok.html" class="bani-card">
-        <div class="card-label">Salok</div>
+        <div class="accent a-gold"></div>
+        <div class="card-tag">Salok</div>
         <div class="card-title">Opening Salok</div>
         <div class="card-gurmukhi">ਆਦਿ ਸਚੁ ਜੁਗਾਦਿ ਸਚੁ...</div>
         <div class="card-cta">Study →</div>
       </a>
 
       <a href="japji-pauri1-english.html" class="bani-card">
-        <div class="card-label">Pauri 1</div>
+        <div class="accent a-steel"></div>
+        <div class="card-tag">Pauri 01</div>
         <div class="card-title">Sochai Soch</div>
         <div class="card-gurmukhi">ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ...</div>
         <div class="card-cta">Study →</div>
       </a>
 
-      <div class="bani-card coming-soon">
-        <div class="card-label">Pauri 2</div>
-        <div class="card-title">Hukamee <span class="badge">Soon</span></div>
+      <div class="bani-card soon">
+        <div class="accent a-dim"></div>
+        <div class="card-tag">Pauri 02</div>
+        <div class="card-title">Hukamee Hovan</div>
         <div class="card-gurmukhi">ਹੁਕਮੀ ਹੋਵਨਿ ਆਕਾਰ...</div>
-        <div class="card-cta">Coming soon</div>
-      </div>
-
-      <div class="bani-card coming-soon">
-        <div class="card-label">Pauri 3</div>
-        <div class="card-title">Gaavai Ko <span class="badge">Soon</span></div>
-        <div class="card-gurmukhi">ਗਾਵੈ ਕੋ ਤਾਣੁ...</div>
-        <div class="card-cta">Coming soon</div>
+        <div class="card-soon">Coming soon</div>
       </div>
 
       <a href="japji-punjabi-source.html" class="bani-card">
-        <div class="card-label">Reference</div>
+        <div class="accent a-dim"></div>
+        <div class="card-tag">Reference</div>
         <div class="card-title">Punjabi Source Texts</div>
-        <div class="card-gurmukhi">ਬਾਈ ਵੀਰ ਸਿੰਘ · ਪ੍ਰੋ. ਸਾਹਿਬ ਸਿੰਘ</div>
+        <div class="card-gurmukhi">ਭਾਈ ਵੀਰ ਸਿੰਘ · ਪ੍ਰੋ. ਸਾਹਿਬ ਸਿੰਘ</div>
         <div class="card-cta">Read →</div>
       </a>
+
     </div>
   </div>
 
-  <!-- ANAND SAHIB -->
   <div class="bani-section">
     <div class="section-label">Future</div>
-    <div class="section-title">Anand Sahib <span class="badge">Soon</span></div>
-    <div class="section-gurmukhi">ਅਨੰਦੁ ਸਾਹਿਬ — Guru Amar Das Ji</div>
-    <div class="bani-grid">
-      <div class="bani-card coming-soon">
-        <div class="card-label">Coming</div>
+    <div class="bani-title-row">
+      <div class="bani-title">Anand Sahib</div>
+      <div class="bani-gurmukhi">ਅਨੰਦੁ ਸਾਹਿਬ — Guru Amar Das Ji</div>
+    </div>
+    <div class="card-grid">
+      <div class="bani-card soon">
+        <div class="accent a-dim"></div>
+        <div class="card-tag">Coming</div>
         <div class="card-title">Study begins soon</div>
         <div class="card-gurmukhi">ਅਨੰਦੁ ਭਇਆ ਮੇਰੀ ਮਾਏ...</div>
-        <div class="card-cta">Coming soon</div>
+        <div class="card-soon">Coming soon</div>
       </div>
     </div>
   </div>
 
-</div>
+</main>
 
 <footer>
-  <div class="footer-left">Mūl Learnings — Gurbani Studies</div>
+  <div class="footer-text">Mūl Learnings</div>
+  <div class="footer-text">Gurbani Studies</div>
 </footer>
 
 </body>
