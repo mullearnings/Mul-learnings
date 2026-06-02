@@ -7,402 +7,108 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy:      #080e1a;
-    --navy-mid:  #0d1b2a;
-    --navy-card: #111e30;
-    --navy-lift: #162236;
-    --blue:      #2a5298;
-    --steel:     #7a9cbf;
-    --cream:     #e8eef8;
-    --gold:      #c9a84c;
-    --rule:      rgba(122,156,191,0.18);
-    --text:      #e8eef8;
-    --text-dim:  #8aa0bc;
-    --text-soft: #5a7090;
+    --navy:       #0d1b2a;
+    --navy-mid:   #162840;
+    --blue:       #2a5298;
+    --steel:      #7a9cbf;
+    --cream:      #f5f0e8;
+    --cream-warm: #ede6d6;
+    --white:      #fdfaf5;
+    --muted:      #5a7a9a;
+    --rule:       rgba(42,82,152,0.12);
+    --rule-solid: #c8d4e0;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--navy); font-family: 'Crimson Pro', Georgia, serif; font-size: 20px; min-height: 100vh; display: flex; flex-direction: column; }
 
-  body {
-    background: var(--navy);
-    color: var(--text);
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 20px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+  .top-border { height: 4px; background: linear-gradient(90deg, var(--navy), var(--blue), var(--steel), var(--blue), var(--navy)); }
 
-  /* NAV */
-  nav {
-    padding: 1.3rem 5rem;
-    border-bottom: 1px solid var(--rule);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    background: var(--navy);
-    z-index: 50;
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--cream);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--gold); }
-  .nav-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-soft);
-  }
-  .nav-breadcrumb a { color: var(--text-soft); text-decoration: none; transition: color 0.15s; }
-  .nav-breadcrumb a:hover { color: var(--steel); }
-  .nav-breadcrumb .sep { opacity: 0.4; }
+  nav { background: var(--navy); padding: 1.2rem 5rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; letter-spacing: 0.06em; color: var(--cream); text-decoration: none; }
+  .nav-logo span { color: var(--steel); }
+  .nav-breadcrumb { display: flex; align-items: center; gap: 0.6rem; font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-breadcrumb a { color: var(--steel); text-decoration: none; transition: color 0.15s; }
+  .nav-breadcrumb a:hover { color: var(--cream); }
+  .nav-breadcrumb .sep { color: var(--steel); opacity: 0.4; }
   .nav-breadcrumb .current { color: var(--cream); }
 
-  /* PAGE HEADER */
-  .page-header {
-    padding: 4rem 5rem 3rem;
-    border-bottom: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 3rem;
-    align-items: end;
-  }
-  .header-eyebrow {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.26em;
-    text-transform: uppercase;
-    color: var(--steel);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .header-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--steel); }
-  .page-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.8rem;
-    font-weight: 300;
-    color: var(--cream);
-    line-height: 1.12;
-    margin-bottom: 0.8rem;
-  }
-  .page-desc {
-    font-size: 1.1rem;
-    color: var(--text-dim);
-    line-height: 1.8;
-  }
-  .header-note {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    color: var(--text-soft);
-    line-height: 1.6;
-    text-align: right;
-    font-style: italic;
-  }
+  .page-header { background: var(--navy); padding: 4rem 5rem 3rem; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--steel); margin-bottom: 1rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--cream); line-height: 1.12; margin-bottom: 0.6rem; }
+  .page-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.8; }
+  .header-note { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 0.9rem; color: var(--steel); line-height: 1.7; text-align: right; }
 
   /* SCHOLAR TABS */
-  .scholar-tabs {
-    display: flex;
-    border-bottom: 1px solid var(--rule);
-    background: var(--navy-mid);
-  }
-  .scholar-tab {
-    flex: 1;
-    padding: 1.2rem 2rem;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    border-bottom: 2px solid transparent;
-    text-align: left;
-  }
-  .scholar-tab:hover { background: var(--navy-lift); }
-  .scholar-tab.active {
-    background: var(--navy);
-    border-bottom: 2px solid var(--gold);
-  }
-  .tab-scholar-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--cream);
-    letter-spacing: 0.03em;
-  }
-  .scholar-tab.active .tab-scholar-name { color: var(--gold); }
-  .tab-scholar-dates {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: var(--text-soft);
-  }
-  .tab-scholar-desc {
-    font-size: 0.95rem;
-    color: var(--text-dim);
-    line-height: 1.5;
-    margin-top: 0.2rem;
-  }
+  .scholar-tabs { display: flex; background: var(--cream-warm); border-bottom: 1px solid var(--rule-solid); }
+  .scholar-tab { flex: 1; padding: 1.4rem 2rem; border: none; background: transparent; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; gap: 0.3rem; border-bottom: 2px solid transparent; text-align: left; }
+  .scholar-tab:hover { background: var(--cream); }
+  .scholar-tab.active { background: var(--cream); border-bottom: 2px solid var(--blue); }
+  .tab-name { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1.1rem; font-weight: 500; color: var(--navy); }
+  .tab-dates { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--muted); }
+  .tab-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.5; margin-top: 0.2rem; }
+  .scholar-tab.active .tab-name { color: var(--blue); }
 
   /* CONTENT */
-  .content {
-    flex: 1;
-    padding: 3.5rem 5rem 5rem;
-  }
-
+  .content { flex: 1; padding: 3.5rem 5rem 5rem; background: var(--cream); }
   .scholar-panel { display: none; animation: fadeUp 0.3s ease both; }
   .scholar-panel.active { display: block; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
   /* SECTION DIVIDER */
-  .g-section {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--steel);
-    margin: 2.5rem 0 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .g-section::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+  .g-section { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin: 2.5rem 0 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .g-section::after { content: ''; flex: 1; height: 1px; background: var(--rule-solid); }
   .g-section:first-child { margin-top: 0; }
 
   /* VERSE BLOCK */
-  .verse-block {
-    padding: 1.8rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
+  .verse-block { padding: 2rem 0; border-bottom: 1px solid var(--rule-solid); }
   .verse-block:last-child { border-bottom: none; }
-
-  .verse-gurmukhi {
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 400;
-    line-height: 2;
-    color: var(--cream);
-    margin-bottom: 0.8rem;
-  }
-  .verse-gurmukhi .hl { color: var(--gold); }
-
-  .verse-transliteration {
-    font-family: 'Crimson Pro', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--steel);
-    line-height: 1.7;
-    margin-bottom: 0.6rem;
-  }
-
-  .verse-arth {
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 1rem;
-    line-height: 1.9;
-    color: var(--text-dim);
-    padding-left: 1.2rem;
-    border-left: 2px solid var(--rule);
-  }
-
-  .verse-commentary {
-    margin-top: 0.8rem;
-    padding: 0.8rem 1.2rem;
-    background: rgba(42,82,152,0.1);
-    border-left: 2px solid var(--blue);
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.9;
-    color: var(--text-dim);
-  }
+  .verse-gurmukhi { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1.25rem; font-weight: 400; line-height: 2; color: var(--navy); margin-bottom: 0.8rem; }
+  .verse-gurmukhi .hl { color: var(--blue); }
+  .verse-transliteration { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.6rem; }
+  .verse-arth { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1rem; line-height: 1.95; color: #3a4a5a; padding-left: 1.2rem; border-left: 2px solid var(--rule-solid); }
+  .verse-commentary { margin-top: 0.8rem; padding: 0.9rem 1.2rem; background: var(--white); border-left: 3px solid var(--blue); font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 0.95rem; line-height: 1.9; color: #3a4a5a; }
 
   /* GRAMMAR CARD */
-  .grammar-card {
-    background: var(--navy-card);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 1rem 0;
-  }
-  .grammar-head {
-    padding: 0.8rem 1.4rem;
-    background: var(--navy-lift);
-    border-bottom: 1px solid var(--rule);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-  .grammar-row {
-    padding: 1.2rem 1.4rem;
-    border-bottom: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
+  .grammar-card { background: var(--white); border: 1px solid var(--rule-solid); border-radius: 4px; overflow: hidden; margin: 1rem 0; }
+  .grammar-head { padding: 0.9rem 1.5rem; background: var(--cream-warm); border-bottom: 1px solid var(--rule-solid); font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); }
+  .grammar-row { padding: 1.3rem 1.5rem; border-bottom: 1px solid var(--rule-solid); display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
   .grammar-row:last-child { border-bottom: none; }
-  .gr-gurmukhi {
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--cream);
-  }
-  .gr-gurmukhi .hl { color: var(--gold); font-weight: 500; }
-  .gr-ref {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.72rem;
-    color: var(--text-soft);
-    margin-top: 0.2rem;
-    letter-spacing: 0.1em;
-  }
-  .gr-note {
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 0.95rem;
-    color: var(--text-dim);
-    line-height: 1.7;
-  }
+  .gr-gurmukhi { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1.1rem; line-height: 1.8; color: var(--navy); }
+  .gr-gurmukhi .hl { color: var(--blue); font-weight: 500; }
+  .gr-ref { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; letter-spacing: 0.1em; }
+  .gr-note { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 0.95rem; color: #3a4a5a; line-height: 1.7; }
 
   /* SCHOLAR NOTE */
-  .scholar-note {
-    background: rgba(201,168,76,0.08);
-    border-left: 3px solid var(--gold);
-    padding: 1rem 1.4rem;
-    margin: 1.2rem 0;
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 1rem;
-    line-height: 1.85;
-    color: var(--text-dim);
-  }
-  .scholar-note strong { color: var(--gold); font-weight: 500; }
+  .scholar-note { background: var(--white); border-left: 3px solid var(--blue); padding: 1rem 1.4rem; margin: 1.2rem 0; font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1rem; line-height: 1.85; color: #3a4a5a; }
+  .scholar-note strong { color: var(--navy); font-weight: 600; }
 
   /* LIFE TIMELINE */
-  .timeline-item {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 2rem;
-    padding: 1.8rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
+  .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--rule-solid); }
   .timeline-item:last-child { border-bottom: none; }
-  .tl-date {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
-    color: var(--gold);
-    line-height: 1.6;
-    padding-top: 0.1rem;
-  }
-  .tl-head {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--cream);
-    margin-bottom: 0.5rem;
-  }
-  .tl-body {
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 0.98rem;
-    line-height: 1.9;
-    color: var(--text-dim);
-  }
+  .tl-date { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.08em; color: var(--blue); line-height: 1.6; padding-top: 0.1rem; }
+  .tl-head { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .tl-body { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 0.98rem; line-height: 1.9; color: #3a4a5a; }
 
-  /* PAURI SUMMARY */
-  .pauri-group {
-    padding: 1.8rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
+  /* PAURI GROUPS */
+  .pauri-group { padding: 2rem 0; border-bottom: 1px solid var(--rule-solid); }
   .pauri-group:last-child { border-bottom: none; }
-  .pg-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--steel);
-    margin-bottom: 0.8rem;
-  }
-  .pg-body {
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 1rem;
-    line-height: 1.95;
-    color: var(--text-dim);
-  }
+  .pg-label { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+  .pg-body { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1rem; line-height: 1.95; color: #3a4a5a; }
 
   /* QA */
-  .qa-item {
-    padding: 1.8rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
+  .qa-item { padding: 2rem 0; border-bottom: 1px solid var(--rule-solid); }
   .qa-item:last-child { border-bottom: none; }
-  .qa-q {
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: var(--cream);
-    margin-bottom: 0.8rem;
-    line-height: 1.7;
-    display: flex;
-    gap: 0.8rem;
-  }
-  .qa-q::before { content: 'ਪ੍ਰ:'; color: var(--gold); flex-shrink: 0; font-weight: 400; }
-  .qa-a {
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 1rem;
-    line-height: 1.95;
-    color: var(--text-dim);
-    padding-left: 2rem;
-    border-left: 2px solid var(--rule);
-  }
-
-  /* FOOTER */
-  footer {
-    padding: 1.3rem 5rem;
-    border-top: 1px solid var(--rule);
-    display: flex;
-    justify-content: space-between;
-  }
-  .footer-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-soft);
-  }
+  .qa-q { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1.05rem; font-weight: 500; color: var(--navy); margin-bottom: 0.8rem; line-height: 1.7; display: flex; gap: 0.8rem; }
+  .qa-q::before { content: 'ਪ੍ਰ:'; color: var(--blue); flex-shrink: 0; font-weight: 400; }
+  .qa-a { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1rem; line-height: 1.95; color: #3a4a5a; padding-left: 2rem; border-left: 2px solid var(--rule-solid); }
 
   /* PAGE NAV */
-  .page-nav {
-    padding: 2rem 5rem;
-    border-top: 1px solid var(--rule);
-    display: flex;
-    justify-content: space-between;
-  }
-  .page-nav a {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-soft);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
-  .page-nav a:hover { color: var(--cream); }
+  .page-nav { display: flex; justify-content: space-between; padding: 2rem 5rem; border-top: 1px solid var(--rule-solid); background: var(--cream-warm); }
+  .page-nav a { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+  .page-nav a:hover { color: var(--navy); }
+
+  footer { background: var(--navy); padding: 1.3rem 5rem; display: flex; justify-content: space-between; }
+  .footer-text { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
   @media (max-width: 768px) {
     nav, .page-header, .content, .page-nav, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
@@ -414,7 +120,7 @@
 </style>
 </head>
 <body>
-
+<div class="top-border"></div>
 <nav>
   <a href="index.html" class="nav-logo">Mūl <span>Learnings</span></a>
   <div class="nav-breadcrumb">
@@ -432,117 +138,170 @@
     <h1 class="page-title">Punjabi Source Texts</h1>
     <p class="page-desc">The original Gurmukhi steeks — both scholars in their own words.</p>
   </div>
-  <div class="header-note">
-    ਬਾਈ ਵੀਰ ਸਿੰਘ · ਪ੍ਰੋ. ਸਾਹਿਬ ਸਿੰਘ<br>
-    Gurmukhi original — no translation
-  </div>
+  <div class="header-note">ਭਾਈ ਵੀਰ ਸਿੰਘ · ਪ੍ਰੋ. ਸਾਹਿਬ ਸਿੰਘ<br>Gurmukhi original — no translation</div>
 </div>
 
-<!-- SCHOLAR TABS -->
 <div class="scholar-tabs">
   <button class="scholar-tab active" onclick="switchScholar('vir')">
-    <div class="tab-scholar-name">ਭਾਈ ਵੀਰ ਸਿੰਘ</div>
-    <div class="tab-scholar-dates">Bhai Vir Singh · 1872–1957</div>
-    <div class="tab-scholar-desc">Mystical, devotional — the spirit behind the word</div>
+    <div class="tab-name">ਭਾਈ ਵੀਰ ਸਿੰਘ</div>
+    <div class="tab-dates">Bhai Vir Singh · 1872–1957</div>
+    <div class="tab-desc">Mystical, devotional — the spirit behind the word</div>
   </button>
   <button class="scholar-tab" onclick="switchScholar('sahib')">
-    <div class="tab-scholar-name">ਪ੍ਰੋ. ਸਾਹਿਬ ਸਿੰਘ</div>
-    <div class="tab-scholar-dates">Prof. Sahib Singh · 1892–1977</div>
-    <div class="tab-scholar-desc">Grammatical, precise — the exact meaning of the word</div>
+    <div class="tab-name">ਪ੍ਰੋ. ਸਾਹਿਬ ਸਿੰਘ</div>
+    <div class="tab-dates">Prof. Sahib Singh · 1892–1977</div>
+    <div class="tab-desc">Grammatical, precise — the exact meaning of the word</div>
   </button>
 </div>
 
 <div class="content">
 
-  <!-- ══ BHAI VIR SINGH ══ -->
+  <!-- BHAI VIR SINGH -->
   <div class="scholar-panel active" id="panel-vir">
 
-    <div class="g-section">ਮੂਲ ਮੰਤਰ</div>
-
+    <div class="g-section">ਮੰਗਲਾਚਰਣ — ਮਹਾਂਵਾਕ</div>
     <div class="verse-block">
       <div class="verse-gurmukhi">ੴ ਸਤਿਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰਪ੍ਰਸਾਦਿ ॥</div>
       <div class="verse-commentary">ਇਸ ਪਹਿਲੇ ਮਹਾਂਵਾਕ ਵਿਚ ਅਕਾਲ ਪੁਰਖ ਦਾ ਸਰੂਪ ਵਰਣਨ ਹੈ ਜੋ ਸਿਖ ਧਰਮ ਦਾ ਮੂਲ ਹੈ, ਤੇ ਇਹੀ ਸ੍ਰੀ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਤੇ ਜਪੁਜੀ ਸਾਹਿਬ ਦਾ ਮੰਗਲਾਚਰਣ ਬੀ ਹੈ।</div>
     </div>
 
+    <div class="g-section">ਮੂਲ ਮੰਤਰ — ਅਰਥ</div>
+
     <div class="verse-block">
       <div class="verse-gurmukhi"><span class="hl">ੴ</span></div>
       <div class="verse-arth">ਏਕੱਤ੍ਵ ਹੈ (ਨਿਰੰਕਾਰ, ਜੋ ਨਾਨੱਤ੍ਵ ਵਿਚ) ਓਂਕਾਰ (ਰੂਪ ਹੋਕੇ ਫੇਰ ਏਕੱਤ੍ਵ) ਹੈ।</div>
+      <div class="verse-commentary">ਅਰਥਾਤ ਨਿਰੰਕਾਰ ਨੇ ਨਾਨੱਤ੍ਵ ਦਾ ਆਕਾਰ ਧਾਰਿਆ ਹੋਇਆ ਹੈ। ਜਿਵੇਂ ਪਾਣੀ ਵਾਸ਼ਪ ਬਣ ਜਾਂਦਾ ਹੈ, ਬੱਦਲ ਬਣਦਾ ਹੈ, ਮੀਂਹ ਪੈਂਦਾ ਹੈ — ਪਰ ਅਸਲ ਵਿਚ ਉਹ ਪਾਣੀ ਹੀ ਰਹਿੰਦਾ ਹੈ। ਇਵੇਂ ਹੀ ਇਕ ਹੀ ਸੱਤਾ ਸਾਰੀ ਸ੍ਰਿਸ਼ਟੀ ਵਿਚ ਵਿਆਪਕ ਹੈ।</div>
     </div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi"><span class="hl">ਸਤਿਨਾਮੁ</span></div>
-      <div class="verse-arth">(ਉਹ ਏਕੱਤ੍ਵ) ਸਦਾ ਥਿਰੁ (ਏਕੱਤ੍ਵ ਹੈ, ਉਸ ਦਾ) ਨਾਮ ਹੀ ਹੈ 'ਸਤ੍ਯ' ਅਰਥਾਤ ਸਦਾ ਥਿਰ ਰਹਿਣ ਵਾਲਾ ਚੇਤਨ ਵਜੂਦ।</div>
+      <div class="verse-arth">(ਉਹ ਏਕੱਤ੍ਵ) ਸਦਾ ਥਿਰੁ (ਏਕੱਤ੍ਵ ਹੈ, ਉਸ ਦਾ) ਨਾਮ ਹੀ ਹੈ 'ਸਤ੍ਯ' — ਸਦਾ ਥਿਰ ਰਹਿਣ ਵਾਲਾ ਚੇਤਨ ਵਜੂਦ। ਉਹੀ ਦਿੱਸ ਰਹੀ ਤੇ ਨਾ ਦਿੱਸ ਰਹੀ ਨਾਨੱਤ੍ਵ ਦਾ ਰਚਨਹਾਰ ਹੈ।</div>
     </div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi"><span class="hl">ਕਰਤਾ ਪੁਰਖੁ</span></div>
-      <div class="verse-arth">ਨਿਰੀ ਕੋਈ ਨਿਰਜਿੰਦ ਸ਼ਕਤੀ ਜਾਂ ਸੱਤਾ ਮਾਤ੍ਰ ਨਹੀਂ, ਪਰ ਉਹ ਪੁਰਖ ਹੈ — ਜੀਵ ਸ਼੍ਰੇਣੀ ਦੇ ਬਨਾਉਣ ਵਾਲਾ ਕਰਤਾ ਪੁਰਖੁ ਹੈ।</div>
+      <div class="verse-arth">ਨਿਰੀ ਕੋਈ ਨਿਰਜਿੰਦ ਸ਼ਕਤੀ ਜਾਂ ਸੱਤਾ ਮਾਤ੍ਰ ਨਹੀਂ, ਪਰ ਉਹ ਪੁਰਖ ਹੈ — ਜੀਵ ਸ਼੍ਰੇਣੀ ਦੇ ਬਨਾਉਣ ਵਾਲਾ ਕਰਤਾ ਪੁਰਖੁ ਹੈ। ਬ੍ਰਹਮਾਦਿਕਾਂ ਵਾਂਙੂ ਦੇਵਤਾ ਸ਼੍ਰੇਣੀ ਵਿਚੋਂ ਵੀ ਨਹੀਂ।</div>
     </div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi"><span class="hl">ਨਿਰਭਉ ਨਿਰਵੈਰੁ</span></div>
-      <div class="verse-arth">ਡਰ ਤੋਂ ਰਹਿਤ ਹੈ। ਵੈਰ ਤੋਂ ਰਹਿਤ ਹੈ।</div>
+      <div class="verse-arth">ਡਰ ਤੋਂ ਰਹਿਤ ਹੈ। ਵੈਰ ਤੋਂ ਰਹਿਤ ਹੈ। ਭੈ ਤੇ ਵੈਰ ਵਿਰੋਧ ਵਿਚ ਨਹੀਂ ਆਉਂਦਾ।</div>
+      <div class="verse-commentary">ਜਿਸ ਨੇ ਏਕਤਾ ਦੀ ਸੋਝੀ ਹਾਸਲ ਕਰ ਲਈ ਉਸ ਦੇ ਮਨ ਵਿੱਚੋਂ ਅਗਿਆਨਤਾ ਦੀ ਦੁਬਿਧਾ ਮਿਟ ਜਾਂਦੀ ਹੈ। ਉਦੋਂ ਹੀ ਨਿਰਭੈਤਾ ਤੇ ਨਿਰਵੈਰਤਾ ਦੀ ਅਵਸਥਾ ਪ੍ਰਗਟ ਹੁੰਦੀ ਹੈ।</div>
     </div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi"><span class="hl">ਅਕਾਲ ਮੂਰਤਿ</span></div>
       <div class="verse-arth">ਕਾਲ ਰਹਿਤ ਹੈ। ਅਕਾਲ ਹੋਕੇ ਉਹ ਅਣਹੋਂਦ ਨਹੀਂ — ਉਹ ਮੂਰਤ ਹੈ, ਅਰਥਾਤ ਉਸ ਦਾ ਵਜੂਦ ਯਾ ਸਰੂਪ ਹੈ।</div>
+      <div class="verse-commentary">ਜਿਵੇਂ ਲਹਿਰਾਂ ਬਦਲਦੀਆਂ ਰਹਿੰਦੀਆਂ ਹਨ ਪਰ ਸਮੁੰਦਰ ਥਿਰ ਰਹਿੰਦਾ ਹੈ — ਇਵੇਂ ਆਕਾਰ ਆਉਂਦੇ ਜਾਂਦੇ ਰਹਿੰਦੇ ਹਨ ਪਰ ਅਸਲ ਸੱਤਾ ਸਦਾ ਕਾਇਮ ਹੈ।</div>
     </div>
 
     <div class="verse-block">
-      <div class="verse-gurmukhi"><span class="hl">ਅਜੂਨੀ ਸੈਭੰ</span></div>
-      <div class="verse-arth">ਜੂਨ ਵਿਚ ਨਹੀਂ ਆਉਂਦਾ। ਉਸ ਦੇ ਵਜੂਦ ਦਾ ਕੋਈ ਕਾਰਨ ਨਹੀਂ, ਸਗੋਂ ਉਹ ਤਾਂ ਆਪਣੇ ਆਪ ਤੋਂ ਆਪ ਪ੍ਰਕਾਸ਼ ਸਰੂਪ ਹੈ — ਜ੍ਯੋਤੀ ਸਰੂਪ ਹੈ।</div>
-      <div class="verse-commentary">ਅਰਥਾਤ ਜਿਵੇਂ ਉਸਦਾ ਵਜੂਦ ਅਕਾਰਣ ਤੇ ਸੁਤੇ ਹੀ ਹੈ ਤਿਵੇਂ ਉਸ ਦੀ ਚੇਤਨਤਾ ਉਸ ਦਾ ਨਿਜ ਸਰੂਪ ਹੈ। ਉਹ ਸ੍ਵਯੰ ਚੇਤਨ ਸਰੂਪ ਹੈ।<br><br>
-      ਥਾਪਿਆ ਨ ਜਾਇ ਕੀਤਾ ਨ ਹੋਇ ॥ ਆਪੇ ਆਪਿ ਨਿਰੰਜਨੁ ਸੋਇ ॥</div>
+      <div class="verse-gurmukhi"><span class="hl">ਅਜੂਨੀ</span></div>
+      <div class="verse-arth">ਜੂਨ ਵਿਚ ਨਹੀਂ ਆਉਂਦਾ। ਉਸ ਦੇ ਵਜੂਦ ਦਾ ਕੋਈ ਕਾਰਨ ਨਹੀਂ।</div>
+    </div>
+
+    <div class="verse-block">
+      <div class="verse-gurmukhi"><span class="hl">ਸੈਭੰ</span></div>
+      <div class="verse-arth">ਆਪਣੇ ਆਪ ਤੋਂ ਆਪ ਪ੍ਰਕਾਸ਼ ਸਰੂਪ ਹੈ — ਜ੍ਯੋਤੀ ਸਰੂਪ ਹੈ। ਉਸ ਦੀ ਚੇਤਨਤਾ ਉਸ ਦਾ ਸੁਤੇ ਹੀ ਆਪਣਾ ਸਰੂਪ ਹੈ।</div>
+      <div class="verse-commentary">ਥਾਪਿਆ ਨ ਜਾਇ ਕੀਤਾ ਨ ਹੋਇ ॥ ਆਪੇ ਆਪਿ ਨਿਰੰਜਨੁ ਸੋਇ ॥</div>
     </div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi"><span class="hl">ਗੁਰਪ੍ਰਸਾਦਿ</span></div>
       <div class="verse-arth">ਐਸਾ ਹੈ ਉਹ ਸਤ੍ਯ ਸਰੂਪ ਅਕਾਲ ਪੁਰਖ — ਗੁਰੂ ਦੀ ਕ੍ਰਿਪਾ ਨਾਲ ਪ੍ਰਾਪਤ ਹੁੰਦਾ ਹੈ।</div>
+      <div class="verse-commentary">ਮੂਲ ਮੰਤਰ ਦਾ ਸਮਾਪਤੀ ਸ਼ਬਦ ਹੈ 'ਗੁਰਪ੍ਰਸਾਦਿ'। ਇਹ ਦੱਸਦਾ ਹੈ ਕਿ ਇਸ ਸਾਰੀ ਸੋਝੀ ਦਾ ਰਾਹ ਗੁਰੂ ਦੀ ਕਿਰਪਾ ਵਿੱਚੋਂ ਹੀ ਖੁੱਲ੍ਹਦਾ ਹੈ।</div>
     </div>
 
     <div class="g-section">ਸਲੋਕ</div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi">ਆਦਿ ਸਚੁ ਜੁਗਾਦਿ ਸਚੁ ॥ ਹੈ ਭੀ ਸਚੁ ਨਾਨਕ ਹੋਸੀ ਭੀ ਸਚੁ ॥੧॥</div>
+      <div class="verse-transliteration">aad sach jugaad sach || hai bhee sach naanak hosee bhee sach ||1||</div>
       <div class="verse-arth">ਸ੍ਰਿਸ਼ਟੀ ਦੇ ਸ਼ੁਰੂ ਤੋਂ ਹੀ ਸੱਚ ਹੈ। ਯੁਗਾਂ ਦੇ ਸ਼ੁਰੂ ਤੋਂ ਸੱਚ ਹੈ। ਹੁਣ ਵੀ ਸੱਚ ਹੈ। ਨਾਨਕ ਕਹਿੰਦੇ ਹਨ — ਅੱਗੇ ਵੀ ਸੱਚ ਹੋਵੇਗਾ।</div>
+      <div class="verse-commentary">ਕਾਲ ਦੀ ਤ੍ਰਿਵੇਣੀ — ਭੂਤ, ਵਰਤਮਾਨ, ਭਵਿੱਖ — ਤਿੰਨਾਂ ਵਿਚ ਇਕੋ ਸੱਚ। ਗੁਰੂ ਨਾਨਕ ਸਮੇਂ ਦੀ ਰੇਖਿਕ ਧਾਰਨਾ ਨੂੰ ਪਾਰ ਕਰਦੇ ਹਨ। ਇਹ ਸੱਚ ਕਿਸੇ ਯੁਗ ਦਾ ਮੁਹਤਾਜ ਨਹੀਂ।</div>
     </div>
 
     <div class="g-section">ਪਉੜੀ ੧</div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi">ਸੋਚੈ ਸੋਚਿ ਨ ਹੋਵਈ ਜੇ ਸੋਚੀ ਲਖ ਵਾਰ ॥</div>
+      <div class="verse-transliteration">sochai soch na hoviee je sochee lakh vaar ||</div>
       <div class="verse-arth">ਮਨ, ਸਥਾਈ ਹਸਤੀ ਤੋਂ ਖਾਲੀ, ਬਾਹਰੀ ਉਤੇਜਨਾ ਅਤੇ ਅੰਦਰੂਨੀ ਅਸੰਤੁਸ਼ਟੀ ਤੋਂ ਉੱਠਦੇ ਅਨੇਕ ਅਸਥਿਰ ਵਿਚਾਰਾਂ ਨਾਲ ਆਪਣੀ ਪਹਿਚਾਣ ਬਣਾ ਲੈਂਦਾ ਹੈ। ਇਹ ਰੌਲਾ ਮਨ ਨੂੰ ਆਪਣੀ ਸਦੀਵੀ, ਅਸਲ ਅਵਸਥਾ ਵਿਚ ਜਾਣ ਤੋਂ ਰੋਕਦਾ ਹੈ।</div>
     </div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi">ਚੁਪੈ ਚੁਪ ਨ ਹੋਵਈ ਜੇ ਲਾਇ ਰਹਾ ਲਿਵ ਤਾਰ ॥</div>
-      <div class="verse-arth">ਚੁੱਪ ਦਾ ਅਰਥ ਹੈ ਆਵਾਜ਼ ਦੀ ਗੈਰਹਾਜ਼ਰੀ। ਅਧਿਆਤਮਕ ਸੰਦਰਭ ਵਿਚ, ਇਹ ਬਾਹਰੀ ਨਹੀਂ ਸਗੋਂ ਅੰਦਰੂਨੀ ਮਾਪ ਹੈ। ਕੋਈ ਬਾਹਰੋਂ ਚੁੱਪ ਦਿੱਖ ਸਕਦਾ ਹੈ ਪਰ ਸ਼ਾਂਤ ਧਿਆਨ ਵਿਚ ਵੀ ਅੰਦਰੂਨੀ ਰੌਲੇ ਨਾਲ ਭਰਿਆ ਹੋ ਸਕਦਾ ਹੈ।</div>
+      <div class="verse-transliteration">chupai chup na hoviee je lai rahaa liv taar ||</div>
+      <div class="verse-arth">ਚੁੱਪ ਦਾ ਅਰਥ ਹੈ ਆਵਾਜ਼ ਦੀ ਗੈਰਹਾਜ਼ਰੀ। ਪਰ ਇਹ ਅਧਿਆਤਮਕ ਸੰਦਰਭ ਵਿਚ ਅੰਦਰੂਨੀ ਮਾਪ ਹੈ। ਕੋਈ ਬਾਹਰੋਂ ਚੁੱਪ ਦਿੱਖ ਸਕਦਾ ਹੈ ਪਰ ਸ਼ਾਂਤ ਧਿਆਨ ਵਿਚ ਵੀ ਅੰਦਰੂਨੀ ਰੌਲੇ ਨਾਲ ਭਰਿਆ ਹੋ ਸਕਦਾ ਹੈ।</div>
     </div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi">ਭੁਖਿਆ ਭੁਖ ਨ ਉਤਰੀ ਜੇ ਬੰਨਾ ਪੁਰੀਆ ਭਾਰ ॥</div>
-      <div class="verse-arth">ਸੰਸਾਰੀ ਭਰਮ ਇੱਛਾਵਾਂ ਅਤੇ ਅਸੁਰੱਖਿਆ ਜਗਾਉਂਦੇ ਹਨ, ਇਹ ਭੁਲੇਖਾ ਪੈਦਾ ਕਰਦੇ ਹੋਏ ਕਿ ਭੌਤਿਕ ਦੌਲਤ ਸੰਪੂਰਨ ਭਲਾਈ ਦਾ ਰਾਹ ਹੈ। ਇਹ ਭੁਲੇਖਾ ਸਾਧਨ ਇਕੱਠੇ ਕਰਨ ਦੀ ਭੁੱਖ ਵੱਲ ਲੈ ਜਾਂਦਾ ਹੈ, ਜੋ ਕਦੇ ਨਹੀਂ ਭਰਦੀ।</div>
+      <div class="verse-transliteration">bhukhiaa bhukh na utaree je ba(n)naa pureeaa bhaar ||</div>
+      <div class="verse-arth">ਸੰਸਾਰੀ ਭਰਮ ਇੱਛਾਵਾਂ ਅਤੇ ਅਸੁਰੱਖਿਆ ਜਗਾਉਂਦੇ ਹਨ। ਇਹ ਭੁਲੇਖਾ ਪੈਦਾ ਕਰਦੇ ਹਨ ਕਿ ਭੌਤਿਕ ਦੌਲਤ ਸੰਪੂਰਨ ਭਲਾਈ ਦਾ ਰਾਹ ਹੈ। ਇਹ ਭੁੱਖ ਕਦੇ ਨਹੀਂ ਭਰਦੀ।</div>
     </div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi">ਸਹਸ ਸਿਆਣਪਾ ਲਖ ਹੋਹਿ ਤ ਇਕ ਨ ਚਲੈ ਨਾਲਿ ॥</div>
-      <div class="verse-arth">ਗਿਆਨ ਵੱਖ-ਵੱਖ ਸਰੋਤਾਂ ਤੋਂ ਇਕੱਠੀ ਕੀਤੀ ਜਾਣਕਾਰੀ ਦਾ ਹਵਾਲਾ ਦਿੰਦਾ ਹੈ ਜੋ ਬੌਧਿਕ ਹਉਮੈ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦਾ ਹੈ।</div>
+      <div class="verse-transliteration">sahas siaanapaa lakh hohe ta ik na chalai naal ||</div>
+      <div class="verse-arth">ਗਿਆਨ ਵੱਖ-ਵੱਖ ਸਰੋਤਾਂ ਤੋਂ ਇਕੱਠੀ ਕੀਤੀ ਜਾਣਕਾਰੀ ਦਾ ਹਵਾਲਾ ਦਿੰਦਾ ਹੈ ਜੋ ਬੌਧਿਕ ਹਉਮੈ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦਾ ਹੈ ਅਤੇ ਅਣਡਿੱਠੀ ਚੇਤਨਾ ਵੱਲ ਵਧਣ ਵਿਚ ਰੁਕਾਵਟ ਬਣ ਸਕਦਾ ਹੈ।</div>
     </div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi">ਕਿਵ ਸਚਿਆਰਾ ਹੋਈਐ ਕਿਵ ਕੂੜੈ ਤੁਟੈ ਪਾਲਿ ॥</div>
+      <div class="verse-transliteration">kiv sachiaaraa hoieeaai kiv koorai tuTai paal ||</div>
       <div class="verse-arth">ਮਨ ਆਪਣੀ ਅਸਲ ਸੁਭਾਵਿਕ ਹੋਂਦ ਨੂੰ ਕਿਵੇਂ ਪਛਾਣ ਸਕਦਾ ਹੈ? ਗਲਤ ਧਾਰਨਾਵਾਂ ਦੀ ਕੰਧ ਕਿਵੇਂ ਤੋੜੀ ਜਾਵੇ?</div>
+      <div class="verse-commentary">ਇਹ ਕੇਂਦਰੀ ਪ੍ਰਸ਼ਨ ਹੈ ਜੋ ਸਾਰੀ ਪਉੜੀ ਵਿਚ ਉੱਠਦਾ ਹੈ। ਗੁਰੂ ਨਾਨਕ ਨੇ ਪਹਿਲਾਂ ਚਾਰ ਤਰੀਕੇ ਦੱਸੇ ਜੋ ਕੰਮ ਨਹੀਂ ਕਰਦੇ — ਫਿਰ ਇਹ ਪ੍ਰਸ਼ਨ ਪੁੱਛਦੇ ਹਨ। ਅਗਲੀ ਪੰਕਤੀ ਵਿਚ ਉੱਤਰ ਹੈ।</div>
     </div>
 
     <div class="verse-block">
       <div class="verse-gurmukhi">ਹੁਕਮਿ ਰਜਾਈ ਚਲਣਾ ਨਾਨਕ ਲਿਖਿਆ ਨਾਲਿ ॥੧॥</div>
-      <div class="verse-arth">ਨਾਨਕ ਅਨੁਸਾਰ, ਕੁਦਰਤ ਦੇ ਨਿਯਮਾਂ ਨਾਲ ਪੂਰੀ ਤਰ੍ਹਾਂ ਇਕਸੁਰਤਾ ਦੇ ਰਾਹ ਨੂੰ ਸਵੀਕਾਰ ਕਰਨਾ ਇਕ ਸੰਤੁਸ਼ਟੀਜਨਕ ਸੁਯੰਭੂ ਜੀਵਨ ਸਿਰਜਣ ਦਾ ਅੰਤਿਮ ਸਿਧਾਂਤ ਹੈ।</div>
+      <div class="verse-transliteration">hukam rajaiee chalanaa naanak likhiaa naal ||1||</div>
+      <div class="verse-arth">ਨਾਨਕ ਅਨੁਸਾਰ, ਕੁਦਰਤ ਦੇ ਨਿਯਮਾਂ ਨਾਲ ਪੂਰੀ ਤਰ੍ਹਾਂ ਇਕਸੁਰਤਾ ਦੇ ਰਾਹ ਨੂੰ ਸਵੀਕਾਰ ਕਰਨਾ — ਇਹੀ ਅੰਤਿਮ ਸਿਧਾਂਤ ਹੈ। ਇਹ ਸੁਭਾਅ ਮਨੁੱਖ ਦੇ ਨਾਲ ਜੰਮਿਆ ਹੋਇਆ ਹੈ — ਲਿਖਿਆ ਨਾਲ।</div>
+      <div class="verse-commentary">ਹੁਕਮ ਕੋਈ ਬਾਹਰੀ ਨਿਯਮ ਨਹੀਂ ਜੋ ਥੋਪਿਆ ਜਾਵੇ। ਇਹ ਉਹ ਅਸਲੀਅਤ ਹੈ ਜੋ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਜੀਵ ਦੇ ਅੰਦਰ ਮੌਜੂਦ ਹੈ। ਜਦੋਂ ਜੀਵ ਇਸ ਨਾਲ ਸੁਰ ਮਿਲਾਉਂਦਾ ਹੈ, ਤਦੋਂ ਹੀ ਸੱਚਿਆਰਾ ਹੁੰਦਾ ਹੈ।</div>
+    </div>
+
+    <div class="g-section">ਪਉੜੀ ੨</div>
+
+    <div class="verse-block">
+      <div class="verse-gurmukhi">ਹੁਕਮੀ ਹੋਵਨਿ ਆਕਾਰ ਹੁਕਮੁ ਨ ਕਹਿਆ ਜਾਈ ॥</div>
+      <div class="verse-transliteration">hukamee hovan aakaar hukam na kahiaa jaiee ||</div>
+      <div class="verse-arth">ਸਰਬ-ਵਿਆਪੀ ਚੇਤਨਾ ਦੀ ਇੱਛਾ ਸਰੀਰਕ ਰੂਪ ਧਾਰਦੀ ਹੈ — ਇਹ ਨਿਯਮ ਸਮਝਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।</div>
+    </div>
+
+    <div class="verse-block">
+      <div class="verse-gurmukhi">ਹੁਕਮੀ ਹੋਵਨਿ ਜੀਅ ਹੁਕਮਿ ਮਿਲੈ ਵਡਿਆਈ ॥</div>
+      <div class="verse-transliteration">hukamee hovan jee hukam milai vaDiaaiee ||</div>
+      <div class="verse-arth">ਸਰਬ-ਵਿਆਪੀ ਚੇਤਨਾ ਦੀ ਇੱਛਾ ਜੀਵਨ ਸਿਰਜਦੀ ਹੈ, ਅਤੇ ਇਸ ਨਿਯਮ ਰਾਹੀਂ ਹੀ ਵਡਿਆਈ ਮਿਲਦੀ ਹੈ।</div>
+    </div>
+
+    <div class="verse-block">
+      <div class="verse-gurmukhi">ਹੁਕਮੀ ਉਤਮੁ ਨੀਚੁ ਹੁਕਮਿ ਲਿਖਿ ਦੁਖ ਸੁਖ ਪਾਈਅਹਿ ॥</div>
+      <div class="verse-transliteration">hukamee utam neech hukam likh dukh sukh paie'eeh ||</div>
+      <div class="verse-arth">ਸਰਬ-ਵਿਆਪੀ ਚੇਤਨਾ ਦੀ ਇੱਛਾ ਉੱਚ ਜਾਂ ਨੀਵੇਂ ਹੋਣ ਦਾ ਫ਼ੈਸਲਾ ਕਰਦੀ ਹੈ — ਇਹ ਚੋਣ ਹੀ ਸੁੱਖ ਜਾਂ ਦੁੱਖ ਵੱਲ ਲੈ ਜਾਂਦੀ ਹੈ।</div>
+    </div>
+
+    <div class="verse-block">
+      <div class="verse-gurmukhi">ਇਕਨਾ ਹੁਕਮੀ ਬਖਸੀਸ ਇਕਿ ਹੁਕਮੀ ਸਦਾ ਭਵਾਈਅਹਿ ॥</div>
+      <div class="verse-transliteration">eiknaa hukamee bakhsees ik hukamee sadaa bhavaie'eeh ||</div>
+      <div class="verse-arth">ਸਰਬ-ਵਿਆਪੀ ਚੇਤਨਾ ਦੀ ਇੱਛਾ ਕਿਸੇ ਨੂੰ ਕਿਰਪਾ ਦੀ ਅਵਸਥਾ ਵਿਚ ਰੱਖਦੀ ਹੈ ਅਤੇ ਕਿਸੇ ਨੂੰ ਭਟਕਾਉਂਦੀ ਹੈ।</div>
+    </div>
+
+    <div class="verse-block">
+      <div class="verse-gurmukhi">ਹੁਕਮੈ ਅੰਦਰਿ ਸਭੁ ਕੋ ਬਾਹਰਿ ਹੁਕਮ ਨ ਕੋਇ ॥</div>
+      <div class="verse-transliteration">hukamai a(n)dar sabh ko baahar hukam na koi ||</div>
+      <div class="verse-arth">ਸਰਬ-ਵਿਆਪੀ ਚੇਤਨਾ ਦੀ ਇੱਛਾ ਹੀ ਸਭ ਕੁਝ ਕਰਨ ਵਾਲੀ ਸ਼ਕਤੀ ਹੈ — ਇਸ ਬ੍ਰਹਿਮੰਡੀ ਨਿਯਮ ਤੋਂ ਬਾਹਰ ਕੁਝ ਨਹੀਂ।</div>
+    </div>
+
+    <div class="verse-block">
+      <div class="verse-gurmukhi">ਨਾਨਕ ਹੁਕਮੈ ਜੇ ਬੁਝੈ ਤ ਹਉਮੈ ਕਹੈ ਨ ਕੋਇ ॥੨॥</div>
+      <div class="verse-transliteration">naanak hukamai je bujhai ta haumai kahai na koi ||2||</div>
+      <div class="verse-arth">ਨਾਨਕ ਕਹਿੰਦੇ ਹਨ ਕਿ ਜੇ ਇਹ ਬ੍ਰਹਿਮੰਡੀ ਨਿਯਮ ਸਮਝਿਆ ਜਾਵੇ ਤਾਂ ਦੂਜਿਆਂ ਨੂੰ ਅਜਨਬੀ ਸਮਝਣ ਨਾਲ ਜੁੜੀ ਹਉਮੈ ਖ਼ਤਮ ਹੋ ਜਾਂਦੀ ਹੈ।</div>
     </div>
 
   </div>
 
-  <!-- ══ PROF. SAHIB SINGH ══ -->
+  <!-- PROF. SAHIB SINGH -->
   <div class="scholar-panel" id="panel-sahib">
 
     <div class="g-section">ਮੁੱਢਲੀ ਜਾਣ-ਪਛਾਣ · ਪੰਨਾ ੭–੮</div>
@@ -560,17 +319,11 @@
     <div class="grammar-card">
       <div class="grammar-head">(੧) ਸੁਣਿਐ / ਸੁਣੀਐ</div>
       <div class="grammar-row">
-        <div>
-          <div class="gr-gurmukhi">ਗਾਵੀਐ <span class="hl">ਸੁਣੀਐ</span> ਮਨਿ ਰਖੀਐ ਭਾਉ ॥</div>
-          <div class="gr-ref">ਪਉੜੀ ੫</div>
-        </div>
+        <div><div class="gr-gurmukhi">ਗਾਵੀਐ <span class="hl">ਸੁਣੀਐ</span> ਮਨਿ ਰਖੀਐ ਭਾਉ ॥</div><div class="gr-ref">ਪਉੜੀ ੫</div></div>
         <div class="gr-note">ਸੁਣੀਐ = ਕਰਮ ਦੀ ਅਵਿਅਕਤਿ ਰੂਪ — "ਸੁਣਨਾ ਚਾਹੀਦਾ ਹੈ"</div>
       </div>
       <div class="grammar-row">
-        <div>
-          <div class="gr-gurmukhi"><span class="hl">ਸੁਣਿਐ</span> ਸਤੁ ਸੰਤੋਖੁ ਗਿਆਨੁ ॥</div>
-          <div class="gr-ref">ਪਉੜੀ ੧੦</div>
-        </div>
+        <div><div class="gr-gurmukhi"><span class="hl">ਸੁਣਿਐ</span> ਸਤੁ ਸੰਤੋਖੁ ਗਿਆਨੁ ॥</div><div class="gr-ref">ਪਉੜੀ ੧੦</div></div>
         <div class="gr-note">ਸੁਣਿਐ = ਸੰਬੰਧਕ ਰੂਪ — "ਸੁਣਨ ਨਾਲ / ਸੁਣਿਆਂ"</div>
       </div>
     </div>
@@ -578,17 +331,11 @@
     <div class="grammar-card">
       <div class="grammar-head">(੨) ਭਗਤ / ਭਗਤਿ</div>
       <div class="grammar-row">
-        <div>
-          <div class="gr-gurmukhi">ਅਸੰਖ <span class="hl">ਭਗਤ</span> ਗੁਣ ਗਿਆਨ ਵੀਚਾਰੁ ॥</div>
-          <div class="gr-ref">ਪਉੜੀ ੧੭</div>
-        </div>
+        <div><div class="gr-gurmukhi">ਅਸੰਖ <span class="hl">ਭਗਤ</span> ਗੁਣ ਗਿਆਨ ਵੀਚਾਰੁ ॥</div><div class="gr-ref">ਪਉੜੀ ੧੭</div></div>
         <div class="gr-note">ਭਗਤ = ਨਾਂਵ — ਭਗਤ (ਵਿਅਕਤੀ)</div>
       </div>
       <div class="grammar-row">
-        <div>
-          <div class="gr-gurmukhi">ਵਿਣੁ ਗੁਣ ਕੀਤੇ <span class="hl">ਭਗਤਿ</span> ਨ ਹੋਇ ॥</div>
-          <div class="gr-ref">ਪਉੜੀ ੨੧</div>
-        </div>
+        <div><div class="gr-gurmukhi">ਵਿਣੁ ਗੁਣ ਕੀਤੇ <span class="hl">ਭਗਤਿ</span> ਨ ਹੋਇ ॥</div><div class="gr-ref">ਪਉੜੀ ੨੧</div></div>
         <div class="gr-note">ਭਗਤਿ = ਭਾਵਵਾਚਕ ਨਾਂਵ — ਭਗਤੀ (ਕਿਰਿਆ)</div>
       </div>
     </div>
@@ -596,74 +343,56 @@
     <div class="grammar-card">
       <div class="grammar-head">(੩) ਤੇ / ਤੈ</div>
       <div class="grammar-row">
-        <div>
-          <div class="gr-gurmukhi">ਤਿਸੁ <span class="hl">ਤੇ</span> ਹੋਏ ਲਖ ਦਰੀਆਉ ॥</div>
-          <div class="gr-ref">ਪਉੜੀ ੧੯</div>
-        </div>
+        <div><div class="gr-gurmukhi">ਤਿਸੁ <span class="hl">ਤੇ</span> ਹੋਏ ਲਖ ਦਰੀਆਉ ॥</div><div class="gr-ref">ਪਉੜੀ ੧੯</div></div>
         <div class="gr-note">ਤੇ = "ਤੋਂ" (from)</div>
       </div>
       <div class="grammar-row">
-        <div>
-          <div class="gr-gurmukhi">ਆਖਹਿ ਗੋਪੀ <span class="hl">ਤੈ</span> ਗੋਵਿੰਦ ॥</div>
-          <div class="gr-ref">ਪਉੜੀ ੨੬</div>
-        </div>
-        <div class="gr-note">ਤੈ = ਅਤੇ (and) — ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਵਿਚ ਸਦਾ ਇਸ ਤਰ੍ਹਾਂ ਆਵੇਗਾ</div>
+        <div><div class="gr-gurmukhi">ਆਖਹਿ ਗੋਪੀ <span class="hl">ਤੈ</span> ਗੋਵਿੰਦ ॥</div><div class="gr-ref">ਪਉੜੀ ੨੬</div></div>
+        <div class="gr-note">ਤੈ = ਅਤੇ (and) — ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਵਿਚ ਸਦਾ ਇਸ ਤਰ੍ਹਾਂ</div>
       </div>
     </div>
 
     <div class="scholar-note">
-      ਜੇ ਪਾਠਕ ਸੱਜਣਾਂ ਨੇ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਦੀ ਬਾਣੀ ਦੇ ਸ਼ਬਦ-ਜੋੜਾਂ ਨੂੰ ਵੇਖਣ ਤੇ ਪਛਾਣਨ ਦੀ ਆਦਤ ਨਾ ਬਣਾਈ ਤਾਂ ਮੇਰੀ ਕੀਤੀ ਹੋਈ ਮਿਹਨਤ ਉਹਨਾਂ ਨੂੰ ਪੂਰਾ ਲਾਭ ਨਹੀਂ ਪਹੁੰਚਾ ਸਕੇਗੀ।<br><br>
-      <strong>ਜੁਲਾਈ ੧੯੫੭ — ਸਾਹਿਬ ਸਿੰਘ</strong>
+      ਜੇ ਪਾਠਕ ਸੱਜਣਾਂ ਨੇ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਦੀ ਬਾਣੀ ਦੇ ਸ਼ਬਦ-ਜੋੜਾਂ ਨੂੰ ਵੇਖਣ ਤੇ ਪਛਾਣਨ ਦੀ ਆਦਤ ਨਾ ਬਣਾਈ ਤਾਂ ਮੇਰੀ ਕੀਤੀ ਹੋਈ ਮਿਹਨਤ ਉਹਨਾਂ ਨੂੰ ਪੂਰਾ ਲਾਭ ਨਹੀਂ ਪਹੁੰਚਾ ਸਕੇਗੀ।
+      <br><br><strong>ਜੁਲਾਈ ੧੯੫੭ — ਸਾਹਿਬ ਸਿੰਘ</strong>
     </div>
 
     <div class="g-section">ਗੁਰੂ ਨਾਨਕ ਸਾਹਿਬ ਦਾ ਜੀਵਨ-ਸੰਖੇਪ · ਪੰਨਾ ੯–੧੪</div>
 
     <div class="timeline-item">
       <div class="tl-date">ਜਨਮ ੧੪੬੯<br>ਸੰਮਤ ੧੫੨੬<br>ਤਲਵੰਡੀ</div>
-      <div>
-        <div class="tl-head">ਜਨਮ ਤੇ ਮੁੱਢਲਾ ਜੀਵਨ</div>
-        <div class="tl-body">ਪਿੰਡ — ਰਾਇ ਭੋਇ ਦੀ ਵਸਾਈ ਹੋਈ ਤਲਵੰਡੀ। ਪਿਤਾ — ਬਾਬਾ ਕਾਲੂ ਜੀ। ਜਨਮ-ਥਿੱਤ — ੨੦ ਵੈਸਾਖ, ਸੰਮਤ ੧੫੨੬, ੧੫ ਅਪਰੈਲ ੧੪੬੯। ਇਕ ਭੈਣ ਸੀ, ਬੀਬੀ ਨਾਨਕੀ ਜੀ — ੫ ਸਾਲ ਵੱਡੀ। ਉਮਰ ੭ ਸਾਲ — ਪਾਂਧੇ ਪਾਸ ਪੜ੍ਹਨੇ ਪਏ। ਉਮਰ ੯ ਸਾਲ — ਜਨੇਊ ਤੋਂ ਇਨਕਾਰ। ਉਮਰ ੧੬ ਸਾਲ — ਵਟਾਲੇ ਦੇ ਬਾਬਾ ਮੂਲਾ ਜੀ ਦੀ ਸਪੁੱਤ੍ਰੀ ਨਾਲ ਕੁੜਮਾਈ। ਸੰਮਤ ੧੫੪੪ ਵਿਚ ਸ਼ਾਦੀ।</div>
-      </div>
+      <div><div class="tl-head">ਜਨਮ ਤੇ ਮੁੱਢਲਾ ਜੀਵਨ</div>
+      <div class="tl-body">ਪਿੰਡ — ਰਾਇ ਭੋਇ ਦੀ ਵਸਾਈ ਹੋਈ ਤਲਵੰਡੀ। ਪਿਤਾ — ਬਾਬਾ ਕਾਲੂ ਜੀ। ਜਨਮ-ਥਿੱਤ — ੨੦ ਵੈਸਾਖ, ਸੰਮਤ ੧੫੨੬, ੧੫ ਅਪਰੈਲ ੧੪੬੯। ਇਕ ਭੈਣ ਸੀ, ਬੀਬੀ ਨਾਨਕੀ ਜੀ — ੫ ਸਾਲ ਵੱਡੀ। ਉਮਰ ੭ ਸਾਲ — ਪਾਂਧੇ ਪਾਸ ਪੜ੍ਹਨੇ ਪਏ। ਉਮਰ ੯ ਸਾਲ — ਜਨੇਊ ਤੋਂ ਇਨਕਾਰ। ਸੰਮਤ ੧੫੪੪ ਵਿਚ ਸ਼ਾਦੀ।</div></div>
     </div>
 
     <div class="timeline-item">
       <div class="tl-date">੧੫੦੪ ਈ.<br>ਸੁਲਤਾਨਪੁਰ<br>ਵੇਈਂ ਨਦੀ</div>
-      <div>
-        <div class="tl-head">ਰਵਾਨਗੀ ਤੇ ਵੇਈਂ ਨਦੀ ਦੀ ਸਾਖੀ</div>
-        <div class="tl-body">ਭਾਈ ਜੈ ਰਾਮ ਜੀ ਨੇ ਸੁਲਤਾਨਪੁਰ ਸੱਦ ਭੇਜਿਆ। ਭਾਈ ਮਰਦਾਨਾ ਨੂੰ ਨਾਲ ਲੈ ਕੇ ਗਏ। ੨੧ ਭਾਦਰੋਂ ਸੰਮਤ ੧੫੬੪ — ਕਿਤੇ ਇਕਾਂਤ ਵਿਚ 'ਧਿਆਨ' ਧਰ ਕੇ 'ਜਲਦੀ ਪ੍ਰਿਥਵੀ' ਦਾ ਹਾਲ ਵੇਖ ਰਹੇ ਸਨ। ਫ਼ੈਸਲਾ ਕੀਤਾ ਕਿ ਆਪਣਾ ਸੁਖ ਆਰਾਮ ਛੱਡ ਕੇ ਦੁਨੀਆ ਨੂੰ ਸਹੀ ਰਾਹ ਦੱਸਣਾ ਜ਼ਰੂਰੀ ਹੈ।<br><br>"ਚੜ੍ਹਿਆ ਸੋਧਨ ਧਰਤਿ ਲੁਕਾਈ"।</div>
-      </div>
+      <div><div class="tl-head">ਰਵਾਨਗੀ ਤੇ ਵੇਈਂ ਨਦੀ ਦੀ ਸਾਖੀ</div>
+      <div class="tl-body">ਭਾਈ ਜੈ ਰਾਮ ਜੀ ਨੇ ਸੁਲਤਾਨਪੁਰ ਸੱਦ ਭੇਜਿਆ। ਭਾਈ ਮਰਦਾਨਾ ਨੂੰ ਨਾਲ ਲੈ ਕੇ ਗਏ। ੨੧ ਭਾਦਰੋਂ ਸੰਮਤ ੧੫੬੪ — ਵੇਈਂ ਨਦੀ ਦੀ ਸਾਖੀ। ਫ਼ੈਸਲਾ ਕੀਤਾ ਕਿ ਆਪਣਾ ਸੁਖ ਆਰਾਮ ਛੱਡ ਕੇ ਦੁਨੀਆ ਨੂੰ ਸਹੀ ਰਾਹ ਦੱਸਣਾ ਜ਼ਰੂਰੀ ਹੈ।<br><br>"ਚੜ੍ਹਿਆ ਸੋਧਨ ਧਰਤਿ ਲੁਕਾਈ"।</div></div>
     </div>
 
     <div class="timeline-item">
       <div class="tl-date">ਪਹਿਲੀ ਉਦਾਸੀ<br>੧੫੦੭–੧੫੧੫<br>੮ ਸਾਲ</div>
-      <div>
-        <div class="tl-head">ਹਿੰਦੂ ਤੀਰਥਾਂ ਵੱਲ (ਪੂਰਬ ਤੇ ਦੱਖਣ)</div>
-        <div class="tl-body">ਬਾਬਾ ਆਇਆ ਤੀਰਥੀਂ, ਤੀਰਥ ਪੁਰਬ ਸਭੇ ਫਿਰ ਦੇਖੇ ॥੨੫॥ (ਭਾਈ ਗੁਰਦਾਸ ਜੀ)<br><br>ਲਾਹੌਰ, ਹਰਿਦੁਆਰ, ਅਜੋਧਿਆ, ਪ੍ਰਯਾਗ, ਬਨਾਰਸ, ਗਯਾ, ਪਟਨਾ, ਆਸਾਮ, ਜਗਨ ਨਾਥ ਪੁਰੀ, ਰਾਮੇਸ਼ਵਰ ਤੀਰਥ, ਸੰਗਲਾਦੀਪ, ਸੋਮਨਾਥ, ਦੁਆਰਕਾ, ਮਥੁਰਾ, ਬਿੰਦਾਬਨ, ਦਿੱਲੀ, ਪਾਣੀਪਤ, ਕੁਰਖੇਤਰ।</div>
-      </div>
+      <div><div class="tl-head">ਹਿੰਦੂ ਤੀਰਥਾਂ ਵੱਲ (ਪੂਰਬ ਤੇ ਦੱਖਣ)</div>
+      <div class="tl-body">ਬਾਬਾ ਆਇਆ ਤੀਰਥੀਂ, ਤੀਰਥ ਪੁਰਬ ਸਭੇ ਫਿਰ ਦੇਖੇ ॥੨੫॥ (ਭਾਈ ਗੁਰਦਾਸ ਜੀ)<br><br>ਲਾਹੌਰ, ਹਰਿਦੁਆਰ, ਅਜੋਧਿਆ, ਪ੍ਰਯਾਗ, ਬਨਾਰਸ, ਗਯਾ, ਪਟਨਾ, ਆਸਾਮ, ਜਗਨ ਨਾਥ ਪੁਰੀ, ਰਾਮੇਸ਼ਵਰ ਤੀਰਥ, ਸੰਗਲਾਦੀਪ, ਸੋਮਨਾਥ, ਦੁਆਰਕਾ, ਮਥੁਰਾ, ਬਿੰਦਾਬਨ, ਦਿੱਲੀ, ਪਾਣੀਪਤ, ਕੁਰਖੇਤਰ।</div></div>
     </div>
 
     <div class="timeline-item">
       <div class="tl-date">ਦੂਜੀ ਉਦਾਸੀ<br>੧੫੧੭–੧੫੧੮<br>੧ ਸਾਲ</div>
-      <div>
-        <div class="tl-head">ਉੱਤਰਖੰਡ — ਸਿੱਧ ਜੋਗੀਆਂ ਨਾਲ</div>
-        <div class="tl-body">ਫਿਰ ਜਾਇ ਚੜ੍ਹਿਆ ਸੁਮੇਰ ਪਰਿ, ਸਿਧ ਮੰਡਲੀ ਦ੍ਰਿਸਟੀ ਆਈ ॥੨੨॥ (ਭਾਈ ਗੁਰਦਾਸ ਜੀ)<br><br>ਉੱਤਰਖੰਡ, ਸਿੱਧਾਂ ਜੋਗੀਆਂ ਦੇ ਮਠਾਂ ਵੱਲ। ਕਰਤਾਰਪੁਰੋਂ ਚੱਲ ਕੇ ਮੁੜ ਇਥੇ ਹੀ ਵਾਪਸ।</div>
-      </div>
+      <div><div class="tl-head">ਉੱਤਰਖੰਡ — ਸਿੱਧ ਜੋਗੀਆਂ ਨਾਲ</div>
+      <div class="tl-body">ਫਿਰ ਜਾਇ ਚੜ੍ਹਿਆ ਸੁਮੇਰ ਪਰਿ, ਸਿਧ ਮੰਡਲੀ ਦ੍ਰਿਸਟੀ ਆਈ ॥੨੨॥ (ਭਾਈ ਗੁਰਦਾਸ ਜੀ)<br><br>ਉੱਤਰਖੰਡ, ਸਿੱਧਾਂ ਜੋਗੀਆਂ ਦੇ ਮਠਾਂ ਵੱਲ। ਕਰਤਾਰਪੁਰੋਂ ਚੱਲ ਕੇ ਮੁੜ ਇਥੇ ਹੀ ਵਾਪਸ।</div></div>
     </div>
 
     <div class="timeline-item">
       <div class="tl-date">ਤੀਜੀ ਉਦਾਸੀ<br>੧੫੧੮–੧੫੨੧<br>੩ ਸਾਲ</div>
-      <div>
-        <div class="tl-head">ਪੱਛਮ ਵੱਲ — ਮੱਕਾ, ਬਗ਼ਦਾਦ</div>
-        <div class="tl-body">ਬਾਬਾ ਫਿਰ ਮੱਕੇ ਗਇਆ, ਨੀਲ ਬਸਤ੍ਰ ਧਾਰੇ ਬਨਵਾਰੀ ॥੩੨॥ (ਭਾਈ ਗੁਰਦਾਸ ਜੀ)<br><br>ਪਾਕਪਟਨ — ਸ਼ੇਖ਼ ਬ੍ਰਹਮ, ਬਾਬਾ ਫਰੀਦ ਜੀ ਦੀ ਗੱਦੀ। ਮੱਕਾ, ਮਦੀਨਾ। ਬਗ਼ਦਾਦ — ਰਾਗ ਨੂੰ ਹਰਾਮ ਸਮਝੇ ਜਾਣ ਵਾਲੇ ਸ਼ਹਿਰ ਵਿਚ ਕੀਰਤਨ। ਬਲਖ਼, ਕਾਬਲ, ਪਿਸ਼ੌਰ। ਐਮਨਾਬਾਦ (੧੫੨੧) ਬਾਬਰ ਦਾ ਹਮਲਾ। ਕਰਤਾਰਪੁਰ ਵਾਪਸ।</div>
-      </div>
+      <div><div class="tl-head">ਪੱਛਮ ਵੱਲ — ਮੱਕਾ, ਬਗ਼ਦਾਦ</div>
+      <div class="tl-body">ਬਾਬਾ ਫਿਰ ਮੱਕੇ ਗਇਆ, ਨੀਲ ਬਸਤ੍ਰ ਧਾਰੇ ਬਨਵਾਰੀ ॥੩੨॥ (ਭਾਈ ਗੁਰਦਾਸ ਜੀ)<br><br>ਪਾਕਪਟਨ, ਮੱਕਾ, ਮਦੀਨਾ, ਬਗ਼ਦਾਦ, ਬਲਖ਼, ਕਾਬਲ, ਪਿਸ਼ੌਰ। ਐਮਨਾਬਾਦ (੧੫੨੧) ਬਾਬਰ ਦਾ ਹਮਲਾ। ਕਰਤਾਰਪੁਰ ਵਾਪਸ।</div></div>
     </div>
 
     <div class="timeline-item">
       <div class="tl-date">੧੫੨੧–੧੫੩੯<br>ਕਰਤਾਰਪੁਰ<br>੧੮ ਸਾਲ</div>
-      <div>
-        <div class="tl-head">ਅੰਤਿਮ ਸਾਲ ਤੇ ਜੋਤੀ-ਜੋਤਿ</div>
-        <div class="tl-body">ਮਲਾਰ ਤੇ ਮਾਝ ਰਾਗ ਦੀਆਂ ਵਾਰਾਂ ਲਿਖੀਆਂ। ਭਾਈ ਮਰਦਾਨੇ ਦਾ ਦੇਹਾਂਤ। ਬਾਬਾ ਲਹਿਣਾ ਜੀ ਸੰਮਤ ੧੫੮੯ ਵਿਚ ਸ਼ਰਨ ਆਏ। ਆਸਾ ਦੀ ਵਾਰ, ਜਪੁ ਜੀ, ਓਅੰਕਾਰ ਦੀ ਬਾਣੀ ਲਿਖੀ। ਗੁਰੂ ਅੰਗਦ ਸਾਹਿਬ ਨੂੰ ਗੁਰਿਆਈ ੨ ਸਤੰਬਰ ੧੫੩੯। ਜੋਤੀ ਜੋਤਿ ਸਮਾਏ ੭ ਸਤੰਬਰ ੧੫੩੯। ਕੁੱਲ ਉਮਰ ੭੦ ਸਾਲ ੪ ਮਹੀਨੇ ਤੇ ਤਕਰੀਬਨ ੧੯ ਦਿਨ।</div>
-      </div>
+      <div><div class="tl-head">ਅੰਤਿਮ ਸਾਲ ਤੇ ਜੋਤੀ-ਜੋਤਿ</div>
+      <div class="tl-body">ਆਸਾ ਦੀ ਵਾਰ, ਜਪੁ ਜੀ, ਓਅੰਕਾਰ ਦੀ ਬਾਣੀ ਲਿਖੀ। ਬਾਬਾ ਲਹਿਣਾ ਜੀ ਸੰਮਤ ੧੫੮੯ ਵਿਚ ਸ਼ਰਨ ਆਏ। ਗੁਰੂ ਅੰਗਦ ਸਾਹਿਬ ਨੂੰ ਗੁਰਿਆਈ ੨ ਸਤੰਬਰ ੧੫੩੯। ਜੋਤੀ ਜੋਤਿ ਸਮਾਏ ੭ ਸਤੰਬਰ ੧੫੩੯। ਕੁੱਲ ਉਮਰ ੭੦ ਸਾਲ ੪ ਮਹੀਨੇ ਤੇ ਤਕਰੀਬਨ ੧੯ ਦਿਨ।</div></div>
     </div>
 
     <div class="g-section">ਜਪੁ ਜੀ ਦਾ ਭਾਵ (ਪਉੜੀ-ਵਾਰ) · ਪੰਨਾ ੧੫–੨੪</div>
@@ -672,40 +401,33 @@
       <div class="pg-label">ਪਉੜੀਆਂ ੧–੩</div>
       <div class="pg-body">'ਕੂੜ' ਦੇ ਕਾਰਨ ਜੀਵ ਦੀ ਜੋ ਵਿੱਥ ਪਰਮਾਤਮਾ ਨਾਲੋਂ ਪੈ ਰਹੀ ਹੈ, ਉਹ ਪਰਮਾਤਮਾ ਦੇ 'ਹੁਕਮ' ਵਿਚ ਤੁਰਿਆਂ ਹੀ ਮਿਟ ਸਕਦੀ ਹੈ। ਪ੍ਰਭੂ ਦਾ 'ਹੁਕਮ' ਇਕ ਐਸੀ ਸੱਤਿਆ ਹੈ ਜਿਸ ਦੇ ਅਧੀਨ ਸਾਰਾ ਹੀ ਜਗਤ ਹੈ। ਜੋ ਮਨੁੱਖ ਉਸ ਹੁਕਮ ਵਿਚ ਤੁਰਨਾ ਸਿੱਖ ਲੈਂਦਾ ਹੈ, ਉਸ ਦਾ ਆਪਾ-ਭਾਵ ਮਿਟ ਜਾਂਦਾ ਹੈ।</div>
     </div>
-
     <div class="pauri-group">
       <div class="pg-label">ਪਉੜੀਆਂ ੪–੭</div>
-      <div class="pg-body">ਦਾਨ-ਪੁੰਨ ਕਰਨ ਨਾਲ ਜਾਂ ਕੋਈ ਮਾਇਕ ਭੇਟਾ ਪੇਸ਼ ਕਰਨ ਨਾਲ ਜੀਵ ਦੀ ਪ੍ਰਭੂ ਨਾਲੋਂ ਵਿੱਥ ਨਹੀਂ ਮਿਟ ਸਕਦੀ। ਉਸ ਪ੍ਰਭੂ ਨਾਲ ਗੱਲਾਂ ਉਸ ਦੀ ਆਪਣੀ ਬੋਲੀ ਵਿਚ ਹੀ ਹੋ ਸਕਦੀਆਂ ਹਨ, ਤੇ ਉਹ ਬੋਲੀ ਹੈ 'ਪ੍ਰੇਮ'। ਜੋ ਮਨੁੱਖ ਅੰਮ੍ਰਿਤ ਵੇਲੇ ਉੱਠ ਕੇ ਉਸ ਦੀ ਯਾਦ ਵਿਚ ਜੁੜਦਾ ਹੈ, ਉਸ ਨੂੰ 'ਪ੍ਰੇਮ-ਪਟੋਲਾ' ਮਿਲਦਾ ਹੈ।</div>
+      <div class="pg-body">ਦਾਨ-ਪੁੰਨ ਕਰਨ ਨਾਲ ਜਾਂ ਕੋਈ ਮਾਇਕ ਭੇਟਾ ਪੇਸ਼ ਕਰਨ ਨਾਲ ਜੀਵ ਦੀ ਪ੍ਰਭੂ ਨਾਲੋਂ ਵਿੱਥ ਨਹੀਂ ਮਿਟ ਸਕਦੀ। ਉਸ ਪ੍ਰਭੂ ਨਾਲ ਗੱਲਾਂ ਉਸ ਦੀ ਆਪਣੀ ਬੋਲੀ ਵਿਚ ਹੀ ਹੋ ਸਕਦੀਆਂ ਹਨ, ਤੇ ਉਹ ਬੋਲੀ ਹੈ 'ਪ੍ਰੇਮ'।</div>
     </div>
-
     <div class="pauri-group">
       <div class="pg-label">ਪਉੜੀਆਂ ੮–੧੧</div>
-      <div class="pg-body">ਸੋ ਪ੍ਰਭੂ ਦੀ ਯਾਦ ਵਿਚ ਚਿੱਤ ਜੋੜਨਾ ਹੈ। ਜਿਨ੍ਹਾਂ ਨੇ ਜੋੜਿਆ ਹੈ ਉਹਨਾਂ ਦੇ ਮਨ ਸਦਾ ਖਿੜੇ ਰਹਿੰਦੇ ਹਨ। ਨਾਮ ਵਿਚ ਸੁਰਤਿ ਜੋੜਿਆਂ ਹੀ ਧਰਮ-ਪੁਸਤਕਾਂ ਦਾ ਗਿਆਨ ਮਨੁੱਖ ਦੇ ਮਨ ਵਿਚ ਖੁੱਲ੍ਹਦਾ ਹੈ। ਮਨ ਵਿਸ਼ਾਲ ਹੁੰਦਾ ਹੈ, ਲੋੜਵੰਦਿਆਂ ਦੀ ਸੇਵਾ ਤੇ ਸੰਤੋਖ ਵਾਲਾ ਜੀਵਨ ਬਣਦਾ ਹੈ।</div>
+      <div class="pg-body">ਸੋ ਪ੍ਰਭੂ ਦੀ ਯਾਦ ਵਿਚ ਚਿੱਤ ਜੋੜਨਾ ਹੈ। ਜਿਨ੍ਹਾਂ ਨੇ ਜੋੜਿਆ ਹੈ ਉਹਨਾਂ ਦੇ ਮਨ ਸਦਾ ਖਿੜੇ ਰਹਿੰਦੇ ਹਨ। ਨਾਮ ਵਿਚ ਸੁਰਤਿ ਜੋੜਿਆਂ ਹੀ ਧਰਮ-ਪੁਸਤਕਾਂ ਦਾ ਗਿਆਨ ਮਨੁੱਖ ਦੇ ਮਨ ਵਿਚ ਖੁੱਲ੍ਹਦਾ ਹੈ।</div>
     </div>
-
     <div class="pauri-group">
       <div class="pg-label">ਪਉੜੀਆਂ ੧੨–੧੫</div>
-      <div class="pg-body">ਪ੍ਰਭੂ ਮਾਇਆ ਦੇ ਪ੍ਰਭਾਵ ਤੋਂ ਬੇਅੰਤ ਉੱਚਾ ਹੈ। ਪ੍ਰਭੂ-ਚਰਨਾਂ ਦੀ ਪ੍ਰੀਤਿ ਮਨੁੱਖ ਦੇ ਮਨ ਵਿਚ ਚਾਨਣ ਕਰ ਦੇਂਦੀ ਹੈ, ਸਾਰੇ ਸੰਸਾਰ ਵਿਚ ਉਸ ਨੂੰ ਪਰਮਾਤਮਾ ਹੀ ਦਿੱਸਦਾ ਹੈ। ਯਾਦ ਦੀ ਬਰਕਤਿ ਨਾਲ ਇਹ ਸੰਬੰਧ ਇਤਨਾ ਡੂੰਘਾ ਬਣ ਜਾਂਦਾ ਹੈ ਕਿ ਕੋਈ ਰੁਕਾਵਟ ਇਸ ਸਹੀ ਨਿਸ਼ਾਨੇ ਤੋਂ ਉਖੇੜ ਨਹੀਂ ਸਕਦੀ।</div>
+      <div class="pg-body">ਪ੍ਰਭੂ ਮਾਇਆ ਦੇ ਪ੍ਰਭਾਵ ਤੋਂ ਬੇਅੰਤ ਉੱਚਾ ਹੈ। ਪ੍ਰਭੂ-ਚਰਨਾਂ ਦੀ ਪ੍ਰੀਤਿ ਮਨੁੱਖ ਦੇ ਮਨ ਵਿਚ ਚਾਨਣ ਕਰ ਦੇਂਦੀ ਹੈ। ਸਾਰੇ ਸੰਸਾਰ ਵਿਚ ਉਸ ਨੂੰ ਪਰਮਾਤਮਾ ਹੀ ਦਿੱਸਦਾ ਹੈ।</div>
     </div>
-
     <div class="pauri-group">
       <div class="pg-label">ਪਉੜੀਆਂ ੧੬–੧੯</div>
-      <div class="pg-body">ਭਾਗਾਂ ਵਾਲੇ ਹਨ ਉਹ ਮਨੁੱਖ ਜਿਨ੍ਹਾਂ ਨੇ ਗੁਰੂ ਦੇ ਦੱਸੇ ਹੋਏ ਰਾਹ ਨੂੰ ਆਪਣੇ ਜੀਵਨ ਦਾ ਮਨੋਰਥ ਬਣਾਇਆ ਹੈ। ਭਲਾ ਕਿਤਨੀਆਂ ਧਰਤੀਆਂ ਤੇ ਕਿਤਨੇ ਕੁ ਜੀਵ ਪ੍ਰਭੂ ਨੇ ਰਚੇ ਹਨ? ਕੋਈ ਮਨੁੱਖੀ 'ਬੋਲੀ' ਵਿਚ ਕੋਈ ਐਸਾ ਲਫ਼ਜ਼ ਹੀ ਨਹੀਂ ਜੋ ਇਹ ਲੇਖਾ ਦੱਸ ਸਕੇ।</div>
+      <div class="pg-body">ਭਾਗਾਂ ਵਾਲੇ ਹਨ ਉਹ ਮਨੁੱਖ ਜਿਨ੍ਹਾਂ ਨੇ ਗੁਰੂ ਦੇ ਦੱਸੇ ਹੋਏ ਰਾਹ ਨੂੰ ਆਪਣੇ ਜੀਵਨ ਦਾ ਮਨੋਰਥ ਬਣਾਇਆ ਹੈ। ਕੋਈ ਮਨੁੱਖੀ 'ਬੋਲੀ' ਵਿਚ ਕੋਈ ਐਸਾ ਲਫ਼ਜ਼ ਹੀ ਨਹੀਂ ਜੋ ਸ੍ਰਿਸ਼ਟੀ ਦਾ ਲੇਖਾ ਦੱਸ ਸਕੇ।</div>
     </div>
-
     <div class="pauri-group">
       <div class="pg-label">ਪਉੜੀਆਂ ੨੦–੨੭</div>
-      <div class="pg-body">ਮਾਇਆ ਦੇ ਪ੍ਰਭਾਵ ਦੇ ਕਾਰਨ ਮਨੁੱਖ ਵਿਕਾਰਾਂ ਵਿਚ ਪੈ ਜਾਂਦਾ ਹੈ। ਨਾਮ-ਸਿਮਰਨ ਹੀ ਇਕੋ ਵਸੀਲਾ ਹੈ ਜਿਸ ਨਾਲ ਮਨ ਦੀ ਮੈਲ ਧੁਪ ਸਕਦੀ ਹੈ। ਪ੍ਰਭੂ ਬੇਅੰਤ ਗੁਣਾਂ ਦਾ ਮਾਲਕ ਹੈ। ਜਿਉਂ ਜਿਉਂ ਇਹ ਆਖੀਏ ਕਿ ਉਹ ਵੱਡਾ ਹੈ ਤਿਉਂ ਤਿਉਂ ਉਹ ਹੋਰ ਵੱਡਾ ਪਰਤੀਤ ਹੋਣ ਲੱਗ ਪੈਂਦਾ ਹੈ।</div>
+      <div class="pg-body">ਮਾਇਆ ਦੇ ਪ੍ਰਭਾਵ ਦੇ ਕਾਰਨ ਮਨੁੱਖ ਵਿਕਾਰਾਂ ਵਿਚ ਪੈ ਜਾਂਦਾ ਹੈ। ਨਾਮ-ਸਿਮਰਨ ਹੀ ਇਕੋ ਵਸੀਲਾ ਹੈ ਜਿਸ ਨਾਲ ਮਨ ਦੀ ਮੈਲ ਧੁਪ ਸਕਦੀ ਹੈ। ਪ੍ਰਭੂ ਬੇਅੰਤ ਗੁਣਾਂ ਦਾ ਮਾਲਕ ਹੈ।</div>
     </div>
-
     <div class="pauri-group">
       <div class="pg-label">ਪਉੜੀਆਂ ੨੮–੩੩</div>
-      <div class="pg-body">ਸਾਰੇ ਸੰਸਾਰ ਦੇ ਪੈਦਾ ਕਰਨ ਵਾਲੇ ਤੇ ਸਦਾ ਥਿਰ ਰਹਿਣ ਵਾਲੇ ਪਰਮਾਤਮਾ ਦਾ ਸਿਮਰਨ ਹੀ ਜੀਵਨ-ਮਨੋਰਥ ਹੈ। ਜੋਗ-ਮਤ ਦੀ ਖਿੰਥਾ, ਮੁੰਦ੍ਰਾ, ਝੋਲੀ ਆਦਿਕ ਜੀਵ ਦੀ ਪ੍ਰਭੂ ਨਾਲੋਂ ਵਿੱਥ ਮਿਟਾਉਣ ਜੋਗੇ ਨਹੀਂ ਹਨ।</div>
+      <div class="pg-body">ਸਾਰੇ ਸੰਸਾਰ ਦੇ ਪੈਦਾ ਕਰਨ ਵਾਲੇ ਤੇ ਸਦਾ ਥਿਰ ਰਹਿਣ ਵਾਲੇ ਪਰਮਾਤਮਾ ਦਾ ਸਿਮਰਨ ਹੀ ਜੀਵਨ-ਮਨੋਰਥ ਹੈ। ਜੋਗ-ਮਤ ਦੀ ਖਿੰਥਾ, ਮੁੰਦ੍ਰਾ, ਝੋਲੀ ਆਦਿਕ ਇਹ ਵਿੱਥ ਮਿਟਾਉਣ ਜੋਗੇ ਨਹੀਂ।</div>
     </div>
-
     <div class="pauri-group">
       <div class="pg-label">ਪਉੜੀਆਂ ੩੪–੩੮</div>
-      <div class="pg-body">ਜਿਸ ਮਨੁੱਖ ਉੱਤੇ ਪ੍ਰਭੂ ਦੀ ਬਖ਼ਸ਼ਸ਼ ਹੁੰਦੀ ਹੈ, ਉਸ ਨੂੰ ਪਹਿਲਾਂ ਇਹ ਸਮਝ ਪੈਂਦੀ ਹੈ ਕਿ ਮਨੁੱਖ ਇਸ ਧਰਤੀ 'ਤੇ ਕੋਈ ਖ਼ਾਸ ਫਰਜ਼ ਨਿਭਾਉਣ ਆਇਆ ਹੈ। ਸਿਧਾਂਤ (ਜੋ ਅਖ਼ੀਰਲੇ ਸਲੋਕ ਵਿਚ ਹੈ) — ਇਹ ਜਗਤ ਇਕ ਰੰਗ-ਭੂਮੀ ਹੈ। ਜਿਨ੍ਹਾਂ ਨੇ ਸਿਮਰਨ ਦੀ ਖੇਡ ਖੇਡੀ — ਉਹ ਆਪਣੀ ਮਿਹਨਤ ਸਫ਼ਲ ਕਰ ਗਏ।</div>
+      <div class="pg-body">ਜਿਸ ਮਨੁੱਖ ਉੱਤੇ ਪ੍ਰਭੂ ਦੀ ਬਖ਼ਸ਼ਸ਼ ਹੁੰਦੀ ਹੈ, ਉਸ ਨੂੰ ਪਹਿਲਾਂ ਇਹ ਸਮਝ ਪੈਂਦੀ ਹੈ ਕਿ ਮਨੁੱਖ ਇਸ ਧਰਤੀ 'ਤੇ ਕੋਈ ਖ਼ਾਸ ਫਰਜ਼ ਨਿਭਾਉਣ ਆਇਆ ਹੈ। ਇਹ ਜਗਤ ਇਕ ਰੰਗ-ਭੂਮੀ ਹੈ — ਜਿਨ੍ਹਾਂ ਨੇ ਸਿਮਰਨ ਦੀ ਖੇਡ ਖੇਡੀ ਉਹ ਸਫ਼ਲ ਕਰ ਗਏ।</div>
     </div>
 
     <div class="g-section">ਕੁਝ ਪ੍ਰਸ਼ਨ ਉੱਤਰ · ਪੰਨਾ ੨੫–੨੬</div>
@@ -714,12 +436,10 @@
       <div class="qa-q">ਇਸ ਬਾਣੀ ਦਾ ਨਾਮ 'ਜਪੁ' ਕਿਉਂ ਰੱਖਿਆ ਗਿਆ?</div>
       <div class="qa-a">ਇਸ ਸਾਰੀ ਬਾਣੀ ਵਿਚ ਸਿਰਫ਼ ਇਹੀ ਵਿਚਾਰ ਹੈ ਕਿ ਦਾਨ-ਪੁੰਨ, ਤੀਰਥ-ਯਾਤਰਾ, ਪ੍ਰਾਣਾਯਾਮ, ਜੋਗ ਦੇ ਖਿੰਥਾ ਮੁੰਦ੍ਰਾ ਆਦਿਕ — ਇਹਨਾਂ ਵਿੱਚੋਂ ਕੋਈ ਵੀ ਪ੍ਰਭੂ ਨਾਲੋਂ ਵਿਛੜੇ ਜੀਵ ਨੂੰ ਪ੍ਰਭੂ ਨਾਲ ਮਿਲਾ ਨਹੀਂ ਸਕਦਾ। ਪ੍ਰਭੂ ਦਾ 'ਸਿਮਰਨ' ਹੀ ਇਕੋ ਇਕ ਵਸੀਲਾ ਹੈ। 'ਜਪੁ' ਦਾ ਅਰਥ ਹੈ: ਸਿਮਰਨ, ਬੰਦਗੀ, ਭਜਨ।</div>
     </div>
-
     <div class="qa-item">
       <div class="qa-q">ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਦੇ ਅਰੰਭ ਵਿਚ ਇਹ ਬਾਣੀ ਕਿਉਂ?</div>
-      <div class="qa-a">ਸਿੱਖ ਧਰਮ ਦਾ ਮੁੱਖ ਨਿਸ਼ਾਨਾ ਹੈ 'ਸਿਮਰਨ'। 'ਸਿਮਰਨ' ਮਾਨੋ ਇਕ ਐਸੀ ਕੇਂਦਰੀ ਨੀਂਹ ਹੈ, ਜਿਸ ਦੇ ਉਪਰ 'ਧਰਮ' ਦੀ ਇਮਾਰਤ ਦੀ ਉਸਾਰੀ ਕੀਤੀ ਗਈ ਹੈ। ਇਸ ਮਜ਼ਮੂਨ ਉੱਤੇ ਸਭ ਤੋਂ ਵਧੀਕ ਢੁੱਕਵੀਂ ਬਾਣੀ ਹੈ 'ਜਪੁ'। ਸੋ, ਗੁਰੂ ਅਰਜਨ ਸਾਹਿਬ ਨੇ ਇਸੇ ਬਾਣੀ ਨੂੰ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਦੇ ਅਰੰਭ ਵਿਚ ਦਰਜ ਕੀਤਾ।</div>
+      <div class="qa-a">ਸਿੱਖ ਧਰਮ ਦਾ ਮੁੱਖ ਨਿਸ਼ਾਨਾ ਹੈ 'ਸਿਮਰਨ'। ਇਸ ਮਜ਼ਮੂਨ ਉੱਤੇ ਸਭ ਤੋਂ ਵਧੀਕ ਢੁੱਕਵੀਂ ਬਾਣੀ ਹੈ 'ਜਪੁ'। ਸੋ, ਗੁਰੂ ਅਰਜਨ ਸਾਹਿਬ ਨੇ ਇਸੇ ਬਾਣੀ ਨੂੰ ਗੁਰੂ ਗ੍ਰੰਥ ਸਾਹਿਬ ਦੇ ਅਰੰਭ ਵਿਚ ਦਰਜ ਕੀਤਾ।</div>
     </div>
-
     <div class="qa-item">
       <div class="qa-q">ਹਰ ਰੋਜ਼ ਪਾਠ ਕਿਉਂ?</div>
       <div class="qa-a">ਜਿਉਂ ਜਿਉਂ ਜੀਵ ਪ੍ਰਭੂ ਨੂੰ ਯਾਦ ਕਰਦਾ ਹੈ, ਤਿਉਂ ਤਿਉਂ ਉਸ ਨਾਲ ਜੀਵ ਦਾ ਪਿਆਰ ਬਣਦਾ ਹੈ। ਪਿਆਰ ਦੀ ਬਰਕਤਿ ਨਾਲ ਉਸ ਦੇ ਕੀਤੇ ਕੰਮ ਚੰਗੇ ਲੱਗਣ ਲੱਗ ਪੈਂਦੇ ਹਨ। ਸੋ 'ਸਿਮਰਨ' ਜਾਂ 'ਜਪੁ' ਹੀ ਇਕ ਐਸਾ ਵਸੀਲਾ ਹੈ ਜੋ ਜੀਵ ਦੀ ਪ੍ਰਭੂ ਨਾਲੋਂ ਵਿੱਥ ਮਿਟਾ ਸਕਦਾ ਹੈ।</div>
