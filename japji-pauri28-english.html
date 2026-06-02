@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japji Sahib — Pauri 28 | Mūl Learnings</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #080e1a;
+    --navy-mid: #0f1a2e;
+    --navy-light: #162035;
+    --cream: #e8eef8;
+    --cream-dim: #c8d4e8;
+    --steel: #7a9bbf;
+    --steel-light: #a8c4df;
+    --gold: #c9a84c;
+    --muted: #6a7d96;
+    --border: #1e2d45;
+    --highlight: #1a2e4a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { background: var(--navy); }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  /* ─── TOP BORDER ─── */
+  .top-border {
+    height: 3px;
+    background: linear-gradient(90deg, var(--navy-mid), var(--steel), var(--gold), var(--steel), var(--navy-mid));
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    background: var(--navy-mid);
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+
+  .nav-logo span {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    color: var(--steel);
+    margin-right: 0.4em;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.8rem;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--cream); }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--navy-mid);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+  }
+
+  .header-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 0.9rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.3rem;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .source-line {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .ornament {
+    display: block;
+    color: var(--steel);
+    opacity: 0.4;
+    letter-spacing: 0.6em;
+    font-size: 0.8rem;
+  }
+
+  /* ─── TABS ─── */
+  .tab-bar {
+    background: var(--navy-light);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 0 2rem;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 0.95rem;
+    padding: 1rem 1.8rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+  }
+
+  .tab-btn:hover { color: var(--cream-dim); }
+
+  .tab-btn.active {
+    color: var(--cream);
+    border-bottom-color: var(--steel);
+  }
+
+  /* ─── MAIN ─── */
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ─── NOTICE ─── */
+  .notice {
+    background: var(--navy-light);
+    border-left: 3px solid var(--steel);
+    padding: 1rem 1.4rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.92rem;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+  .notice strong { color: var(--steel-light); font-style: normal; }
+
+  /* ─── SECTION HEADER ─── */
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--steel);
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-top: 2.8rem;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1.2rem;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--steel-light);
+    margin: 2rem 0 0.8rem;
+  }
+
+  p {
+    color: var(--cream-dim);
+    margin-bottom: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  p strong { color: var(--cream); font-weight: 600; }
+  p em { color: var(--steel-light); font-style: italic; }
+
+  /* ─── BANI VERSE ─── */
+  .bani-verse {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+  }
+
+  .bani-verse p {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    line-height: 2.1;
+    margin-bottom: 0;
+  }
+
+  .bani-roman {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--steel);
+    font-style: italic;
+    margin-top: 1rem;
+    line-height: 1.9;
+  }
+
+  /* ─── WORD TABLE ─── */
+  .word-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    font-size: 0.95rem;
+  }
+
+  .word-table thead tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .word-table th {
+    text-align: left;
+    padding: 0.6rem 1rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--steel);
+    font-weight: 400;
+    font-family: 'Crimson Pro', serif;
+  }
+
+  .word-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #1a2640;
+    vertical-align: top;
+    line-height: 1.6;
+    color: var(--cream-dim);
+  }
+
+  .word-table td:first-child {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.05rem;
+    color: var(--gold);
+    width: 20%;
+  }
+
+  .word-table td:nth-child(2) {
+    font-style: italic;
+    color: var(--steel-light);
+    width: 28%;
+  }
+
+  .word-table td:last-child {
+    width: 52%;
+  }
+
+  /* ─── TRANSLATION LINE ─── */
+  .translation {
+    background: var(--highlight);
+    border-left: 2px solid var(--steel);
+    padding: 1rem 1.4rem;
+    margin: 1.2rem 0 2rem;
+    font-style: italic;
+    color: var(--cream);
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+
+  /* ─── GURBANI REFERENCE ─── */
+  .gurbani-ref {
+    background: var(--navy-light);
+    border-left: 3px solid var(--steel);
+    padding: 1.4rem 1.8rem;
+    margin: 1.8rem 0;
+  }
+
+  .gurbani-ref .gurmukhi {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.5rem;
+    line-height: 2;
+  }
+
+  .gurbani-ref .roman {
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--steel);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .gurbani-ref .meaning {
+    font-size: 0.97rem;
+    color: var(--cream-dim);
+    display: block;
+  }
+
+  /* ─── QUOTE BLOCK ─── */
+  .quote-block {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.4rem 0;
+    margin: 2rem 0;
+  }
+
+  .quote-block p {
+    font-style: italic;
+    color: var(--cream-dim);
+    font-size: 1.02rem;
+  }
+
+  .quote-block cite {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-top: 0.6rem;
+    font-style: normal;
+  }
+
+  /* ─── SUBSTITUTION TABLE ─── */
+  .sub-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.8rem 0;
+    font-size: 0.94rem;
+  }
+
+  .sub-table thead tr {
+    background: var(--navy-light);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sub-table th {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--steel);
+    font-weight: 400;
+    font-family: 'Crimson Pro', serif;
+  }
+
+  .sub-table td {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #1a2640;
+    vertical-align: top;
+    line-height: 1.65;
+    color: var(--cream-dim);
+  }
+
+  .sub-table td:first-child {
+    font-weight: 600;
+    color: var(--cream);
+    width: 20%;
+  }
+
+  .sub-table td:nth-child(2) {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    width: 18%;
+  }
+
+  .sub-table td:nth-child(3) {
+    color: var(--steel-light);
+    font-weight: 500;
+    width: 24%;
+  }
+
+  .sub-table td:last-child {
+    font-size: 0.93rem;
+    font-style: italic;
+    width: 38%;
+  }
+
+  /* ─── KEY CONCEPT ─── */
+  .key-concept {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    padding: 1.5rem 1.8rem;
+    margin: 1.8rem 0;
+    position: relative;
+  }
+
+  .key-concept-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--steel);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .key-concept h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 0.7rem;
+  }
+
+  .key-concept p { margin-bottom: 0.7rem; font-size: 0.97rem; }
+  .key-concept p:last-child { margin-bottom: 0; }
+
+  /* ─── ANALOGY ─── */
+  .analogy {
+    background: var(--highlight);
+    border-left: 3px solid var(--gold);
+    padding: 1.4rem 1.8rem;
+    margin: 1.8rem 0;
+  }
+
+  .analogy-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  .analogy p { font-style: italic; margin-bottom: 0.7rem; font-size: 0.98rem; }
+  .analogy .analogy-point {
+    font-style: normal;
+    font-size: 0.93rem;
+    color: var(--steel-light);
+    border-top: 1px solid var(--border);
+    padding-top: 0.7rem;
+    margin-top: 0.7rem;
+  }
+
+  /* ─── QA ─── */
+  .qa-block {
+    margin: 1.8rem 0;
+    padding-left: 1.4rem;
+    border-left: 2px solid var(--border);
+  }
+
+  .qa-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .qa-label.student { color: #6abf8a; }
+  .qa-label.teacher { color: var(--steel-light); }
+
+  .qa-text {
+    font-style: italic;
+    font-size: 0.97rem;
+    color: var(--cream-dim);
+    line-height: 1.78;
+    margin-bottom: 1rem;
+  }
+
+  /* ─── PRACTICE ─── */
+  .practice-block {
+    background: var(--navy-light);
+    border: 1px solid var(--steel);
+    border-top: 2px solid var(--steel);
+    padding: 1.6rem 1.8rem;
+    margin: 1.8rem 0;
+  }
+
+  .practice-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--steel);
+    display: block;
+    margin-bottom: 0.7rem;
+  }
+
+  .practice-block h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+
+  .practice-block ol {
+    padding-left: 1.4rem;
+    color: var(--cream-dim);
+    font-size: 0.97rem;
+  }
+
+  .practice-block li { margin-bottom: 0.6rem; line-height: 1.7; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    text-align: center;
+    margin: 2.5rem 0;
+    color: var(--steel);
+    opacity: 0.35;
+    letter-spacing: 0.5em;
+    font-size: 0.85rem;
+  }
+
+  /* ─── REFLECTION ─── */
+  .reflection-block {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    margin-top: 2.5rem;
+  }
+
+  .reflection-block h3 {
+    margin-top: 0;
+    color: var(--cream);
+  }
+
+  .reflection-block ol {
+    padding-left: 1.4rem;
+    color: var(--cream-dim);
+    font-size: 0.97rem;
+  }
+
+  .reflection-block li {
+    margin-bottom: 0.9rem;
+    line-height: 1.75;
+    font-style: italic;
+  }
+
+  /* ─── MUL OF THE MATTER ─── */
+  .placeholder {
+    background: var(--navy-light);
+    border: 1px dashed var(--border);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.97rem;
+    line-height: 1.75;
+  }
+
+  /* ─── FOOTNOTE ─── */
+  .fn-list { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+  .fn-item { display: flex; gap: 0.8rem; margin-bottom: 1rem; align-items: flex-start; }
+  .fn-num {
+    font-size: 0.75rem;
+    color: var(--steel);
+    font-weight: 600;
+    min-width: 1.4rem;
+    padding-top: 0.15rem;
+  }
+  .fn-text {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    background: var(--navy-mid);
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    font-family: 'Crimson Pro', Georgia, serif;
+    border-top: 1px solid var(--border);
+  }
+
+  footer .footer-mark {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+    font-size: 1.4rem;
+    color: var(--steel);
+    display: block;
+    margin-bottom: 0.6rem;
+    opacity: 0.6;
+  }
+
+  @media (max-width: 600px) {
+    main { padding: 2rem 1rem 4rem; }
+    header h1 { font-size: 1.6rem; }
+    .tab-btn { padding: 0.8rem 1rem; font-size: 0.88rem; }
+    .sub-table td:last-child { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-border"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html"><span>ੴ</span> Mūl Learnings</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="japji-pauri1-english.html">Pauri 1</a></li>
+  </ul>
+</nav>
+
+<header>
+  <span class="header-tag">Japji Sahib · Pauri 28</span>
+  <h1>From Theory Into Practice<br><em style="font-size:1.5rem; color: var(--steel);">The Yogic Symbols &amp; Their Inner Equivalents</em></h1>
+  <p class="source-line">Annie Auntie's Lesson · Learn With Nanak (Amardeep Singh &amp; Vininder Kaur) · Bhai Vir Singh Steek</p>
+  <span class="ornament">✦ ✦ ✦</span>
+</header>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('bani')">The Bani</button>
+  <button class="tab-btn" onclick="showTab('context')">Context &amp; Bridge</button>
+  <button class="tab-btn" onclick="showTab('lesson')">Annie Auntie's Lesson</button>
+  <button class="tab-btn" onclick="showTab('mul')">Mūl of the Matter</button>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     TAB 1 — THE BANI
+══════════════════════════════════════════ -->
+<div class="tab-content active" id="tab-bani">
+
+  <div class="notice">
+    Pauri 28 is part of a set (Pauris 28–31) in which Guru Nanak shifts from philosophical theory to daily practice. He addresses the yogis and Siddhas directly, using the symbols of their outward way of life as entry points for teaching inner transformation.
+  </div>
+
+  <span class="section-label">The Bridge — Closing Lines of Pauri 27</span>
+  <h2>What Came Before</h2>
+
+  <p>Annie Auntie opened this lesson by showing the two lines that close the previous pauri and create the thread into Pauris 28–31. These are not merely a poetic ending — they are a deliberate hinge between the theory of what Reality is and the practice of how to live.</p>
+
+  <div class="bani-verse">
+    <p>ਸੋਈ ਸੋਈ ਸਦਾ ਸਚੁ ਸਾਹਿਬੁ ਸਾਚਾ ਸਾਚੀ ਨਾਈ ॥<br>ਹੈ ਭੀ ਹੋਸੀ ਜਾਇ ਨ ਜਾਸੀ ਰਚਨਾ ਜਿਨਿ ਰਚਾਈ ॥</p>
+    <p class="bani-roman">Soee soee sadaa sach saahib saachaa saachee naa-ee.<br>Hai bhee hosee jaa-e na jaasee rachnaa jin rachaa-ee.</p>
+  </div>
+
+  <div class="translation">
+    He and he alone is ever the same, ever the truth. The master is true and true is his glory.<br>
+    He is, he ever shall be, he shall never depart — he who created this creation.
+  </div>
+
+  <p>Everything in creation changes. Only Akal Purakh remains constant. This grounds everything that follows. The 27 pauris before this established <em>what</em> Reality is. Pauris 28–31 now ask: <strong>so how do we actually live?</strong></p>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">The Pauri — Gurmukhi Text</span>
+  <h2>Pauri 28</h2>
+
+  <div class="bani-verse">
+    <p>ਮੁੰਦਾ ਸੰਤੋਖੁ ਸਰਮੁ ਪਤੁ ਝੋਲੀ ਧਿਆਨ ਕੀ ਕਰਹਿ ਬਿਭੂਤਿ ॥<br>
+    ਖਿੰਥਾ ਕਾਲੁ ਕੁਆਰੀ ਕਾਇਆ ਜੁਗਤਿ ਡੰਡਾ ਪਰਤੀਤਿ ॥<br>
+    ਆਈ ਪੰਥੀ ਸਗਲ ਜਮਾਤੀ ਮਨਿ ਜੀਤੈ ਜਗੁ ਜੀਤੁ ॥<br>
+    ਆਦੇਸੁ ਤਿਸੈ ਆਦੇਸੁ ॥<br>
+    ਆਦਿ ਅਨੀਲੁ ਅਨਾਦਿ ਅਨਾਹਤਿ ਜੁਗੁ ਜੁਗੁ ਏਕੋ ਵੇਸੁ ॥੨੮॥</p>
+    <p class="bani-roman">Mundaa santokh saram pat jholee dhiaan kee karahi bibhoot.<br>
+    Khinthaa kaal kuaaree kaaiaa jugat dandaa parteet.<br>
+    Aa-ee panthee sagal jamaatee man jeetai jag jeet.<br>
+    Aades tisai aades.<br>
+    Aad aneel anaad anaahit jug jug eko ves. ||28||</p>
+  </div>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">Word by Word</span>
+  <h2>Vocabulary</h2>
+
+  <table class="word-table">
+    <thead>
+      <tr>
+        <th>Gurmukhi</th>
+        <th>Transliteration</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>ਮੁੰਦਾ</td><td>Mundaa</td><td>Earrings — worn by the yogis as a mark of renunciation</td></tr>
+      <tr><td>ਸੰਤੋਖੁ</td><td>Santokh</td><td>Contentment — the inner ornament Guru Nanak substitutes for the earring</td></tr>
+      <tr><td>ਸਰਮੁ</td><td>Saram</td><td>Effort, active discipline — earning one's living by the sweat of one's brow</td></tr>
+      <tr><td>ਪਤੁ</td><td>Pat</td><td>Honour, dignity — the begging bag/pouch of the yogi</td></tr>
+      <tr><td>ਝੋਲੀ</td><td>Jholee</td><td>The bag/sack carried by wandering yogis for receiving alms</td></tr>
+      <tr><td>ਧਿਆਨ</td><td>Dhiaan</td><td>Awareness, contemplation — what the ashes should represent</td></tr>
+      <tr><td>ਬਿਭੂਤਿ</td><td>Bibhoot / Vibhut</td><td>Ashes — smeared on the body by yogis as a symbol of renunciation and remembrance</td></tr>
+      <tr><td>ਖਿੰਥਾ</td><td>Khinthaa</td><td>The patched coat worn by ascetics — sewn together from rags</td></tr>
+      <tr><td>ਕਾਲੁ</td><td>Kaal</td><td>Death — the awareness of mortality; Guru Nanak says wear this as your cloak</td></tr>
+      <tr><td>ਕੁਆਰੀ ਕਾਇਆ</td><td>Kuaaree kaaiaa</td><td>The pure/virgin body — purity and integrity of the physical form</td></tr>
+      <tr><td>ਜੁਗਤਿ</td><td>Jugat</td><td>Technique, method — the yogic way of life and discipline</td></tr>
+      <tr><td>ਡੰਡਾ</td><td>Dandaa</td><td>Walking staff/stick — the support carried by wandering yogis</td></tr>
+      <tr><td>ਪਰਤੀਤਿ</td><td>Parteet</td><td>Trust, faith — what the walking stick should be made of</td></tr>
+      <tr><td>ਆਈ ਪੰਥੀ</td><td>Aa-ee panthee</td><td>One who belongs to all paths — a universal spiritual being</td></tr>
+      <tr><td>ਸਗਲ ਜਮਾਤੀ</td><td>Sagal jamaatee</td><td>The fellowship of all — seeing all beings as one's own</td></tr>
+      <tr><td>ਮਨਿ ਜੀਤੈ ਜਗੁ ਜੀਤੁ</td><td>Man jeetai jag jeet</td><td>Conquer the mind and you conquer the world</td></tr>
+      <tr><td>ਆਦੇਸੁ</td><td>Aades</td><td>Salutation, reverence — I bow to that One</td></tr>
+      <tr><td>ਅਨੀਲੁ</td><td>Aneel</td><td>Without blemish, immaculate</td></tr>
+      <tr><td>ਅਨਾਦਿ</td><td>Anaad</td><td>Without beginning</td></tr>
+      <tr><td>ਅਨਾਹਤਿ</td><td>Anaahat</td><td>Unstruck, self-sustaining — the unstruck sound of existence</td></tr>
+      <tr><td>ਜੁਗੁ ਜੁਗੁ ਏਕੋ ਵੇਸੁ</td><td>Jug jug eko ves</td><td>Age after age, the same One form — the unchanging presence across all of time</td></tr>
+    </tbody>
+  </table>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">Full Translation</span>
+  <h2>Line by Line</h2>
+
+  <h3>Line 1</h3>
+  <div class="bani-verse"><p>ਮੁੰਦਾ ਸੰਤੋਖੁ ਸਰਮੁ ਪਤੁ ਝੋਲੀ ਧਿਆਨ ਕੀ ਕਰਹਿ ਬਿਭੂਤਿ ॥</p></div>
+  <div class="translation">Make contentment your earrings, disciplined effort your honour and your sack, and smear your body with the ashes of awareness.</div>
+
+  <h3>Line 2</h3>
+  <div class="bani-verse"><p>ਖਿੰਥਾ ਕਾਲੁ ਕੁਆਰੀ ਕਾਇਆ ਜੁਗਤਿ ਡੰਡਾ ਪਰਤੀਤਿ ॥</p></div>
+  <div class="translation">Let death be your patched coat, let purity and integrity be your discipline, and let faith and trust be your walking staff.</div>
+
+  <h3>Line 3</h3>
+  <div class="bani-verse"><p>ਆਈ ਪੰਥੀ ਸਗਲ ਜਮਾਤੀ ਮਨਿ ਜੀਤੈ ਜਗੁ ਜੀਤੁ ॥</p></div>
+  <div class="translation">See all of humanity as your fellow travellers on the path. Conquer the mind, and you conquer the world.</div>
+
+  <h3>Lines 4–5</h3>
+  <div class="bani-verse"><p>ਆਦੇਸੁ ਤਿਸੈ ਆਦੇਸੁ ॥ ਆਦਿ ਅਨੀਲੁ ਅਨਾਦਿ ਅਨਾਹਤਿ ਜੁਗੁ ਜੁਗੁ ਏਕੋ ਵੇਸੁ ॥੨੮॥</p></div>
+  <div class="translation">I bow to that One, I bow. That primordial, immaculate, beginningless, unstruck One — age after age, ever the same.</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     TAB 2 — CONTEXT & BRIDGE
+══════════════════════════════════════════ -->
+<div class="tab-content" id="tab-context">
+
+  <div class="notice">
+    This tab covers the full context: the Siddha Ghosh, Guru Nanak's relationship with the yogis, the philosophical ground of the Grihastha life, and the transition from 27 pauris of theory into daily practice.
+  </div>
+
+  <span class="section-label">The Conversation</span>
+  <h2>Siddha Ghosh — Who Is Guru Nanak Talking To?</h2>
+
+  <p>Pauris 28–31 come from a real historical conversation. Guru Nanak is speaking directly to the <strong>yogis and Siddhas</strong> — the recognized wise men of that era. These were not ordinary people. Society looked to them for counsel and considered them spiritually advanced.</p>
+
+  <p>The full record of this exchange is preserved in the Guru Granth Sahib as <strong>Siddha Ghosh</strong> — Guru Nanak's formal dialogue with the Siddhas. One important detail: <em>nobody recorded it in real time.</em> It was written from Guru Nanak's memory after the conversation was complete.</p>
+
+  <p>The yogis had a very specific outward appearance: earrings, begging bowls, ashes on their bodies, patched coats, walking sticks. They renounced the world, went to forests and mountains, and expected to be fed by society. Guru Nanak's aim was not to condemn them. His aim was to ask — <strong>what are these symbols actually pointing to?</strong> And then to say: stop wearing the pointer. Start embodying the thing it points to.</p>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">One Truth for All</span>
+  <h2>Why This Teaching Is Universal</h2>
+
+  <p>Before getting into the symbols, Annie Auntie established why Guru Nanak addresses yogis at all — and what it reveals about spiritual truth across all traditions.</p>
+
+  <div class="quote-block">
+    <p>"He is telling them that Akal Purakh is the only abiding truth. And since religion has to deal with this one abiding truth, it must basically be the same for all humanity. Because all humanity has one creation. One Akal Purakh that has created the whole creation."</p>
+    <cite>Annie Auntie</cite>
+  </div>
+
+  <p>If there is one creator, and all human beings are created by the same one, then their spiritual needs are fundamentally the same — regardless of race, religion, or nationality. The differences between religions are real. But the human being inside every religion is the same.</p>
+
+  <p>This is why Guru Nanak could speak to yogis, to Hindus, to Muslims — without asking anyone to convert. He was not teaching a religion. He was pointing at the human being underneath the religion.</p>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">The Core Distinction</span>
+  <h2>Religion Divides. Spirituality Unites.</h2>
+
+  <div class="key-concept">
+    <span class="key-concept-label">Key Distinction</span>
+    <h4>Religion vs. Spirituality</h4>
+    <p><strong>Religion</strong> is a set of external practices, dogmas, calendars, and symbols. It organises people — and in doing so, it also divides them. You eat this on Tuesday but not that. You wash your hair on this day. You go to this building. You belong to this group. Religion places power in the hands of those who make the rules.</p>
+    <p><strong>Spirituality</strong> is the inner work of becoming — more aware, more free from ego, more connected to the one underlying reality. It requires no institution, no symbol, no calendar. Only honest inward effort.</p>
+    <p>Guru Nanak said: everybody is equal. He did not position himself as the teacher everyone must follow. He farmed his land after his Udaasis. He said — I am living like you. You live like me.</p>
+  </div>
+
+  <div class="quote-block">
+    <p>"Religion divides. Spirituality unites. Divinity unites. They have divided themselves from each other in narrow watertight compartments. Leading to conflicts and dissensions. That is where the conflict comes — because they have created the divisions. Guru Nanak was not for these divisions."</p>
+    <cite>Annie Auntie</cite>
+  </div>
+
+  <p>And yet — the physical place is not the problem. Going to a mandir, a church, a gurdwara is not wrong. The question is always: are you becoming a better version of yourself while you are there?</p>
+
+  <div class="qa-block">
+    <div>
+      <span class="qa-label student">Student (Shirdi)</span>
+      <div class="qa-text">"Does this principle mean you should not be going to church and mandirs?"</div>
+    </div>
+    <div>
+      <span class="qa-label teacher">Annie Auntie</span>
+      <div class="qa-text">"It does not matter where you are. What matters is — wherever you are, are you learning something to become a better version of yourself? I have been to churches, I have been to mandirs, I have attended masses and pujas. The place does not matter. My thinking matters. I could be in hell, I could be in jail, I could still become a better version of myself. I could be living in a palace and still be the lowest version of myself. What was happening on Epstein Island? It was the richest place. It was a palace. But where were those people living?"</div>
+    </div>
+  </div>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">The Grihastha Life</span>
+  <h2>You Cannot Run from Yourself</h2>
+
+  <p>The yogis believed the world was a source of sin and suffering, and the right response was to leave it — go to the mountains, go to the forest, meditate away from society. Guru Nanak disagreed fundamentally.</p>
+
+  <div class="analogy">
+    <span class="analogy-label">Annie Auntie</span>
+    <p>"You can get away from the world, but the world doesn't get away from you. You can get the man out of the gutter, but can you get the gutter out of the man? You could take me from here to a beautiful palace in the hills and say — enjoy, be one with the Paramatma. I am taking my same mind, my same thoughts, my same struggles over there."</p>
+    <p class="analogy-point">The mountain does not heal the mind. The forest does not dissolve the ego. You bring yourself with you wherever you go. This is why Guru Nanak taught the Grihastha life — the life of the householder. Live in the world. Earn your living. Share people's joys and sorrows as one of them.</p>
+  </div>
+
+  <p>Furthermore — the yogis who renounced the world and went begging became a burden on society. Guru Nanak referenced this directly:</p>
+
+  <div class="gurbani-ref">
+    <span class="gurmukhi">ਕਰਕਰਿ ਮੰਗਣਿ ਜਗ ਪਰਿ ਭਉਤਲਿ ਮਨਿ ਅੰਧੇ ਅਭਿਧਾਰੀ ॥</span>
+    <span class="roman">Karkar mangan jag par bhautal, man andhe abhidhaari.</span>
+    <span class="meaning">They beg from door to door across the world, yet instruct others as if they are the wisest — blind in the mind, not seeing they are the ones who need help. (Rag Maru)</span>
+  </div>
+
+  <p>Before going from temple to temple, before advising others — we must know ourselves. <strong>Self-realization is the aim and purpose of life.</strong> The Atma is part of the Parmatma. The way to it is through the soul — and the soul is accessed right here, in the middle of ordinary life.</p>
+
+  <div class="gurbani-ref">
+    <span class="gurmukhi">ਇਕੋ ਪੰਧੁ ਇਕੁ ਦਰੁ ਗੁਰ ਪਉੜੀ ਨਿਜਠਾਣੁ ॥ ਸਭ ਸੁਖ ਸਚੁ ਨਾਮ ॥</span>
+    <span class="roman">Iko pandh ik dar Gur pauri nijthan. Sabh sukh sach Naam.</span>
+    <span class="meaning">There is only one road, one door. The Guru is the ladder to that true home. All bliss is in the true Name. (Rag Ram Malhar)</span>
+  </div>
+
+  <p>The Guru — as ladder — takes you upward to your higher self. When you are selfish, critical, judgmental, you are living your lower self. When you are in Seva, in awareness, in Dharam — you are living your higher self. The work is never about being better than anyone else. Only about being a better version of yourself than you were yesterday.</p>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">The Transition</span>
+  <h2>27 Pauris of Theory. Now: Practice.</h2>
+
+  <div class="quote-block">
+    <p>"Till now, Guru Nanak has talked about Omkar and acceptance through the past 27 bodies that we have done. He talked about Amrit Vela. He talked about Tirath — and he said that is an internal pilgrimage. He talked about Gaavai — sing the praise and gratitude. He talked about Mandai — accept the Hukam. Be in acceptance. Let life unfold. Now we have a lot of theory. But from here, he talks about putting it into practice. Implementation starts and the way of day-to-day living. It keeps getting deeper and deeper from here."</p>
+    <cite>Annie Auntie</cite>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     TAB 3 — ANNIE AUNTIE'S LESSON
+══════════════════════════════════════════ -->
+<div class="tab-content" id="tab-lesson">
+
+  <div class="notice">
+    This tab is the full substance of Annie Auntie's teaching on Pauri 28: the symbol-by-symbol substitution, the philosophical reversals, the key concepts defined, and all her analogies preserved in full.
+  </div>
+
+  <span class="section-label">The Central Move</span>
+  <h2>Inside = Outside. No Duality.</h2>
+
+  <p>Guru Nanak was deeply and consistently opposed to duality — the gap between what is shown on the outside and what is actually happening on the inside. This runs through <em>all</em> of his teachings.</p>
+
+  <div class="quote-block">
+    <p>"He wanted us to be — whatever is inside is outside. No double-facedness. He wanted the outside and the inside to be one. He has always criticized duality. And he has been in support of oneness. All his teachings lead us to oneness. The very word Ekamkar emphasizes that. As long as we live in duality — as long as we have I and my ego — I cannot become Ekamkar."</p>
+    <cite>Annie Auntie</cite>
+  </div>
+
+  <p>The yogis were the living embodiment of the problem. Their outer appearance was supposed to communicate an inner state. But the appearance had become a substitute for the state. They wore the symbol without living the reality it pointed to.</p>
+
+  <p>Guru Nanak does not destroy the symbols. He <strong>internalizes them.</strong> Every symbol gets replaced with its inner equivalent.</p>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">The Full Substitution</span>
+  <h2>Symbol by Symbol</h2>
+
+  <table class="sub-table">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Gurmukhi</th>
+        <th>Replace With</th>
+        <th>The Deeper Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Earrings</td>
+        <td>ਮੁੰਦਾ</td>
+        <td>Contentment (Santokh)</td>
+        <td>The earring is always worn, always visible. Make contentment your permanent ornament — something you carry at every moment, not something you put on for occasions.</td>
+      </tr>
+      <tr>
+        <td>Begging Bowl</td>
+        <td>ਖਪਰੁ / ਝੋਲੀ</td>
+        <td>Hard Work — Earn Your Own Living</td>
+        <td>The bowl is held out to receive. Our effort — the sweat of our brow — is the real bowl. We hold it out to the creator and he fills it with grace. But we must do the work.</td>
+      </tr>
+      <tr>
+        <td>Ashes</td>
+        <td>ਬਿਭੂਤਿ</td>
+        <td>Awareness (Dhiaan)</td>
+        <td>Ashes are smeared on the body as a mark of remembrance of the divine. Instead, smear yourself in gratitude and the constant inner presence of the Parmatma — awareness in every breath.</td>
+      </tr>
+      <tr>
+        <td>Patched Coat</td>
+        <td>ਖਿੰਥਾ</td>
+        <td>Cloak of Death (Kaal)</td>
+        <td>To wrap yourself in awareness of death means: I am ready. No unfinished business. No delayed apologies. Already living fully. Not grief — liberation from attachment.</td>
+      </tr>
+      <tr>
+        <td>Walking Stick</td>
+        <td>ਡੰਡਾ</td>
+        <td>Trust and Faith (Parteet)</td>
+        <td>The stick prevents falling. Faith and trust in the creator is the only support that truly holds you upright as you navigate the terrain of life.</td>
+      </tr>
+      <tr>
+        <td>Yogic Technique</td>
+        <td>ਜੁਗਤਿ</td>
+        <td>Purity — Body and Mind</td>
+        <td>Physical purity through diet, exercise, self-restraint. Mental purity through detachment from past memories, future fears, and the ego's noise. The mind is harder to purify than the body.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">The Philosophical Reversal</span>
+  <h2>The Soul Was Given a Body — Not the Other Way Around</h2>
+
+  <div class="quote-block">
+    <p>"The soul has come on this earth to complete a journey. The soul is given a body to complete the journey. It is not that this body has been given a soul to complete the journey. The soul has been given a body to complete the journey."</p>
+    <cite>Annie Auntie</cite>
+  </div>
+
+  <p>Most of us live as if we are a body that happens to have a soul. This makes the body primary — so we spend 80–90% of our life serving it. Guru Nanak reverses this entirely. You are a soul. The body is a temporary vehicle given to you to complete what you came here to complete. Don't mistake the vehicle for the passenger.</p>
+
+  <div class="gurbani-ref">
+    <span class="gurmukhi">ਮਰਨਾ ਲਿਖਿਆ ਮੰਡਲ ਮਹਿ ਆਏ ॥</span>
+    <span class="roman">Marnaa likhiaa mandal meh aaye.</span>
+    <span class="meaning">Death was written before we came into this world. Gurbani says it this way deliberately — marnaa likhiaa, then you came. Not the other way. Death is not an interruption. It is the design.</span>
+  </div>
+
+  <p>To wear the cloak of death — <span style="font-family:'Noto Sans Gurmukhi',sans-serif; color: var(--gold);">ਖਿੰਥਾ ਕਾਲੁ</span> — is not grief. It is <strong>readiness</strong>. If this body will end, there is no reason to cling, accumulate, hold grudges, or postpone living with integrity. Attachment dissolves. And when attachment dissolves, we are liberated.</p>
+
+  <div class="analogy">
+    <span class="analogy-label">The Dalai Lama</span>
+    <p>"We live like we will never die, and then we die like we have never lived."</p>
+    <p class="analogy-point">Annie Auntie brought this in directly. The awareness of death is not morbid. It is the most clarifying thing there is. It removes every false priority instantly.</p>
+  </div>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">The Sharpest Formulation</span>
+  <h2>Mr. Doing vs. Mr. Being</h2>
+
+  <div class="quote-block">
+    <p>"The external is only identity. It relates to ego. You, the being, is more important than you, the doing. 'I am an engineer. I do this. I dress this way. I drive this car. I live in this neighbourhood.' It is Mr. Doing. Can we become Mr. Being — and just be ourselves while we are doing everything?"</p>
+    <cite>Annie Auntie</cite>
+  </div>
+
+  <p>We have constructed entire identities out of our roles, achievements, and possessions. These are all <em>doing</em>. They are the outer garments — the earrings and ashes of modern life.</p>
+
+  <p>Mr. Being is underneath all of that. It is the soul — the awareness that exists before the career, before the title, before the car. The word <em>yogi</em> itself means union of the soul with the Parmatma. That union cannot happen through outer symbols. It happens at the level of Being, not Doing.</p>
+
+  <p>The practice: <em>Can I be fully present and aware while also doing everything that needs to be done?</em> Not instead of the doing. Alongside it. Objective, not subjective.</p>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">Key Concepts Defined</span>
+  <h2>In Annie Auntie's Own Words</h2>
+
+  <div class="key-concept">
+    <span class="key-concept-label">Key Concept</span>
+    <h4>Guru — <span style="font-family:'Noto Sans Gurmukhi',sans-serif; font-weight:400;">ਗੁਰੂ</span></h4>
+    <p><strong>ਗੁ</strong> = darkness. <strong>ਰੁ</strong> = light. Anything — or anyone — that takes you from darkness to light, from ignorance to awareness. Not only a person. It could be two lines you read in the morning, a walk, a stranger's words that create sudden clarity. The defining quality is whether it illuminates.</p>
+    <p>"If I ask you to pick up something from a dark room, you will ask me to switch on the light first. You need that awareness-light to see the truth. Without it, you live only in your perceptions."</p>
+  </div>
+
+  <div class="key-concept">
+    <span class="key-concept-label">Key Concept</span>
+    <h4>Dharam — <span style="font-family:'Noto Sans Gurmukhi',sans-serif; font-weight:400;">ਧਰਮ</span></h4>
+    <p>Not religion. Not ritual. <strong>A way of life.</strong> To do the right thing, at the right time, for the right reasons, with the right intentions. No expectation attached. Pure Seva. The moment expectation enters, it may be deceit dressed as righteousness. And timing matters — sometimes the moment is lost. You were thinking about doing the right thing and someone else already did it. Dharam requires presence as much as intention.</p>
+  </div>
+
+  <div class="key-concept">
+    <span class="key-concept-label">Key Concept</span>
+    <h4>Tirath — <span style="font-family:'Noto Sans Gurmukhi',sans-serif; font-weight:400;">ਤੀਰਥ</span></h4>
+    <p>Not a physical pilgrimage. Going inside ourselves and cleansing what has accumulated there — hatred, perceptions, judgment, doubt. Not going to Harmandir Sahib and bathing and coming back. What have you cleaned doing that? The real Tirath is internal. And the critical point: <strong>we can only do this with His grace.</strong> However much effort you make, the mind will say "I'm fine, I'm already good." The grace has to come first to allow the seeing.</p>
+  </div>
+
+  <div class="key-concept">
+    <span class="key-concept-label">Key Concept</span>
+    <h4>Suniye &amp; Maniye — <span style="font-family:'Noto Sans Gurmukhi',sans-serif; font-weight:400;">ਸੁਣੀਐ ਤੇ ਮੰਨੀਐ</span></h4>
+    <p><strong>Suniye</strong> — to truly listen. Not just hear. We learn only through listening and reading and observing. We cannot will ourselves into purity overnight. Hearing creates the possibility of change.</p>
+    <p><strong>Maniye</strong> — to truly accept and act. To let what was heard reshape how you live. Suniye opens the door. Maniye walks through it.</p>
+    <p>When reciting Paath, the Suniye gets deeper layer by layer. The same line means something different at 25, at 45, at 65. This is why daily practice is non-negotiable.</p>
+  </div>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">Annie Auntie's Analogies</span>
+  <h2>The Teaching Tools — Preserved in Full</h2>
+
+  <div class="analogy">
+    <span class="analogy-label">Analogy 1 — The Gutter in the Man</span>
+    <p>"You can get the man out of the gutter, but can you get the gutter out of the man? You could take me from here to a beautiful palace in the hills and say — enjoy, be one with the Paramatma. I am taking my same mind, my same thoughts, my same struggles over there."</p>
+    <p class="analogy-point">The mountain does not fix you. The same mind travels with you. The work is always internal — and it requires the friction of the world to do it properly.</p>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-label">Analogy 2 — The Child at Breakfast</span>
+    <p>"The child does not sit at the breakfast table and say — 'Mama, I'm going to be hungry later, let me put this toast in my pocket.' It says — I'm done, I'm full. Because it has faith that when the time comes, it will eat. It has complete trust."</p>
+    <p class="analogy-point">The child is Nirbhau Nirvair — without fear, without enmity. It does not judge based on the past. It has no anxiety about the future. It trusts completely. This is the state Guru Nanak describes when he speaks of faith as the walking stick.</p>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-label">Analogy 3 — Chindi and the Sunday Drive</span>
+    <p>"I called Chindi and said — 'Chindi, I'm coming to London this Sunday and I need to go to a few places. Can you pick me up?' Chindi's faith says — I'll take you wherever you want to go. Or Chindi can say yes on the phone, put it down, and think — I don't know where she's taking me. I don't know if I want to go."</p>
+    <p class="analogy-point">Doubt creates hesitation. Trust creates faith. Doubt is not entirely bad — it helps us find the right path. But too much doubt blinds us to the path itself. Always watch: am I in doubt or in faith right now?</p>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-label">Analogy 4 — The One Bedroom House (Pancha Vasai)</span>
+    <p>"You have one bedroom. I am visiting you — and then Godly phones. She says, 'Chindi, I am coming.' And you tell me — 'Annie, you've been here two months. Now Godly is coming. Can you make room? She brings peace. She brings love. She brings order.' You move the chaos out by moving me out."</p>
+    <p class="analogy-point">This is Pancha Vasai. The five vices take up room. When the five virtues begin to move in, there is simply no space left for the vices. They leave on their own — in anger, because there is no room. You don't have to suppress them. Just make room for what is better. Then <span style="font-family:'Noto Sans Gurmukhi',sans-serif; color: var(--gold); font-size:0.95em;">ਨਗਰੁ ਬਸਾ ਗੁਰ ਬੁੱਧਿ ਜੀਓ</span> — a beautiful world is created.</p>
+  </div>
+
+  <div class="analogy">
+    <span class="analogy-label">Analogy 5 — The Langar Server</span>
+    <p>"We go to the Gurdwara and somebody important is serving langar. Half of us say — 'He's just trying to make an impression, he does all bad things.' Some of us say — 'Wow, he's doing Seva. Maybe he's turning his life around.'"</p>
+    <p class="analogy-point">It's our perception. What comes to our mind reveals where we are living — not where he is. The person serving langar is not the subject here. Your response is.</p>
+  </div>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">The Closing Teaching</span>
+  <h2>Pancha Vasai — The Five Virtues Moving In</h2>
+
+  <div class="gurbani-ref">
+    <span class="gurmukhi">ਪੰਚ ਵਸੇ ਪੰਚ ਪਰਧਾਨ ॥ ਨਗਰੁ ਬਸਾ ਗੁਰ ਬੁੱਧਿ ਜੀਓ ॥</span>
+    <span class="roman">Panch vasai panch pardhan. Nagar basaa gur budh jio.</span>
+    <span class="meaning">The five virtues dwell and reign. A beautiful world is created through the Guru's wisdom. (Guru Arjan Dev Ji)</span>
+  </div>
+
+  <p>The five vices — <span style="font-family:'Noto Sans Gurmukhi',sans-serif; color: var(--gold);">ਕਾਮ, ਕ੍ਰੋਧ, ਲੋਭ, ਮੋਹ, ਅਹੰਕਾਰ</span> — do not need to be forcibly uprooted. When the five virtues begin to settle inside, there is no room left. The vices leave on their own.</p>
+
+  <div class="practice-block">
+    <span class="practice-label">Daily Practice — Given by Annie Auntie</span>
+    <h4>The Five Qualities Exercise</h4>
+    <ol>
+      <li>Take a notebook. Open it fresh each day.</li>
+      <li>Write down words for the five qualities you want to embody. Start simply — Good. Better. Best. Let the superlative degree keep changing as your awareness shifts.</li>
+      <li>On good days you may write something high. On low days you may step back. That is honest. That is real practice.</li>
+      <li>Do not add out of ego. Sit with what comes. Close it. Take it with you into the day.</li>
+      <li>Over time, watch what words appear. They will shift. They will deepen. They will reveal where your awareness actually is — not where you think it is.</li>
+      <li>The goal: <span style="font-family:'Noto Sans Gurmukhi',sans-serif; color: var(--gold); font-size:0.95em;">ਪੰਚ ਪਰਵਾਣ ਪੰਚ ਪਰਧਾਨ ਪੰਚੇ ਪਾਵਹਿ ਦਰਗਹਿ ਮਾਨੁ</span> — the five are accepted, the five are honoured, the five receive grace in the Divine Court.</li>
+    </ol>
+  </div>
+
+  <div class="divider">· · ·</div>
+
+  <span class="section-label">Progress</span>
+  <h2>Where This Fits in the Arc of Japji Sahib</h2>
+
+  <p>Annie Auntie mapped the journey through the pauris we have covered so far:</p>
+  <p><strong>Amrit Vela</strong> — the time and state of contemplation.<br>
+  <strong>Tirath</strong> — the internal pilgrimage, cleansing from within.<br>
+  <strong>Surya</strong> — listen to the instructions.<br>
+  <strong>Gaavai</strong> — sing praise and gratitude.<br>
+  <strong>Mandai</strong> — accept the Hukam. Let life unfold.</p>
+  <p>All of that was theory. From Pauri 28 onwards, it is practice. Implementation. Day-to-day living. <em>It keeps getting deeper from here.</em></p>
+
+  <div class="reflection-block">
+    <h3>Reflection Questions</h3>
+    <ol>
+      <li>A friend says: "I go to the Gurdwara every single day, I must be becoming more spiritual." Based on this pauri — what would Guru Nanak say back, and why?</li>
+      <li>Annie Auntie says the child is Nirbhau Nirvair. What specifically does the child <em>not do</em> that makes it that way? Can you identify a moment today when you did the opposite?</li>
+      <li>Which symbol in the substitution table points to an inner quality you currently feel most deficient in? What would it actually look like to wear that quality today?</li>
+      <li>Think of a time you changed your environment expecting to feel different — and found you had brought yourself along. What does that reveal about where the work needs to happen?</li>
+      <li>If the soul was given a body to complete a journey — not the other way around — what would change about how you spend tomorrow?</li>
+      <li>What is the difference between Mr. Doing and Mr. Being in your life right now? Name three things you are overidentified with. What remains when you remove those labels?</li>
+    </ol>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     TAB 4 — MŪL OF THE MATTER
+══════════════════════════════════════════ -->
+<div class="tab-content" id="tab-mul">
+
+  <div class="notice">
+    This tab is for your own plain-language distillation of Pauri 28 — the essence of what it means, written in your own words after sitting with the material. It is still developing.
+  </div>
+
+  <div class="placeholder">
+    The Mūl of the Matter for Pauri 28 will live here.<br><br>
+    Once you have studied the material and can explain it back confidently in your own words — write it here. That is the Feynman completion point.
+  </div>
+
+</div>
+
+</main>
+
+<footer>
+  <span class="footer-mark">ੴ</span>
+  Japji Sahib · Pauri 28 · Mūl Learnings<br>
+  Annie Auntie's Lesson · LearnWithNanak.com · Bhai Vir Singh Steek
+</footer>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
