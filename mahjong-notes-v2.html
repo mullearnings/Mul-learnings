@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahjong — Study Notes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap');
+
+  :root {
+    --paper: #F8F9F6;
+    --ivory: #F2EFE4;
+    --ink: #1A1E1B;
+    --jade: #4A8C6F;
+    --jade-light: #E8F3EE;
+    --red: #C5382A;
+    --blue: #2B5BA8;
+    --green: #2D7A4F;
+    --mid: #6B7569;
+    --rule: #C8D4C8;
+    --amber: #9A6B1A;
+    --amber-light: #FEF3E2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #d0d0d0;
+    font-family: 'DM Mono', 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--ink);
+  }
+
+  /* ── PAGE ── */
+  .page {
+    width: 297mm;
+    min-height: 210mm;
+    background: var(--paper);
+    margin: 16px auto;
+    padding: 12mm 14mm 12mm 14mm;
+    page-break-after: always;
+  }
+
+  /* ── HEADER ── */
+  .doc-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+  }
+
+  .eyebrow {
+    font-size: 8px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--jade);
+    margin-bottom: 4px;
+  }
+
+  h1 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 1.0;
+  }
+
+  h1 em { font-style: italic; color: var(--jade); }
+
+  .header-right {
+    text-align: right;
+    font-size: 9px;
+    color: var(--mid);
+    letter-spacing: 1px;
+    line-height: 2;
+  }
+
+  .objective-strip {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8px 14px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .obj-label {
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--jade);
+    flex-shrink: 0;
+  }
+
+  .obj-formula {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1rem;
+    color: var(--paper);
+    flex: 1;
+  }
+
+  .obj-formula strong { color: var(--jade); }
+
+  .obj-note {
+    font-size: 9px;
+    color: #8A9A8A;
+    font-style: italic;
+    font-family: 'EB Garamond', Georgia, serif;
+  }
+
+  /* ── PAGE 1 TWO-COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .section-label {
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--jade);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+
+  /* MELD CARDS */
+  .meld-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 0;
+  }
+
+  .meld-card {
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 8px 10px;
+  }
+
+  .meld-name {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .meld-aka {
+    font-size: 8px;
+    color: var(--mid);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .meld-rule {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 11px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .meld-note {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 10px;
+    color: var(--mid);
+    font-style: italic;
+    margin-top: 3px;
+  }
+
+  /* TIP CARDS */
+  .tip-card {
+    background: white;
+    border-left: 3px solid var(--jade);
+    padding: 6px 10px;
+    margin-bottom: 2px;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 11px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  .tip-label {
+    font-size: 7px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--jade);
+    font-family: 'DM Mono', monospace;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ── PAGE HEADER (hands pages) ── */
+  .page-header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .page-title {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--jade);
+  }
+
+  .page-eyebrow {
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* ── WIND LEGEND ── */
+  .wind-legend {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .wl-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 8px;
+    color: var(--mid);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .wl-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── HAND BLOCK ── */
+  .hand-block {
+    margin-bottom: 10px;
+    border: 1px solid var(--rule);
+  }
+
+  .hand-block:last-child { margin-bottom: 0; }
+
+  /* Info row */
+  .hand-info {
+    display: grid;
+    grid-template-columns: 28px 180px 1fr auto;
+    align-items: start;
+    gap: 0;
+    background: white;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hand-num {
+    font-size: 9px;
+    color: var(--mid);
+    font-family: 'EB Garamond', Georgia, serif;
+    padding-top: 2px;
+  }
+
+  .hand-name-wrap { }
+
+  .hand-name {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .hand-wind {
+    font-size: 7px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .wind-e { background: var(--amber-light); color: var(--amber); }
+  .wind-es { background: var(--jade-light); color: var(--jade); }
+  .wind-esn { background: #FDECEA; color: var(--red); }
+  .wind-all { background: #EEF2FA; color: var(--blue); }
+
+  .hand-desc {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--ink);
+    padding: 0 8px;
+  }
+
+  .hand-desc li {
+    list-style: none;
+    position: relative;
+    padding-left: 12px;
+    margin-bottom: 1px;
+  }
+
+  .hand-desc li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--jade);
+  }
+
+  .unconfirmed {
+    font-size: 7px;
+    letter-spacing: 1px;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-left: 6px;
+    vertical-align: middle;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Photo row */
+  .hand-photo {
+    background: var(--ivory);
+    border-top: 1px dashed var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 8px 14px;
+    gap: 12px;
+  }
+
+  .photo-label {
+    font-size: 7px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .photo-line {
+    flex: 1;
+    height: 1px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 12px;
+    padding-top: 7px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+    color: var(--mid);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     PAGE 1 — SUMMARY
+═════════════════════════════════════════ -->
+<div class="page">
+
+  <header class="doc-header">
+    <div>
+      <div class="eyebrow">Personal Study Notes · Singaporean Variant</div>
+      <h1>Mah <em>Jong</em></h1>
+    </div>
+    <div class="header-right">
+      136 tiles · 4 players<br>
+      3 suits · Winds · Dragons<br>
+      ✦ = confirm with teacher
+    </div>
+  </header>
+
+  <div class="objective-strip">
+    <span class="obj-label">Objective</span>
+    <span class="obj-formula"><strong>4 melds + 1 pair = 14 tiles.</strong> A meld is a group of 3 (or 4) tiles. The pair is 2 identical tiles — the "eyes." Win by completing your hand first.</span>
+    <span class="obj-note">Kong adds 1 tile — draw replacement from back of wall</span>
+  </div>
+
+  <div class="two-col">
+
+    <div>
+      <div class="section-label">Meld Types</div>
+      <div class="meld-grid">
+        <div class="meld-card">
+          <span class="meld-name">Chow</span>
+          <span class="meld-aka">Chi · Run · Sequence</span>
+          <div class="meld-rule">3 consecutive tiles, same suit. Numbered suits only — not winds or dragons.</div>
+          <div class="meld-note">Claim only from player to your left.</div>
+        </div>
+        <div class="meld-card">
+          <span class="meld-name">Pung</span>
+          <span class="meld-aka">Triplet</span>
+          <div class="meld-rule">3 identical tiles. Any tile type — suits, winds, and dragons all valid.</div>
+          <div class="meld-note">Claim from any player. Call "Pung!"</div>
+        </div>
+        <div class="meld-card">
+          <span class="meld-name">Kong</span>
+          <span class="meld-aka">Quad</span>
+          <div class="meld-rule">4 identical tiles. Counts as one meld. Draw replacement from back of wall.</div>
+          <div class="meld-note">Claim from any player. Call "Kong!"</div>
+        </div>
+        <div class="meld-card">
+          <span class="meld-name">Pair</span>
+          <span class="meld-aka">Eyes</span>
+          <div class="meld-rule">2 identical tiles. Exactly one pair required to complete any hand.</div>
+          <div class="meld-note">Always concealed. Claim any discard to win.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Discard Strategy</div>
+      <div class="tip-card">
+        <span class="tip-label">Keep close tiles</span>
+        Tiles like 4-5 or 3-5 in the same suit are nearly a sequence — keep them.
+      </div>
+      <div class="tip-card">
+        <span class="tip-label">Discard isolated tiles first</span>
+        A lone 1 or 9 with no neighbors is hard to use — discard it early.
+      </div>
+      <div class="tip-card">
+        <span class="tip-label">Watch the discard pile</span>
+        If three 7-Dots are already discarded, the 4th is safe — nobody can pung or kong it.
+      </div>
+      <div class="tip-card">
+        <span class="tip-label">Read open melds</span>
+        If a player shows a pung of Red Dragons, they're collecting honors — avoid discarding dragons near them.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="doc-footer">
+    <span>Singaporean Mahjong · Personal Study Notes</span>
+    <span>✦ = confirm with teacher</span>
+    <span>Page 1 of 4</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE 2 — WIND HANDS
+═════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="page-header">
+    <span class="page-title">Wind Hands</span>
+    <span class="page-eyebrow">Singaporean Mahjong · Study Notes · Page 2</span>
+  </div>
+
+  <div class="wind-legend">
+    <div class="wl-item"><div class="wl-dot" style="background:#9A6B1A;"></div>E = East round only</div>
+    <div class="wl-item"><div class="wl-dot" style="background:#4A8C6F;"></div>E–S = East and South rounds</div>
+    <div class="wl-item"><div class="wl-dot" style="background:#C5382A;"></div>E–S–N = East, South and North rounds</div>
+    <div class="wl-item"><div class="wl-dot" style="background:#2B5BA8;"></div>All = all rounds</div>
+    <div class="wl-item" style="margin-left:auto;"><span style="color:var(--amber);">✦</span> = confirm with teacher</div>
+  </div>
+
+  <!-- 01 Windy Chow -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">01</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Windy Chow</span>
+        <span class="hand-wind wind-all">All rounds</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pair of your own wind or wind of the round</li>
+        <li>3 chows — one in each suit</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 02 NEWS -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">02</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">NEWS <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-all">All rounds</span>
+      </div>
+      <ul class="hand-desc">
+        <li>All 4 winds + pair of own wind or round wind</li>
+        <li>1–9 in one suit OR 3 chows in 1 suit</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 03 Windy Knit -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">03</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Windy Knit</span>
+        <span class="hand-wind wind-all">All rounds</span>
+      </div>
+      <ul class="hand-desc">
+        <li>All 4 winds as singles</li>
+        <li>5 knitted pairs across 2 suits</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 04 Progressive -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">04</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Progressive <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-all">All rounds</span>
+      </div>
+      <ul class="hand-desc">
+        <li>All 4 winds + any pair</li>
+        <li>Increasing sequences across 3 suits — e.g. 1-2-3 Cracks · 4-5-6 Bamboos · 7-8-9 Circles</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 05 Reverse CME -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">05</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Reverse CME <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-all">All rounds</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pung of a wind (not own wind / not round wind)</li>
+        <li>Pung of another wind</li>
+        <li>3 chows in 1 suit · 1 pair</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 06 CME -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">06</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">CME <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-all">All rounds</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pung of own wind or round wind</li>
+        <li>Pair of a wind · 3 mixed chows</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 07 Razzle Dazzle Winds -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">07</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Razzle Dazzle (Winds) <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-all">All rounds</span>
+      </div>
+      <ul class="hand-desc">
+        <li>All 4 winds</li>
+        <li>Remaining pairs in one suit only</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Singaporean Mahjong · Personal Study Notes</span>
+    <span>✦ = confirm with teacher</span>
+    <span>Page 2 of 4</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE 3 — DRAGON HANDS
+═════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="page-header">
+    <span class="page-title">Dragon Hands</span>
+    <span class="page-eyebrow">Singaporean Mahjong · Study Notes · Page 3</span>
+  </div>
+
+  <div class="wind-legend">
+    <div class="wl-item"><div class="wl-dot" style="background:#9A6B1A;"></div>E = East round only</div>
+    <div class="wl-item"><div class="wl-dot" style="background:#4A8C6F;"></div>E–S = East and South rounds</div>
+    <div class="wl-item"><div class="wl-dot" style="background:#C5382A;"></div>E–S–N = East, South and North rounds</div>
+    <div class="wl-item" style="margin-left:auto;"><span style="color:var(--amber);">✦</span> = confirm with teacher</div>
+  </div>
+
+  <!-- 01 Mr Robert -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">01</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Mr. Robert</span>
+        <span class="hand-wind wind-e">East</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pair: 2× Soap (White) OR 1 Red + 1 Green dragon</li>
+        <li>4 mixed chows (own pick)</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 02 Dragon Knit -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">02</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Dragon Knit <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-es">E–S</span>
+      </div>
+      <ul class="hand-desc">
+        <li>All 3 dragons: pair any two, single the third</li>
+        <li>4 mixed chows (own pick)</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 03 Mixed Blossom -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">03</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Mixed Blossom <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-es">E–S</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pung of Red dragon (or Green dragon — E/S)</li>
+        <li>Pair of Green dragon · 3 mixed chows</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 04 Apple Blossom ES -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">04</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Apple Blossom</span>
+        <span class="hand-wind wind-es">E–S</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pung of White (Soap) dragons</li>
+        <li>Pair of Green dragons · 3 mixed chows</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 05 Cherry Blossom ES -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">05</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Cherry Blossom</span>
+        <span class="hand-wind wind-es">E–S</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pair of White dragons · 3 mixed chows</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 06 Honeymoon -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">06</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Honeymoon Suite</span>
+        <span class="hand-wind wind-es">E–S</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pair of any dragon (dealt)</li>
+        <li>2 pairs in each of 3 suits = 7 pairs total = 14 tiles</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 07 Chinese Dragon -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">07</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Chinese Dragon <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-esn">E–S–N</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pung of any dragon + other 2 dragons as singles</li>
+        <li>3 chows in one suit · 1 pair</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 08 Razzle Dazzle Dragons -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">08</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Razzle Dazzle</span>
+        <span class="hand-wind wind-esn">E–S–N</span>
+      </div>
+      <ul class="hand-desc">
+        <li>3 dragons: pair any two, single the third</li>
+        <li>Remaining pairs in 1 suit only</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 09 Apple Blossom ESN -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">09</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Apple Blossom <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-esn">E–S–N</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pung of White dragons · Pair of Green dragons</li>
+        <li>3 chows in 1 suit</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 10 Cherry Blossom ESN -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">10</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Cherry Blossom <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-esn">E–S–N</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pung of Red dragons · Pair of White dragons</li>
+        <li>3 chows in 1 suit</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Singaporean Mahjong · Personal Study Notes</span>
+    <span>✦ = confirm with teacher</span>
+    <span>Page 3 of 4</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE 4 — SUIT HANDS
+═════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="page-header">
+    <span class="page-title">Mixed Bag — Suit Hands</span>
+    <span class="page-eyebrow">Singaporean Mahjong · Study Notes · Page 4</span>
+  </div>
+
+  <div class="wind-legend">
+    <div class="wl-item"><div class="wl-dot" style="background:#4A8C6F;"></div>E–S = East and South rounds</div>
+    <div class="wl-item"><div class="wl-dot" style="background:#C5382A;"></div>E–S–N = East, South and North rounds</div>
+    <div class="wl-item" style="margin-left:auto;"><span style="color:var(--amber);">✦</span> = confirm with teacher</div>
+  </div>
+
+  <!-- 01 Noodles -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">01</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Noodles</span>
+        <span class="hand-wind wind-es">E–S</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pung of a suit + pure chow + mixed chow (crotchet + 1 chow) + 1 pair</li>
+        <li>Pung and pure chow must not be the same suit</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 02 Crotchet -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">02</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Crotchet</span>
+        <span class="hand-wind wind-es">E–S</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Pair of any honour tile</li>
+        <li>4 crotchet sets — same number across all 3 suits (e.g. 5 Cracks + 5 Bamboo + 5 Circles)</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 03 Mini Buried -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">03</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Mini Buried</span>
+        <span class="hand-wind wind-es">E–S</span>
+      </div>
+      <ul class="hand-desc">
+        <li>3 pungs + 1 mixed chow + 1 pair</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 04 Hidden Treasure -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">04</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Hidden Treasure</span>
+        <span class="hand-wind wind-esn">E–S–N</span>
+      </div>
+      <ul class="hand-desc">
+        <li>Any 4 pungs + 1 pair</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <!-- 05 Pung Chi -->
+  <div class="hand-block">
+    <div class="hand-info">
+      <span class="hand-num">05</span>
+      <div class="hand-name-wrap">
+        <span class="hand-name">Pung Chi <span class="unconfirmed">✦ confirm</span></span>
+        <span class="hand-wind wind-esn">E–S–N</span>
+      </div>
+      <ul class="hand-desc">
+        <li>2 pungs in 2 suits + 2 chows in same suit + 1 knit (two suits required)</li>
+      </ul>
+    </div>
+    <div class="hand-photo">
+      <span class="photo-label">photo</span>
+      <div class="photo-line"></div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Singaporean Mahjong · Personal Study Notes</span>
+    <span>✦ = confirm with teacher</span>
+    <span>Page 4 of 4</span>
+  </div>
+</div>
+
+</body>
+</html>
