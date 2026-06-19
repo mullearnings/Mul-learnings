@@ -5,54 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mūl Learnings</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-  :root {
-    --navy:       #0d1b2a;
-    --navy-mid:   #162840;
-    --navy-light: #1e3a5f;
-    --blue:       #2a5298;
-    --steel:      #7a9cbf;
-    --cream:      #f5f0e8;
-    --cream-warm: #ede6d6;
-    --white:      #fdfaf5;
-    --muted:      #5a7a9a;
-    --rule:       rgba(42,82,152,0.12);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--cream);
-    color: var(--navy);
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 20px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .top-border {
-    height: 4px;
-    background: linear-gradient(90deg, var(--navy), var(--blue), var(--steel), var(--blue), var(--navy));
-  }
-
-  nav {
-    background: var(--navy);
-    padding: 1.2rem 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--cream);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--steel); }
-
   /* HERO */
   .hero {
     background: var(--navy);
@@ -89,8 +43,9 @@
     padding: 4rem 5rem 5rem;
     background: var(--cream);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
+    align-content: start;
   }
 
   .stream-card {
@@ -114,6 +69,9 @@
     pointer-events: none;
     border-top-color: var(--rule);
   }
+  .stream-card.studysikhi { border-top-color: #2E6E66; }
+  .stream-card.studysikhi:hover { border-top-color: #2E6E66; box-shadow: 0 4px 24px rgba(46,110,102,0.1); }
+  .stream-card.studysikhi .stream-cta { color: #2E6E66; }
 
   .stream-number {
     font-family: 'Cormorant Garamond', serif;
@@ -156,21 +114,6 @@
     vertical-align: middle;
   }
 
-  footer {
-    background: var(--navy);
-    padding: 1.3rem 5rem;
-    display: flex;
-    justify-content: space-between;
-  }
-  .footer-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  @keyframes appear { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   .streams { animation: appear 0.5s 0.1s ease both; }
 
   @media (max-width: 768px) {
@@ -202,8 +145,15 @@
     <div class="stream-cta">Enter →</div>
   </a>
 
-  <a href="books.html" class="stream-card coming-soon">
+  <a href="studysikhi.html" class="stream-card studysikhi">
     <div class="stream-number">Stream 02</div>
+    <div class="stream-title">StudySikhi</div>
+    <div class="stream-desc">Course notes from the StudySikhi curriculum — SS 101: Intro to the Sikh Tradition, and SS 201: Intro to Japu Ji Sahib.</div>
+    <div class="stream-cta">Enter →</div>
+  </a>
+
+  <a href="books.html" class="stream-card coming-soon">
+    <div class="stream-number">Stream 03</div>
     <div class="stream-title">Books <span class="badge">Soon</span></div>
     <div class="stream-desc">Deep notes on books worth reading carefully. Key ideas, arguments, and a plain-language distillation of what actually matters.</div>
     <div class="stream-cta">Coming soon</div>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudySikhi — Mūl Learnings</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* StudySikhi — teal family + warm clay companion, on a soft teal-white ground */
+  :root {
+    --accent: #2E6E66; --accent-deep: #1E4F48; --accent-tint: #dcebe7;
+    --clay: #C17A5B; --clay-deep: #a05f42;
+    --ss-bg: #f0f6f4; --surface: #ffffff; --ink: #1c322e; --muted2: #5f7a74;
+  }
+
+  body { background: var(--ss-bg); }
+
+  .nav-back { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: #94c2ba; text-decoration: none; transition: color 0.15s; }
+  .nav-back:hover { color: var(--cream); }
+
+  .page-header { background: var(--accent-deep); padding: 4rem 5rem 3.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: #94c2ba; margin-bottom: 1rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: #f0f6f4; line-height: 1.12; margin-bottom: 0.8rem; }
+  .page-desc { font-size: 1.1rem; color: #9bb7b1; line-height: 1.8; max-width: 560px; }
+
+  main { flex: 1; padding: 4rem 5rem 6rem; background: var(--ss-bg); animation: appear 0.5s 0.1s ease both; }
+
+  .section-label { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted2); margin-bottom: 1.8rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: #cfe0db; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+
+  .course-card { background: var(--surface); border: 1px solid #dde9e6; border-top: 3px solid var(--accent); padding: 2.4rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 0.8rem; transition: border-color 0.2s, box-shadow 0.2s; min-height: 240px; }
+  .course-card:hover { border-top-color: var(--clay); box-shadow: 0 4px 20px rgba(46,110,102,0.12); }
+  .course-card.active { border-top-color: var(--accent); }
+  .course-card.soon { opacity: 0.55; pointer-events: none; border-top-color: #cfe0db; }
+
+  .course-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .course-code { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: #6f857f; }
+  .course-flag { font-family: 'Cormorant Garamond', serif; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; background: var(--clay); padding: 0.2rem 0.6rem; border-radius: 2px; }
+  .course-title { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: var(--ink); line-height: 1.2; }
+  .course-desc { font-size: 1.02rem; color: var(--muted2); line-height: 1.8; flex: 1; }
+  .course-cta { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-top: 0.3rem; }
+  .course-soon { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); margin-top: 0.3rem; }
+
+  .begin-note { margin-top: 3rem; background: var(--accent-tint); border-left: 3px solid var(--clay); padding: 1.4rem 1.8rem; }
+  .begin-note .bn-label { font-family: 'Cormorant Garamond', serif; font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay-deep); margin-bottom: 0.4rem; }
+  .begin-note .bn-text { font-size: 1.02rem; font-style: italic; color: var(--ink); line-height: 1.7; }
+
+  @media (max-width: 768px) {
+    nav, .page-header, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .page-title { font-size: 2.2rem; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="top-border"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Mūl <span>Learnings</span></a>
+  <a href="index.html" class="nav-back">← Home</a>
+</nav>
+<div class="page-header">
+  <div class="header-eyebrow">Stream 02</div>
+  <h1 class="page-title">StudySikhi</h1>
+  <p class="page-desc">Course notes and reflections worked through from the StudySikhi curriculum — lesson by lesson, source by source.</p>
+</div>
+<main>
+  <div class="section-label">Courses</div>
+  <div class="card-grid">
+
+    <a href="ss101.html" class="course-card active">
+      <div class="course-head">
+        <span class="course-code">SS 101</span>
+        <span class="course-flag">Currently studying</span>
+      </div>
+      <div class="course-title">Intro to the Sikh Tradition</div>
+      <div class="course-desc">An introduction to the Sikh tradition, exploring the era from Guru Nanak to Guru Gobind Singh.</div>
+      <div class="course-cta">Enter →</div>
+    </a>
+
+    <div class="course-card soon">
+      <div class="course-head">
+        <span class="course-code">SS 201</span>
+      </div>
+      <div class="course-title">Intro to Japu Ji Sahib</div>
+      <div class="course-desc">Guru Nanak's Japu Ji — the foundational composition of the Guru Granth Sahib. Traversing half a dozen commentaries, both precolonial and modern renditions, for the text's meanings, spirit, and structure.</div>
+      <div class="course-soon">Coming soon</div>
+    </div>
+
+  </div>
+
+  <div class="begin-note">
+    <div class="bn-label">Where to begin</div>
+    <div class="bn-text">Start with SS 101 — the historical grounding for everything that follows in SS 201.</div>
+  </div>
+</main>
+<footer>
+  <div class="footer-text">Mūl Learnings</div>
+  <div class="footer-text">StudySikhi</div>
+</footer>
+</body>
+</html>

@@ -5,32 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Punjabi Source Texts — Japji Sahib — Mūl Learnings</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-  :root {
-    --navy:       #0d1b2a;
-    --navy-mid:   #162840;
-    --blue:       #2a5298;
-    --steel:      #7a9cbf;
-    --cream:      #f5f0e8;
-    --cream-warm: #ede6d6;
-    --white:      #fdfaf5;
-    --muted:      #5a7a9a;
-    --rule:       rgba(42,82,152,0.12);
-    --rule-solid: #c8d4e0;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--cream); color: var(--navy); font-family: 'Crimson Pro', Georgia, serif; font-size: 20px; min-height: 100vh; display: flex; flex-direction: column; }
-
-  .top-border { height: 4px; background: linear-gradient(90deg, var(--navy), var(--blue), var(--steel), var(--blue), var(--navy)); }
-
-  nav { background: var(--navy); padding: 1.2rem 5rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; letter-spacing: 0.06em; color: var(--cream); text-decoration: none; }
-  .nav-logo span { color: var(--steel); }
-  .nav-breadcrumb { display: flex; align-items: center; gap: 0.6rem; font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
-  .nav-breadcrumb a { color: var(--steel); text-decoration: none; transition: color 0.15s; }
-  .nav-breadcrumb a:hover { color: var(--cream); }
-  .nav-breadcrumb .sep { color: var(--steel); opacity: 0.4; }
-  .nav-breadcrumb .current { color: var(--cream); }
+  /* page-specific: this page's nav sticks to the top */
+  nav { position: sticky; top: 0; z-index: 50; }
 
   .page-header { background: var(--navy); padding: 4rem 5rem 3rem; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; border-bottom: 1px solid rgba(255,255,255,0.06); }
   .header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--steel); margin-bottom: 1rem; }
@@ -106,9 +84,6 @@
   .page-nav { display: flex; justify-content: space-between; padding: 2rem 5rem; border-top: 1px solid var(--rule-solid); background: var(--cream-warm); }
   .page-nav a { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.15s; }
   .page-nav a:hover { color: var(--navy); }
-
-  footer { background: var(--navy); padding: 1.3rem 5rem; display: flex; justify-content: space-between; }
-  .footer-text { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
   @media (max-width: 768px) {
     nav, .page-header, .content, .page-nav, footer { padding-left: 1.5rem; padding-right: 1.5rem; }

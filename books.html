@@ -4,319 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Books — Mūl Learnings</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
+  /* Books — rose + sage family, on a soft rose-white ground */
   :root {
-    /* Base — warm cream, not bright white */
-    --cream:        #f0ebe0;
-    --cream-deep:   #e4ddd0;
-    --cream-mid:    #d4cdc0;
-
-    /* The blended sunset palette */
-    --plum-deep:    #2a1040;   /* deepest — almost black purple */
-    --aubergine:    #4a2060;   /* rich mid-purple */
-    --lavender:     #7a60b0;   /* Palette 2's lavender */
-    --rose-warm:    #b05080;   /* Palette 3's warmth */
-    --teal:         #3a7080;   /* Palette 2's teal — the missing piece */
-    --petal:        #e8a8c0;   /* soft pink highlight */
-
-    /* Text — deep ink, fully readable */
-    --ink:          #0c0808;
-    --ink-mid:      #221818;
-    --ink-soft:     #4a3838;
-    --ink-faint:    #7a6060;
-
-    /* Rules */
-    --rule:         #c0b0a0;
-    --rule-light:   #d8cfc0;
+    --wine: #6E3A4C; --rose: #B85C78; --rose-deep: #934a60; --rose-soft: #f3e3e7;
+    --sage: #7E9A5A; --sage-deep: #5f7a40;
+    --bk-bg: #fbf5f6; --surface: #ffffff; --ink: #3a2c31; --muted-rose: #8a7077;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bk-bg); }
 
-  body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 20px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+  .nav-back { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: #d9a7b6; text-decoration: none; transition: color 0.15s; }
+  .nav-back:hover { color: var(--cream); }
 
-  /* ── NAV ── */
-  nav {
-    padding: 1.4rem 5rem;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--rule);
-    background: var(--cream);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--aubergine); }
-  .nav-links { display: flex; gap: 2.5rem; align-items: baseline; }
-  .nav-links a {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-links a.current {
-    color: var(--aubergine);
-    border-bottom: 1px solid var(--aubergine);
-    padding-bottom: 1px;
-  }
+  .page-header { background: var(--wine); padding: 4rem 5rem 3.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: #d9a7b6; margin-bottom: 1rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: #fbf5f6; line-height: 1.14; margin-bottom: 0.8rem; }
+  .page-title em { color: #e7afbe; font-style: italic; }
+  .page-desc { font-size: 1.1rem; color: #c2a3ab; line-height: 1.8; max-width: 560px; }
 
-  /* ── PAGE HEADER ── */
-  .page-header {
-    padding: 5rem 5rem 4rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: end;
-    border-bottom: 1px solid var(--rule);
-    margin-bottom: 4rem;
-  }
-  .stream-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--aubergine);
-    margin-bottom: 1.4rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .stream-label::before { content: ''; width: 24px; height: 1px; background: var(--aubergine); }
-  .page-title {
-    font-family: 'EB Garamond', serif;
-    font-size: 3.4rem;
-    font-weight: 400;
-    color: var(--ink);
-    line-height: 1.12;
-    letter-spacing: -0.01em;
-  }
-  .page-title em { font-style: italic; color: var(--aubergine); }
-  .page-desc {
-    font-size: 1.15rem;
-    color: var(--ink-soft);
-    line-height: 1.85;
-    margin-bottom: 2rem;
-  }
-  .method-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .method-list li {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .method-list li::before { content: ''; width: 18px; height: 1px; background: var(--lavender); flex-shrink: 0; }
+  main { flex: 1; padding: 3.5rem 5rem 6rem; background: var(--bk-bg); animation: appear 0.5s 0.1s ease both; }
 
-  /* ── MAIN ── */
-  main { flex: 1; padding: 0 5rem 6rem; }
+  .status-banner { display: flex; align-items: center; gap: 0.8rem; background: var(--rose-soft); border-left: 3px solid var(--rose); padding: 1rem 1.4rem; margin-bottom: 3.5rem; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rose); flex-shrink: 0; }
+  .status-text { font-family: 'Cormorant Garamond', serif; font-size: 0.92rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rose-deep); }
 
-  /* ── STATUS BANNER ── */
-  .status-banner {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    background: var(--cream-deep);
-    border: 1px solid var(--rule);
-    border-left: 3px solid var(--aubergine);
-    padding: 0.7rem 1.4rem;
-    margin-bottom: 4rem;
-  }
-  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--aubergine); flex-shrink: 0; }
-  .status-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--aubergine);
-  }
+  .section-head { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted-rose); margin-bottom: 1.8rem; display: flex; align-items: center; gap: 1rem; }
+  .section-head::after { content: ''; flex: 1; height: 1px; background: #ecd9df; }
 
-  /* ── SECTION HEAD ── */
-  .section-head {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 1.8rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .section-head::after { content: ''; flex: 1; height: 1px; background: var(--rule-light); }
+  .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+  .book-item { background: var(--surface); border: 1px solid #ecdde1; border-top: 3px solid var(--rose); padding: 2.2rem; display: flex; flex-direction: column; gap: 0.5rem; min-height: 200px; transition: box-shadow 0.2s; }
+  .book-item:hover { box-shadow: 0 4px 20px rgba(184,92,120,0.12); }
+  .book-num { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--sage-deep); }
+  .book-category { font-family: 'Cormorant Garamond', serif; font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rose-deep); margin-top: 0.4rem; }
+  .book-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; color: var(--ink); line-height: 1.2; flex: 1; }
+  .book-author { font-size: 0.98rem; font-style: italic; color: var(--muted-rose); }
+  .book-status { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-rose); margin-top: 0.3rem; }
 
-  /* ── BOOK GRID ── */
-  .book-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-bottom: 4.5rem;
-  }
-  .book-item {
-    /* Warm Dusk — Option 5 — lavender-rose tinted boxes */
-    background: #ddd0e8;
-    padding: 2.4rem 2.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    transition: background 0.2s;
-  }
-  .book-item:hover { background: #d0c0e0; }
-  .book-num { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--ink-faint); }
-  .book-category {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--aubergine);
-  }
-  .book-title {
-    font-family: 'EB Garamond', serif;
-    font-size: 1.3rem;
-    color: var(--ink);
-    line-height: 1.35;
-    flex: 1;
-  }
-  .book-author { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 1rem; color: var(--ink-soft); }
-  .book-status {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--rose-warm);
-    margin-top: 0.3rem;
-  }
-  .book-accent { height: 2px; border-radius: 1px; margin-bottom: 0.3rem; width: 32px; }
-  .ba-plum    { background: var(--aubergine); }
-  .ba-rose    { background: var(--rose-warm); }
-  .ba-teal    { background: var(--teal); }
-
-  /* ── METHODOLOGY — deep violet boxes, cream text ── */
-  .method-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-  }
-  .method-item {
-    background: var(--plum-deep);
-    padding: 2.4rem 2.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-  .method-num {
-    font-family: 'EB Garamond', serif;
-    font-size: 2.6rem;
-    font-weight: 400;
-    line-height: 1;
-    color: var(--aubergine);
-  }
-  .method-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--lavender);
-    margin-top: 0.3rem;
-  }
-  .method-desc {
-    font-size: 1.05rem;
-    color: #c8b8d8;
-    line-height: 1.8;
-  }
-  /* Teal accent on middle method item */
-  .method-item:nth-child(2) .method-num { color: var(--teal); }
-  .method-item:nth-child(2) .method-name { color: #6ab8c8; }
-  .method-item:nth-child(3) .method-num { color: var(--rose-warm); }
-  .method-item:nth-child(3) .method-name { color: var(--petal); }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 1.3rem 5rem;
-    border-top: 1px solid var(--rule);
-    background: var(--cream-deep);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .footer-left {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-
-  @keyframes appear {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .page-header   { animation: appear 0.55s ease both; }
-  .status-banner { animation: appear 0.55s 0.1s ease both; }
-  .book-grid     { animation: appear 0.55s 0.18s ease both; }
-  .method-grid   { animation: appear 0.55s 0.26s ease both; }
+  .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .method-item { border-left: 3px solid var(--sage); padding: 0.3rem 0 0.3rem 1.4rem; }
+  .method-num { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--sage-deep); margin-bottom: 0.4rem; }
+  .method-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem; }
+  .method-desc { font-size: 1rem; color: var(--muted-rose); line-height: 1.8; }
 
   @media (max-width: 768px) {
     nav, .page-header, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .page-header { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2.5rem; }
-    .page-title { font-size: 2.4rem; }
+    .page-title { font-size: 2.2rem; }
     .book-grid, .method-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-
+<div class="top-border"></div>
 <nav>
   <a href="index.html" class="nav-logo">Mūl <span>Learnings</span></a>
-  <div class="nav-links">
-    <a href="gurbani-studies.html">Gurbani Studies</a>
-    <a href="books.html" class="current">Books</a>
-    <a href="index.html">Home</a>
-  </div>
+  <a href="index.html" class="nav-back">← Home</a>
 </nav>
-
 <div class="page-header">
-  <div>
-    <div class="stream-label">Stream 02</div>
-    <h1 class="page-title">Books worth<br>reading <em>carefully</em></h1>
-  </div>
-  <div>
-    <p class="page-desc">Deep notes on what I read. The argument. The vocabulary. What actually holds up under scrutiny.</p>
-    <ul class="method-list">
-      <li>Core argument, stripped bare</li>
-      <li>Key concepts with the right words</li>
-      <li>Mūl of the matter — no filler</li>
-    </ul>
-  </div>
+  <div class="header-eyebrow">Stream 03</div>
+  <h1 class="page-title">Books worth<br>reading <em>carefully</em></h1>
+  <p class="page-desc">Deep notes on what I read — the argument, the vocabulary, and what actually holds up under scrutiny.</p>
 </div>
-
 <main>
 
   <div class="status-banner">
@@ -325,11 +75,9 @@
   </div>
 
   <div class="section-head">Forthcoming</div>
-
   <div class="book-grid">
     <div class="book-item">
       <div class="book-num">001</div>
-      <div class="book-accent ba-plum"></div>
       <div class="book-category">Philosophy</div>
       <div class="book-title">A book on ideas</div>
       <div class="book-author">Author name</div>
@@ -337,7 +85,6 @@
     </div>
     <div class="book-item">
       <div class="book-num">002</div>
-      <div class="book-accent ba-rose"></div>
       <div class="book-category">History</div>
       <div class="book-title">A book on the past</div>
       <div class="book-author">Author name</div>
@@ -345,7 +92,6 @@
     </div>
     <div class="book-item">
       <div class="book-num">003</div>
-      <div class="book-accent ba-teal"></div>
       <div class="book-category">Literature</div>
       <div class="book-title">A book worth reading</div>
       <div class="book-author">Author name</div>
@@ -354,7 +100,6 @@
   </div>
 
   <div class="section-head">How each entry is structured</div>
-
   <div class="method-grid">
     <div class="method-item">
       <div class="method-num">01</div>
@@ -374,10 +119,9 @@
   </div>
 
 </main>
-
 <footer>
-  <div class="footer-left">Mūl Learnings — Books</div>
+  <div class="footer-text">Mūl Learnings</div>
+  <div class="footer-text">Books</div>
 </footer>
-
 </body>
 </html>

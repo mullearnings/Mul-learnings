@@ -5,78 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ਜਪੁਜੀ ਸਾਹਿਬ — ਪਉੜੀ ੧ — ਭਾਈ ਵੀਰ ਸਿੰਘ ਸਟੀਕ</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Sans+Gurmukhi:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pauri.css">
 <style>
-  :root {
-    --navy:       #0d1b2a;
-    --navy-mid:   #162840;
-    --navy-light: #1e3a5f;
-    --blue:       #2a5298;
-    --blue-soft:  #3d6bb5;
-    --steel:      #7a9cbf;
-    --cream:      #f5f0e8;
-    --cream-warm: #ede6d6;
-    --cream-dark: #d8cebb;
-    --white:      #fdfaf5;
-    --border:     #2a529820;
-    --muted:      #5a7a9a;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  /* page-specific: Punjabi body uses the Gurmukhi face at a smaller size */
   body {
-    background: var(--cream);
-    color: var(--navy);
     font-family: 'Noto Sans Gurmukhi', serif;
     font-size: 17px;
     line-height: 2;
   }
-
-  .top-border {
-    height: 5px;
-    background: linear-gradient(90deg, var(--navy), var(--blue), var(--steel), var(--blue), var(--navy));
-  }
-
-  /* Nav */
-  nav {
-    background: var(--navy);
-    padding: 1rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--cream);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-  }
-
-  .nav-logo span {
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    color: var(--steel);
-    margin-right: 0.4rem;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--steel);
-    text-decoration: none;
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--cream); }
 
   /* Header */
   header {
@@ -501,24 +437,8 @@
   }
 
   /* Footer */
-  footer {
-    text-align: center;
-    padding: 2.5rem 1rem;
-    background: var(--navy);
-    color: var(--muted);
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    font-family: 'Crimson Pro', Georgia, serif;
-  }
-
-  footer .footer-mark {
-    font-family: 'Noto Sans Gurmukhi', sans-serif;
-    font-size: 1.4rem;
-    color: var(--steel);
-    display: block;
-    margin-bottom: 0.6rem;
-    opacity: 0.7;
-  }
+  /* page-specific: footer text uses Crimson, since this page's body is Gurmukhi */
+  footer { font-family: 'Crimson Pro', Georgia, serif; }
 
   @media (max-width: 600px) {
     main { padding: 2rem 1rem 4rem; }
