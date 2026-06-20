@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SS 101 · Lesson 1 · Active Recall — Mūl Learnings</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --accent: #2E6E66; --accent-deep: #1E4F48; --accent-tint: #dcebe7;
+    --clay: #C17A5B; --clay-deep: #a05f42;
+    --ss-bg: #f0f6f4; --surface: #ffffff; --ink: #1c322e; --muted2: #5f7a74;
+  }
+  body { background: var(--ss-bg); }
+  .nav-breadcrumb { display: flex; align-items: center; gap: 0.6rem; font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-breadcrumb a { color: #94c2ba; text-decoration: none; transition: color 0.15s; }
+  .nav-breadcrumb a:hover { color: var(--cream); }
+  .nav-breadcrumb .sep { color: #94c2ba; opacity: 0.5; }
+  .nav-breadcrumb .current { color: var(--cream); }
+  .page-header { background: var(--accent-deep); padding: 3.5rem 5rem 2.4rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: #94c2ba; margin-bottom: 1rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: #f0f6f4; line-height: 1.14; margin-bottom: 0.7rem; }
+  .page-desc { font-size: 1.05rem; color: #9bb7b1; line-height: 1.7; max-width: 620px; }
+  .subnav { background: var(--accent-deep); padding: 0 5rem; display: flex; gap: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .subnav a, .subnav span { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.9rem 0; text-decoration: none; color: #7ba89f; border-bottom: 2px solid transparent; }
+  .subnav a.active { color: #f0f6f4; border-bottom-color: var(--clay); }
+  .subnav a:hover { color: #cfe6e0; }
+  .subnav .soon { color: #5b827a; cursor: default; }
+
+  main { flex: 1; padding: 2.5rem 5rem 6rem; background: var(--ss-bg); animation: appear 0.5s 0.1s ease both; max-width: 1100px; }
+
+  .how { background: var(--surface); border: 1px solid #dde9e6; border-left: 3px solid var(--clay); padding: 1.3rem 1.6rem; margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7; color: #2f3f3b; }
+  .how strong { color: var(--ink); }
+
+  .progress { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.2rem; }
+  .bar { flex: 1; min-width: 180px; height: 8px; background: #d7e6e1; border-radius: 5px; overflow: hidden; }
+  .bar > span { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.3s; }
+  .pcount { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.08em; color: var(--accent-deep); white-space: nowrap; }
+  .btn { font-family: 'Cormorant Garamond', serif; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); background: none; border: 1px solid #cdded8; border-radius: 4px; padding: 0.4rem 0.8rem; cursor: pointer; transition: all 0.15s; }
+  .btn:hover { color: var(--accent-deep); border-color: var(--accent); }
+
+  .group-label { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--clay-deep); margin: 2.6rem 0 1.2rem; display: flex; align-items: center; gap: 1rem; }
+  .group-label::after { content: ''; flex: 1; height: 1px; background: #cfe0db; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1rem; }
+  .card { background: var(--surface); border: 1px solid #dde9e6; border-top: 3px solid var(--accent); border-radius: 4px; padding: 1.4rem 1.5rem 1.2rem; cursor: pointer; position: relative; transition: box-shadow 0.15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(46,110,102,0.1); }
+  .card.known { border-top-color: var(--clay); background: #fbfdfc; }
+  .card .q { font-family: 'Cormorant Garamond', serif; font-size: 1.18rem; line-height: 1.35; color: var(--ink); padding-right: 1.8rem; }
+  .card .q .gm { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1.05rem; color: var(--accent-deep); display: block; margin-top: 0.4rem; line-height: 1.8; }
+  .card .a { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.25s ease, opacity 0.25s ease, margin 0.25s; font-size: 1rem; line-height: 1.7; color: #3a4a4a; }
+  .card.open .a { max-height: 600px; opacity: 1; margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px dashed #cfe0db; }
+  .card .hint { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: #9fb4ae; margin-top: 0.9rem; }
+  .card.open .hint { display: none; }
+  .star { position: absolute; top: 1rem; right: 1rem; width: 26px; height: 26px; border: none; background: none; cursor: pointer; color: #c3d4ce; font-size: 1.2rem; line-height: 1; padding: 0; transition: color 0.15s; }
+  .star:hover { color: var(--clay); }
+  .card.known .star { color: var(--clay); }
+  .card .think-tag { font-family: 'Cormorant Garamond', serif; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clay-deep); display: block; margin-bottom: 0.5rem; }
+
+  @media (max-width: 768px) {
+    nav, .page-header, .subnav, main { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .page-title { font-size: 2rem; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="top-border"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Mūl <span>Learnings</span></a>
+  <div class="nav-breadcrumb">
+    <a href="studysikhi.html">StudySikhi</a><span class="sep">/</span>
+    <a href="ss101.html">SS 101</a><span class="sep">/</span>
+    <span class="current">Lesson 1</span>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="header-eyebrow">StudySikhi · SS 101 · Lesson 1</div>
+  <h1 class="page-title">Active Recall</h1>
+  <p class="page-desc">Test yourself before you check. Retrieval — not re-reading — is what builds lasting memory.</p>
+</div>
+<div class="subnav">
+  <a href="ss101-l1-notes.html">Lecture Notes</a>
+  <span class="soon">Discussion Q&amp;A · soon</span>
+  <a href="ss101-l1-recall.html" class="active">Active Recall</a>
+</div>
+<main>
+  <div class="how">
+    <strong>How to use:</strong> read each prompt and try to answer it <strong>out loud or in your head first</strong> — really pull for it — then tap the card to check. Tap the star to mark a card "known"; your progress is saved on this device. Come back over several days: spacing the recall is what makes it stick.
+  </div>
+  <div class="progress">
+    <div class="bar"><span id="fill"></span></div>
+    <div class="pcount" id="pcount">0 of 0 marked known</div>
+    <button class="btn" id="reset">Reset progress</button>
+  </div>
+
+  <div id="deck">
+
+    <div class="group-label">Part 1 · Getting started</div>
+    <div class="cards">
+      <div class="card"><div class="q">What overall arc does SS 101 trace?</div><div class="a">The Sikh tradition from <strong>Guru Nanak to Guru Gobind Singh</strong>, the tenth and final Guru — a tradition unfolding across history, studied in sequence.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What does "depth tracks effort" mean for this course?</div><div class="a">Much of the intellectual and spiritual payoff is in the <strong>additional readings</strong>, not just the mandatory ones; reading is part of how depth forms, and the course also teaches whom to read.</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Part 2 · History without colonial boxes</div>
+    <div class="cards">
+      <div class="card"><div class="q">What does "precolonial religion was fluid, not boxed" mean?</div><div class="a">Boundaries existed but were lived <strong>permeably</strong> — e.g. Muslim rababis openly performed the seva of kirtan in Darbar Sahib, visible into the 20th century.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">According to Mandair, what is "religion" as we tend to understand it?</div><div class="a">A largely <strong>19th-century construct</strong> (shaped by forces like the colonial census) that locks people into sealed, mutually-exclusive categories.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Why must James Mill's three-age model be challenged?</div><div class="a">It is <strong>imperial justification, not neutral history</strong>: Hindu golden age → Muslim "decline" → British "rescue." It falsely treats the medieval period as stagnant and chops history into sealed religious boxes.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What do the 15% / 10% figures show?</div><div class="a">Muslims were ~15% of the subcontinent under the Mughals; Sikhs ~10% of Punjab under Ranjit Singh — <strong>minority rule</strong>, which complicates simple "who ruled whom" stories.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Name examples of Sikh–Mughal / Hindu entanglement (not just opposition).</div><div class="a">The Sufi <strong>Mian Mir</strong>; the Janam Sakhi of <strong>Guru Nanak meeting Kabir</strong>; <strong>Guru Amar Das</strong> including Kabir and other Bhagats in the pothis feeding the Adi Granth.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Why not label "mixed"-looking precolonial material as "not real Sikhi"?</div><div class="a">Because concepts, metaphors, and narratives are <strong>redefined and uniquely used</strong> by each community; "syncretic" is too blunt a word for it.</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Part 3 · Guru Nanak in world history</div>
+    <div class="cards">
+      <div class="card"><div class="q">What world events frame Guru Nanak's birth year, 1469?</div><div class="a">The <strong>Gutenberg press</strong>, the Spanish Inquisition, <strong>Columbus</strong> crossing the Atlantic, and <strong>Luther's</strong> Reformation (all within his lifetime's span).</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What political order ruled <em>before</em> the Mughals?</div><div class="a">The <strong>Delhi Sultanate</strong> — Turko-Afghan regimes (the Lodhis among them) ruling mainly the north.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">How did Babur win in 1526?</div><div class="a">With new <strong>gunpowder weapons (topaks)</strong> and mounted technique against the Sultanate's <strong>war elephants (hasti)</strong> — an older style of warfare.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Fill the gaps: Babur → ___ → Akbar → Jahangir → ___ → Aurangzeb.</div><div class="a"><strong>Humayun</strong> and <strong>Shah Jahan</strong>.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Which emperor ordered Guru Tegh Bahadur's execution — and who did Guru Gobind Singh actually meet?</div><div class="a"><strong>Aurangzeb</strong> ordered the execution; Guru Gobind Singh met not Aurangzeb but his successor, <strong>Bahadur Shah</strong>.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Distinguish: rival claimant vs parallel tradition vs outside opponent.</div><div class="a">Rival <strong>claimants</strong> = Prithi Chand &amp; Ram Rai; a <strong>parallel tradition</strong> = the Udasis (Sri Chand); these are not the same as a simple outside opponent.</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Part 4 · His life &amp; the Janam Sakhis</div>
+    <div class="cards">
+      <div class="card"><div class="q">Guru Nanak's dates and family?</div><div class="a"><strong>1469–1539</strong>, born into the <strong>Bedī</strong> family, a Khatrī (merchant) caste household.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">How should the Janam Sakhis be read?</div><div class="a">As <strong>theological storytelling</strong> in the language of myth and allegory (Nikky-Guninder Kaur), with the <strong>shabad as the kernel</strong> — not as modern history textbooks.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What is Julie Vig's "hegemonic resistance"?</div><div class="a">The narratives take a recognised sacred world and <strong>reorder</strong> it — placing all its prestigious figures (devas, siddhas, naths) <strong>beneath Guru Nanak</strong>. Not dilution, but theological reworking.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What does the Mecca story (feet toward the Kaaba) teach?</div><div class="a">The Divine is <strong>omnipresent and formless (nirguna)</strong>; Guru Nanak overturns an established sacred code to unsettle assumptions and reorient perception.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Vogel's three contrasts between Guru Nanak and the yogis?</div><div class="a"><strong>Grace vs effort</strong> (sahaj); <strong>devotion vs technique</strong> (bhakti vs jugti); <strong>community vs solitude</strong> (sangat vs withdrawal).</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Part 5 · The flavours of his writing</div>
+    <div class="cards">
+      <div class="card"><div class="q">What is the central trinity of Guru Nanak's writing?</div><div class="a"><strong>Nām, Dān, Ishnān</strong> — the Divine Name, charity, and cultivation of the body.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What is Naam — and why "experience over mastery"?</div><div class="a">Not a narrow formula but <strong>loving devotion</strong>. Since the Divine is <em>agam agochar</em> (beyond mind and senses), the aim is experience through love, not conceptual capture.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Trace the ripening of devotion (the three kinds).</div><div class="a">The <strong>nine practices</strong> → <strong>prema bhakti</strong> (love that grows sweeter, "red upon red") → <strong>non-duality</strong> (the self dissolves into the One).</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">How does Dān redefine purity?</div><div class="a">Around <strong>honest labour and giving</strong>: the householder who earns and shares is "pure as the Ganges" (GGS 952). Later institutionalised as <strong>Daswandh</strong>.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What is Ishnān beyond literal bathing?</div><div class="a">The <strong>cultivation of the body and the senses</strong> (rising at amrit vela; the five senses honed) — purity that is inner, not just ritual.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">"Na koi Hindu, na Musalman" — what does it mean, and what follows from it?</div><div class="a">Social identities are external; the deeper <strong>Divine unity</strong> is in all. From this follows <strong>social responsibility</strong> and langar's deliberate dismantling of caste.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Why is Gurbani composed in raag and meant to be sung?</div><div class="a">Because it is meant to be <strong>experienced, not just read</strong> — the medium is part of the message; poetry and music are felt before they are paraphrased.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What is vismād?</div><div class="a"><strong>Wondrous joy</strong> — the abiding mood of Guru Nanak's writing; the One shining through endless multiplicity, leaving him "perpetually inebriated" with wonder.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">How does Guru Nanak use "fear" (bhau)?</div><div class="a">Not as guilt before a punishing God, but as <strong>awe / the sublime</strong> (cf. Kant, Hume). Fear <strong>steadies love</strong> — "without fear, no one crosses over."</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Part 6 · Nirguna &amp; Sarguna</div>
+    <div class="cards">
+      <div class="card"><div class="q">Nirguna vs Sarguna?</div><div class="a"><strong>Nirguna</strong> = the Divine without form; <strong>Sarguna</strong> = the Divine with form.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">If Gurbani uses "Ram" and "Hari," is it Vaishnava?</div><div class="a">No — Guru Nanak writes the Divine as <strong>Nirguna</strong> (formless, unborn, eternal), which makes the writing accessible across communities. Sarguna imagery is <strong>repurposed</strong>, not bound to Vaishnava theology.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Guru Arjan's distinction: symbol vs identification?</div><div class="a">Worship the <strong>symbol / virtue</strong> (the Divine quality the name expresses) — not the <strong>name as identification</strong>, which breeds sectarian rivalry. The first becomes <em>nirvair</em>, fearless.</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Sit with these</div>
+    <div class="cards">
+      <div class="card"><div class="q"><span class="think-tag">Reflect</span>What is the difference between <em>knowing about</em> the Divine and <em>experiencing</em> the Divine?</div><div class="a">No fixed answer — hold it against Naam as loving devotion, and the idea that the Divine is agam agochar, grasped through experience rather than definition.</div><div class="hint">Tap for a nudge</div></div>
+      <div class="card"><div class="q"><span class="think-tag">Reflect</span>How does "burning attachment and writing with love" change the meaning of <em>study</em> itself?</div><div class="a">No fixed answer — consider Guru Nanak's first shabad: the mind purified into paper, love as the pen, consciousness the scribe. What would it mean to study that way?</div><div class="hint">Tap for a nudge</div></div>
+    </div>
+
+  </div>
+</main>
+<footer>
+  <div class="footer-text">Mūl Learnings</div>
+  <div class="footer-text">SS 101 · Lesson 1 · Active Recall</div>
+</footer>
+<script>
+  (function () {
+    var KEY = 'ss101-l1-recall-known';
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+    // assign stable ids by index
+    cards.forEach(function (c, i) { c.dataset.id = 'c' + i;
+      var star = document.createElement('button');
+      star.className = 'star'; star.setAttribute('aria-label', 'Mark known'); star.innerHTML = '&#9733;';
+      c.appendChild(star);
+    });
+    var known = {};
+    try { known = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { known = {}; }
+    var fill = document.getElementById('fill');
+    var pcount = document.getElementById('pcount');
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(known)); } catch (e) {} }
+    function refresh() {
+      var n = 0;
+      cards.forEach(function (c) {
+        if (known[c.dataset.id]) { c.classList.add('known'); n++; } else { c.classList.remove('known'); }
+      });
+      var pct = cards.length ? Math.round(n / cards.length * 100) : 0;
+      fill.style.width = pct + '%';
+      pcount.textContent = n + ' of ' + cards.length + ' marked known';
+    }
+    cards.forEach(function (c) {
+      c.addEventListener('click', function (e) {
+        if (e.target.classList.contains('star')) {
+          known[c.dataset.id] = !known[c.dataset.id];
+          if (!known[c.dataset.id]) delete known[c.dataset.id];
+          save(); refresh(); return;
+        }
+        c.classList.toggle('open');
+      });
+    });
+    document.getElementById('reset').addEventListener('click', function () {
+      known = {}; save(); refresh();
+      cards.forEach(function (c) { c.classList.remove('open'); });
+    });
+    refresh();
+  })();
+</script>
+</body>
+</html>

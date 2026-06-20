@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SS 101 · Module 2 — Mūl Learnings</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --accent: #2E6E66; --accent-deep: #1E4F48; --accent-tint: #dcebe7;
+    --clay: #C17A5B; --clay-deep: #a05f42;
+    --ss-bg: #f0f6f4; --surface: #ffffff; --ink: #1c322e; --muted2: #5f7a74;
+  }
+  body { background: var(--ss-bg); }
+  .nav-breadcrumb { display: flex; align-items: center; gap: 0.6rem; font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-breadcrumb a { color: #94c2ba; text-decoration: none; transition: color 0.15s; }
+  .nav-breadcrumb a:hover { color: var(--cream); }
+  .nav-breadcrumb .sep { color: #94c2ba; opacity: 0.5; }
+  .nav-breadcrumb .current { color: var(--cream); }
+  .page-header { background: var(--accent-deep); padding: 3.5rem 5rem 2.4rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: #94c2ba; margin-bottom: 1rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 2.9rem; font-weight: 300; color: #f0f6f4; line-height: 1.12; margin-bottom: 0.7rem; }
+  .page-desc { font-size: 1.05rem; color: #9bb7b1; line-height: 1.7; max-width: 620px; }
+  .subnav { background: var(--accent-deep); padding: 0 5rem; display: flex; gap: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .subnav a, .subnav span { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.9rem 0; text-decoration: none; color: #7ba89f; border-bottom: 2px solid transparent; }
+  .subnav a.active { color: #f0f6f4; border-bottom-color: var(--clay); }
+  .subnav .soon { color: #5b827a; cursor: default; }
+
+  main { flex: 1; padding: 3rem 5rem 6rem; background: var(--ss-bg); animation: appear 0.5s 0.1s ease both; }
+  .lecture-wrap { display: grid; grid-template-columns: 240px 1fr; gap: 3.5rem; align-items: start; }
+  .lecture-map { position: sticky; top: 1.5rem; max-height: calc(100vh - 3rem); overflow-y: auto; }
+  .map-label { font-family: 'Cormorant Garamond', serif; font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted2); margin-bottom: 1rem; }
+  .map-item { display: block; padding: 0.45rem 0; text-decoration: none; border-bottom: 1px solid #e2ece9; font-size: 0.86rem; line-height: 1.4; color: var(--ink); transition: color 0.15s; }
+  .map-item:hover { color: var(--accent); }
+  .map-item.dim { color: #9fb0ab; }
+  .map-item .mp { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: block; }
+  .map-item.dim .mp { color: #b6c5c0; }
+
+  .content { max-width: 740px; }
+  .content p { font-size: 1.06rem; line-height: 1.85; color: #2f3f3b; margin-bottom: 1.15rem; }
+  .content p strong { color: var(--ink); font-weight: 600; }
+  .term { font-weight: 600; color: var(--accent-deep); border-bottom: 1px solid #b9d6cf; }
+
+  .part-head { font-family: 'Cormorant Garamond', serif; font-weight: 400; color: var(--ink); margin: 3.8rem 0 0.4rem; line-height: 1.15; scroll-margin-top: 1.5rem; }
+  .part-head .part-kicker { display: block; font-size: 0.78rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--clay-deep); margin-bottom: 0.5rem; }
+  .part-head .part-title { font-size: 2rem; }
+  .part-head:first-child { margin-top: 0; }
+  .sub-head { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--ink); margin: 2.4rem 0 0.9rem; line-height: 1.25; scroll-margin-top: 1.5rem; }
+
+  .overview { background: var(--surface); border: 1px solid #dde9e6; border-top: 3px solid var(--accent); padding: 1.8rem 2rem; margin-bottom: 2.5rem; }
+  .overview h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.9rem; }
+  .overview p { font-size: 1.02rem; line-height: 1.8; color: #2f3f3b; margin-bottom: 1rem; }
+  .ov-q { font-family: 'Cormorant Garamond', serif; font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted2); margin: 1.2rem 0 0.6rem; }
+  .ov-list { margin: 0 0 0 1.2rem; }
+  .ov-list li { font-size: 1rem; line-height: 1.7; color: #2f3f3b; margin-bottom: 0.35rem; }
+  .ov-list li::marker { color: var(--clay); }
+  .terms { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
+  .terms span { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.06em; color: var(--accent-deep); background: var(--accent-tint); padding: 0.25rem 0.7rem; border-radius: 3px; }
+
+  .content ul.notes-list { margin: 0 0 1.4rem 1.3rem; }
+  .notes-list li { font-size: 1.04rem; line-height: 1.8; color: #2f3f3b; margin-bottom: 0.5rem; }
+  .notes-list li::marker { color: var(--accent); }
+
+  .key-idea { background: var(--accent-tint); border-left: 3px solid var(--accent); padding: 1.3rem 1.6rem; margin: 1.8rem 0; }
+  .key-idea .ki-label { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: 0.4rem; }
+  .key-idea p { font-size: 1.04rem; line-height: 1.8; color: var(--ink); margin: 0; }
+
+  .in-brief { background: var(--accent-deep); padding: 1.4rem 1.7rem; border-radius: 6px; margin: 2.4rem 0 0.5rem; }
+  .in-brief .ib-label { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: #94c2ba; margin-bottom: 0.6rem; }
+  .in-brief ul { margin: 0 0 0 1.1rem; }
+  .in-brief li { color: #dfeee9; font-size: 1rem; line-height: 1.65; margin-bottom: 0.4rem; }
+  .in-brief li::marker { color: var(--clay); }
+  .in-brief li strong { color: #fff; font-weight: 600; }
+
+  .factbox { background: var(--surface); border: 1px solid #dde9e6; border-left: 3px solid var(--clay); padding: 1.4rem 1.7rem; margin: 1.8rem 0; }
+  .factbox .fb-label { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay-deep); margin-bottom: 0.8rem; }
+  .factbox ul { margin: 0 0 0 1.1rem; }
+  .factbox li { font-size: 0.98rem; line-height: 1.6; color: #2f3f3b; margin-bottom: 0.4rem; }
+  .factbox li strong { color: var(--ink); }
+
+  .verse { background: var(--surface); border: 1px solid #dde9e6; border-radius: 4px; padding: 1.6rem 1.8rem; margin: 1.8rem 0; }
+  .verse .gurmukhi { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1.25rem; line-height: 2; color: var(--accent-deep); margin-bottom: 0.7rem; }
+  .verse .trans { font-size: 1.02rem; font-style: italic; line-height: 1.7; color: #3a4a4a; }
+  .verse .cite { font-family: 'Cormorant Garamond', serif; font-size: 0.76rem; letter-spacing: 0.1em; color: var(--muted2); margin-top: 0.8rem; }
+  .quote { background: var(--surface); border: 1px solid #dde9e6; border-left: 3px solid var(--accent); padding: 1.4rem 1.7rem; margin: 1.8rem 0; }
+  .quote p { font-size: 1.02rem; font-style: italic; line-height: 1.75; color: #3a4a4a; margin: 0; }
+  .quote .cite { font-family: 'Cormorant Garamond', serif; font-style: normal; font-size: 0.76rem; letter-spacing: 0.1em; color: var(--muted2); margin-top: 0.7rem; }
+
+  figure.notes-fig { margin: 2rem 0; }
+  figure.notes-fig img { width: 100%; height: auto; border: 1px solid #d4e3df; border-radius: 4px; display: block; }
+  figure.notes-fig figcaption { font-size: 0.9rem; font-style: italic; color: var(--muted2); margin-top: 0.6rem; }
+
+
+  @media (max-width: 900px) {
+    nav, .page-header, .subnav, main { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .page-title { font-size: 2rem; }
+    .lecture-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .lecture-map { position: static; max-height: none; background: var(--surface); border: 1px solid #dde9e6; border-radius: 6px; padding: 1.2rem 1.4rem; }
+    .content { max-width: none; }
+  }
+</style>
+</head>
+<body>
+<div class="top-border"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Mūl <span>Learnings</span></a>
+  <div class="nav-breadcrumb">
+    <a href="studysikhi.html">StudySikhi</a><span class="sep">/</span>
+    <a href="ss101.html">SS 101</a><span class="sep">/</span>
+    <span class="current">Module 2</span>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="header-eyebrow">StudySikhi · SS 101 · Module 2</div>
+  <h1 class="page-title">Community formation — Guru Angad to Guru Arjan</h1>
+  <p class="page-desc">Picking up from Module 1: the line of succession after Guru Nanak, the women who shaped the early Panth, and the assembly of the Adi Granth.</p>
+</div>
+<div class="subnav">
+  <a href="ss101-l2-notes.html" class="active">Lecture Notes</a>
+  <span class="soon">Discussion Q&amp;A · soon</span>
+  <span class="soon">Active Recall · soon</span>
+</div>
+<main>
+  <div class="lecture-wrap">
+    <aside class="lecture-map">
+      <div class="map-label">In this module</div>
+      <a class="map-item" href="#overview"><span class="mp">Start</span>Overview &amp; key questions</a>
+      <a class="map-item" href="#part1"><span class="mp">Part 1</span>Entering the bhakti world</a>
+      <a class="map-item" href="#part2"><span class="mp">Part 2</span>Kartarpur &amp; honest work</a>
+      <a class="map-item" href="#part3"><span class="mp">Part 3</span>One light, many bodies</a>
+      <a class="map-item" href="#part4"><span class="mp">Part 4</span>The Gurus &amp; the Panth</a>
+      <a class="map-item" href="#part5"><span class="mp">Part 5</span>Assembling the Adi Granth</a>
+    </aside>
+
+    <div class="content">
+
+      <div class="overview" id="overview">
+        <h2>What this module covers</h2>
+        <p>Module 2 picks up where Module 1 ended. The focus shifts from Guru Nanak alone to the <strong>line of succession</strong> after him — from Guru Angad through Guru Arjan, the fifth Guru. Alongside that lineage it foregrounds the <strong>women</strong> foundational to the early tradition (Mata Khivi, Bibi Amaro, Bibi Bhani), and it traces the formation of Sikh <strong>scripture</strong> — Guru Angad assembling Guru Nanak's narratives, Guru Amar Das compiling Gurbani, and Guru Arjan assembling the Adi Granth. Seeing what was included and excluded becomes a clue for how Gurbani is to be read.</p>
+        <div class="ov-q">Hold these questions as you read</div>
+        <ul class="ov-list">
+          <li>Was Guru Nanak just one more bhakti saint, or was a distinct Sikh community already forming?</li>
+          <li>How does the idea of "one light through many bodies" shape Sikh succession?</li>
+          <li>Why were Sikh women central — not secondary — to building the Panth?</li>
+          <li>What does the assembly of the Adi Granth tell us about how to interpret Gurbani?</li>
+        </ul>
+        <div class="ov-q">Key terms in this module</div>
+        <div class="terms"><span>bhakti</span><span>Mahalla</span><span>jyot (one light)</span><span>langar</span><span>Gurmukhi</span><span>masand</span><span>Goindwal Pothis</span><span>Adi Granth</span><span>sachiār</span></div>
+      </div>
+
+      <h2 class="part-head" id="part1"><span class="part-kicker">Part 1</span><span class="part-title">Entering the bhakti world</span></h2>
+      <p>Module 2 begins by situating the early tradition within the wider <span class="term">Bhakti</span> movement — a populist devotional current that pushed back against elite intermediaries. On the Indic side that meant resisting the authority of pandits; on the Islamic side, the clerical classes of qazis and sheikhs. The emphasis fell on a <strong>direct connection</strong> with the Divine through devotion, remembrance, and service — yet this was not "individual" in the way of the world-renouncing yogi: bhakti still prized gathering in sangat or satsang.</p>
+      <div class="factbox">
+        <div class="fb-label">The bhakti movement</div>
+        <ul>
+          <li>An individual, <strong>direct connection</strong> to the Divine</li>
+          <li>Removal of intermediaries — pushing back against the pandit and the sheikh / qazi class</li>
+          <li>Communal gatherings (sangat / satsang), not solitary withdrawal</li>
+        </ul>
+      </div>
+      <p>This raises a real scholarly debate, drawn from Nikky-Guninder Kaur's "The Founder Myth." Some scholars — especially <strong>W. H. McLeod</strong> — link Guru Nanak very closely with Kabir and the broader stream of Bhakti saints (c. 12th–16th century), placing him <em>within</em> an existing current rather than as the founder of a distinct community; the stronger version holds that a distinctly Sikh identity only emerges later, with Guru Gobind Singh and the Khalsa.</p>
+      <div class="key-idea">
+        <div class="ki-label">Key idea · the challenge to the "founder myth"</div>
+        <p>Early sources suggest a distinct Sikh community was forming <strong>much earlier</strong>. Bhai Gurdas presents Guru Nanak establishing a separate path — <em>ਕੀਤੋਸੁ ਅਪਣਾ ਪੰਥੁ ਨਿਰਾਲਾ</em>, "he made his own distinct path." The Persian <strong>Dabistan</strong> describes Sikhs as a distinct tradition; because its author met Guru Hargobind and Guru Har Rai, it is an especially valuable <em>outside</em> witness to how Sikhs were perceived in the seventeenth century.</p>
+      </div>
+
+      <h3 class="sub-head">Guru Nanak and Kabir — shared world, contested relationship</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image2.png" alt="Painting of Guru Nanak and Kabir">
+      </figure>
+      <p>Kabir is the key figure for placing Guru Nanak in this devotional landscape. Like Guru Nanak, Kabir emphasises a direct relationship with the Divine, and his writings appear in Guru Granth Sahib. Yet their exact relationship is debated — even whether their lifetimes overlapped is unsettled, though the Janam Sakhis present them meeting. That meeting is never neutral: it <strong>frames how authority is imagined</strong>. Was it a meeting of equals, of succession, of discipleship, or of spiritual correction? Underneath the historical question sits a theological one: did Guru Nanak inherit Kabir's path, or stand on his own authority?</p>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image3.jpg" alt="B40 Janam Sakhi manuscript folio">
+      </figure>
+      <div class="verse">
+        <div class="gurmukhi">ਜੁਗੋ ਜੁਗੋ ਗੁਰੂ ਨਾਨਕ ਜਪਿਆ ਕੀਟ ਮੁਰੀਦ ਕਬੀਰ ।<br>ਸੁਨਿ ਉਪਦੇਸੁ ਪੂਰੇ ਸਤਿਗੁਰੁ ਕਾ ਮਨ ਮਹਿ ਭਇਆ ਅਨੰਦੁ ।<br>ਮੁਕਤਿ ਕਾ ਦਾਤਾ ਬਾਬਾ ਨਾਨਕ ਰੰਚਕ ਰਾਮਾਨੰਦ ।</div>
+        <div class="trans">Throughout all ages, let the name of Guru Nanak be recited — proclaims his lowly disciple, Kabir! Listening to the teaching of the perfect True Guru, the heart is filled with joy. It is Baba Nanak who is the giver of salvation; Ramanand is nothing.</div>
+        <div class="cite">B40 Janam Sakhi (1733)</div>
+      </div>
+      <p>The <strong>B40 Janam Sakhi</strong> (so named for its British Library index number, dated 1733) reverses the usual assumption that Guru Nanak follows from Kabir. Here Kabir becomes the <em>Sikh of Guru Nanak</em>: Guru Nanak instructs him in liberation through devotion, and Kabir responds with a shabad praising Guru Nanak as the giver of salvation — diminishing even Ramananda, often remembered as Kabir's own guru.</p>
+      <p>By the eighteenth century, then, the question of <strong>who stands above whom</strong> was very much alive — a matter of prestige, lineage, and spiritual authority. Nineteenth-century works like Santokh Singh's <em>Nanak Prakash</em> continue the debate, claiming some Janam Sakhis tied to Kabir's followers had altered the relationship in Kabir's favour, with Santokh Singh's project framed partly as a correction. This also points to parallel communities — the <strong>Kabir Panth</strong> and the <strong>Dadupanth</strong> — which overlapped and exchanged with Sikhs, sometimes closely, sometimes adversarially. The real issue is not whether these communities shared a devotional world (they did) but how each understood its own centre of authority within it.</p>
+      <div class="in-brief">
+        <div class="ib-label">In brief</div>
+        <ul>
+          <li>Bhakti = direct devotion without intermediaries, but still <strong>communal</strong> (sangat), not solitary.</li>
+          <li>Against the "founder myth," early Sikh and outside sources (Bhai Gurdas, the Dabistan) show a <strong>distinct Sikh community forming early</strong>.</li>
+          <li>The Kabir–Nanak relationship is really a contest over <strong>authority</strong>; B40 makes Kabir the disciple of Guru Nanak.</li>
+        </ul>
+      </div>
+
+      <h2 class="part-head" id="part2"><span class="part-kicker">Part 2</span><span class="part-title">Kartarpur &amp; honest work</span></h2>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image4.PNG" alt="Fresco of Guru Nanak at Kartarpur, Baba Atal, Amritsar">
+        <figcaption>Guru Nanak at Kartarpur — fresco at Baba Atal, Amritsar.</figcaption>
+      </figure>
+      <p>One of the clearest ways the early tradition is distinguished from other devotional communities is Guru Nanak's emphasis on <strong>social and ethical life within the world</strong>. After years of travel he returns and establishes <span class="term">Kartarpur</span>, the "city of the Creator" — a visible expression of his vision: settled, ethical, communal life rather than wandering spirituality alone. This ties directly to Module 1's seva and Ishnān: spiritual life is not fulfilled in private experience but takes shape in how one lives, works, shares, and builds community. Founding a city signals a path not of escape from society but of <strong>transformed participation</strong> within it.</p>
+      <h3 class="sub-head">Honest work as virtuous action</h3>
+      <div class="verse">
+        <div class="gurmukhi">ਗਿਆਨ ਵਿਹੂਣਾ ਗਾਵੈ ਗੀਤ ॥ ਭੁਖੇ ਮੁਲਾਂ ਘਰੇ ਮਸੀਤਿ ॥<br>ਮਖਟੂ ਹੋਇ ਕੈ ਕੰਨ ਪੜਾਏ ॥ ਫਕਰੁ ਕਰੇ ਹੋਰੁ ਜਾਤਿ ਗਵਾਏ ॥<br>ਗੁਰੁ ਪੀਰੁ ਸਦਾਏ ਮੰਗਣ ਜਾਇ ॥ ਤਾ ਕੈ ਮੂਲਿ ਨ ਲਗੀਐ ਪਾਇ ॥<br>ਘਾਲਿ ਖਾਇ ਕਿਛੁ ਹਥਹੁ ਦੇਇ ॥ ਨਾਨਕ ਰਾਹੁ ਪਛਾਣਹਿ ਸੇਇ ॥</div>
+        <div class="trans">Bereft of knowledge, they sing their songs; the hungry Mullah makes the mosque his home. The do-nothing rips his ears and becomes a fakir, losing his social standing; calling himself Guru or Pir, he goes begging — do not touch his feet. But the one who works hard for what he eats and gives some of it to others — O Nanak, such people know the path.</div>
+        <div class="cite">Guru Nanak · Guru Granth Sahib, 1245</div>
+      </div>
+      <p>The shabad criticises religious figures who avoid labour and live on status, begging, or social deference — the hungry mullah who makes the mosque his house; the ascetic who tears his ears, becomes a fakir, turns from the world, yet depends on others while calling himself guru or pir. Their prestige is stripped away. The culmination is a clear ideal: the one who <strong>works hard for what he eats and then gives some to others</strong> truly knows the path. It joins labour, honesty, sustenance, and generosity in a single line — rejecting both exploitative religiosity and escapist renunciation.</p>
+      <div class="key-idea">
+        <div class="ki-label">Foundation of Sikh social ethics</div>
+        <p>This is one of the clearest foundations for the threefold pattern of Sikh life — <strong>Nām Japo, Kirat Karo, Vand Chhako</strong>: recite the Divine Name, earn an honest livelihood, and share with others. The shabad presses especially on the last two: not charity in the abstract, but charity that arises from <strong>honest labour</strong>.</p>
+      </div>
+      <p>Kartarpur embodies exactly this. As the fresco's inscription notes, Guru Nanak gives the teaching of Satnam to the people there — but he is not only preaching it. He is <strong>farming the land and using that labour to feed the community</strong> through the communal kitchen. The kitchen is not a secondary institution but the lived form of the teaching itself: remembrance of the Divine, ethical labour, and generosity joined together — a practice the later Gurus continue rather than leave behind.</p>
+      <div class="in-brief">
+        <div class="ib-label">In brief</div>
+        <ul>
+          <li><strong>Kartarpur</strong> makes Guru Nanak's path concrete: settled, ethical, communal life, not withdrawal.</li>
+          <li>Honest work is itself virtuous; the true path joins <strong>labour, honesty, and sharing</strong> (Nām Japo · Kirat Karo · Vand Chhako).</li>
+          <li>The <strong>langar</strong> is the teaching enacted — Guru Nanak farms the land and feeds the community from it.</li>
+        </ul>
+      </div>
+
+      <h2 class="part-head" id="part3"><span class="part-kicker">Part 3</span><span class="part-title">One light, many bodies</span></h2>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image5.PNG" alt="Fresco of Guru Angad anointed as Guru, Baba Atal, Amritsar">
+        <figcaption>Guru Angad anointed as Guru — fresco at Baba Atal, Amritsar. Baba Buddha places the tilak; Guru Nanak is seated lower; both are haloed.</figcaption>
+      </figure>
+      <p>When Guru Nanak appoints a successor, a central Sikh idea comes into view: the later Gurus are not separate leaders who merely follow in time, but carry forward the <strong>same light, mission, philosophy, and authority</strong>. Practices may develop and circumstances may change, but the inner light remains one.</p>
+      <div class="verse">
+        <div class="gurmukhi">ਜੋਤਿ ਉਹਾ ਜੁਗਤਿ ਸਾਇ ਸਹਿ ਕਾਇਆ ਫੇਰਿ ਪਲਟੀਐ ॥</div>
+        <div class="trans">The light is the same, the way is the same; the King has merely changed his body.</div>
+        <div class="cite">Rāmakalī kī Vār · Rai Balvand &amp; Satta</div>
+      </div>
+      <p>The fresco illustrates it: Baba Buddha places the tilak on Guru Angad, marking him publicly as Guru, while Guru Nanak sits lower — and both wear halos. What is transferred is not merely organisational leadership but the <strong>same divine light</strong>; the continuity is spiritual, ontological, and liturgical, and it eventually informs the authority of Guru Granth Sahib itself.</p>
+      <h3 class="sub-head">Mahalla and Nanak — how the Gurus name themselves</h3>
+      <p>This idea is built into the language of Guru Granth Sahib. The Gurus are identified in the headings not by personal name but by the title <span class="term">Mahalla</span> — traced here to the Arabic <em>hulul</em>, "descent." Guru Nanak's bani appears under Mahalla Pehla (the First), Guru Angad's under Mahalla Duja (the Second), and so on; the headings themselves teach the Sikh understanding of succession. The same logic governs the poetic signature: where poets of the time signed with their own names, Guru Angad does not close his verses with "Angad" but with <strong>"Nanak"</strong> — as do Guru Amar Das, Guru Ram Das, Guru Arjan, and Guru Tegh Bahadur. Their individuality as persons remains, but their writing flows within a single current of Guruship: the voice is Nanak's light speaking through successive forms.</p>
+      <div class="verse">
+        <div class="gurmukhi">ਸ੍ਰੀ ਨਾਨਕ ਅੰਗਦਿ ਕਰਿ ਮਾਨਾ ॥ ਅਮਰਦਾਸ ਅੰਗਦ ਪਹਿਚਾਨਾ ॥<br>ਅਮਰਦਾਸ ਰਾਮਦਾਸ ਕਹਾਯੋ ॥ ਸਾਧਨਿ ਲਖਾ ਮੂੜ੍ਹ ਨਹਿ ਪਾਯੋ ॥੯॥</div>
+        <div class="trans">Understand Angad as Sri Nanak, and Amar Das as Angad; one should call Ram Das the same as Amar Das. The sadhus grasp this — the fools do not. Everyone recognises them as separate; only a few perceive them as one form. Those who know this attain liberation; those who do not, do not.</div>
+        <div class="cite">Guru Gobind Singh · Bachittra Nāṭak (late 1600s)</div>
+      </div>
+      <p>This was not only an internal Sikh way of speaking — outside observers noticed it too:</p>
+      <div class="quote">
+        <p>"They have come to believe that when Nānak abandoned his body, he entered that of Gurū Angad… Afterwards, Gurū Angad similarly descended into Amardās's body; and Rāmdās the same way into Gurū Arjan. They call each of them <em>mahal</em> — the first mahal being Nānak, the second Angad, and so on, till the fifth mahal, which is Gurū Arjan. Whoever does not regard Guru Arjan as identical to Bābā Nānak is… an infidel."</p>
+        <p class="cite">Dabistan-i Mazahib (1645)</p>
+      </div>
+      <p>Whether the disputed word is read as <em>manmukh</em> or <em>moorakh</em>, the meaning holds: to fail to see Guru Arjan as the same light as Guru Nanak is to fail spiritually. The principle that emerges is crucial for the whole tradition — the Gurus are <strong>historically distinct but spiritually one</strong>. Their succession is not a chain of replacement but the unfolding of one <em>jyot</em> through many forms.</p>
+      <div class="in-brief">
+        <div class="ib-label">In brief</div>
+        <ul>
+          <li>Succession transfers <strong>one light</strong>, not just leadership — "the King merely changed his body."</li>
+          <li>This is built into the scripture: the Gurus are titled <strong>Mahalla</strong> and all sign their verses "<strong>Nanak</strong>."</li>
+          <li>Inside (Bachittra Nāṭak) and outside (the Dabistan) sources agree: the Gurus are historically distinct but <strong>spiritually one jyot</strong>.</li>
+        </ul>
+      </div>
+
+      <h2 class="part-head" id="part4"><span class="part-kicker">Part 4</span><span class="part-title">The Gurus &amp; the women who built the Panth</span></h2>
+
+      <h3 class="sub-head">Guru Angad Dev Ji — from Lehna to Angad</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image6.jpg" alt="Painting of Guru Angad Dev Ji, Lahore Museum">
+        <figcaption>Guru Angad Dev Ji — Lahore Museum.</figcaption>
+      </figure>
+      <div class="factbox">
+        <div class="fb-label">Guru Angad, 2nd Guru</div>
+        <ul>
+          <li>1504–1552 · reigned as Guru for 12 years · married to Mata Khivi (1506–1582)</li>
+          <li>Promoted and formalised the <strong>Gurmukhi</strong> script</li>
+          <li>Assembled the writings of Guru Nanak; patronised his life-stories (Janam Sakhis)</li>
+          <li>Ran a wrestling training ground · composed <strong>62 verses</strong> in Guru Granth Sahib · father of Bibi Amaro</li>
+        </ul>
+      </div>
+      <p>Even his name is meaningful: <em>Angad</em> means "limb," suggesting closeness and organic unity with Guru Nanak. Born into the Trehan clan of the Khatris, he was known as <strong>Lehna</strong> and remembered as a devotee of the goddess Durga. Travelling to a Devi shrine, he passed through Kartarpur, heard the praise of Guru Nanak, and stopped. In older narratives the meeting is told with mythic intensity: entering Guru Nanak's residence, Lehna is said to have seen Durga herself performing seva there, sweeping the floor — a theological image expressing that the one he revered as exalted appeared as only a servant before the greatness of Guru Nanak. He stays, serves fully, passes repeated tests, and only then is anointed Guru.</p>
+      <p>His period sharpens the shape of the early community. He formalises <strong>Gurmukhi</strong> — not from nowhere, but developed from scripts already in circulation among traders, distinct from Devanagari and from the Persian/Arabic scripts tied to Islamic textual culture. A marginal note in the Goindwal Pothis even states that Guru Angad formulated Gurmukhi under Guru Nanak's supervision for writing the Guru's hymns. A distinct script is not just a tool — it helps create and sustain a distinct community, marking out a Sikh mode of preserving revelation.</p>
+      <p>He also begins <strong>assembling Guru Nanak's writings</strong> and becomes a patron of the Janam Sakhis, gathering Sikhs who had known Guru Nanak — Bhai Bala especially — to recite his life-stories, which are then written down as the earliest Janam Sakhi traditions. (Those earliest manuscripts no longer survive; according to Santokh Singh, Kabir Panthis acquired and distorted them.) Their collection shows how the life-stories were used: not as bare records but to explain Guru Nanak's mission and illuminate Gurbani — life-story and Shabad lighting one another.</p>
+
+      <h3 class="sub-head">Mata Khivi &amp; the langar as living practice</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image7.png" alt="Painting of Guru Angad with Mata Khivi and their sons">
+        <figcaption>Guru Angad with Mata Khivi and their two sons — Dasam Granth manuscript by Miha Singh of Kashmir, c. 1839.</figcaption>
+      </figure>
+      <div class="verse">
+        <div class="gurmukhi">ਬਲਵੰਡ ਖੀਵੀ ਨੇਕ ਜਨ ਜਿਸੁ ਬਹੁਤੀ ਛਾਉ ਪਤ੍ਰਾਲੀ ॥<br>ਲੰਗਰਿ ਦਉਲਤਿ ਵੰਡੀਐ ਰਸੁ ਅੰਮ੍ਰਿਤੁ ਖੀਰਿ ਘਿਆਲੀ ॥<br>ਮਾਤਾ ਖੀਵੀ ਸਹੁ ਸੋਇ ਜਿਨਿ ਗੋਇ ਉਠਾਲੀ ॥</div>
+        <div class="trans">Balwand says: Khivi, the virtuous wife of Guru Angad, whose caring nature gives dense shade to all. She distributes the wealth of the langar — delicious like ambrosial nectar, rice pudding rich with ghee. Such is the husband of Mata Khivi, who has uplifted the entire world.</div>
+        <div class="cite">Rāmakalī kī Vār · Guru Granth Sahib, 967</div>
+      </div>
+      <p><strong>Mata Khivi</strong> is one of the most important Sikh women of the early period — so highly regarded that she is named in Guru Granth Sahib itself. The praise is significant: the <span class="term">langar</span> was not a background institution but a central, honoured expression of Sikh life. Guru Angad continues Guru Nanak's pattern — he participates in the kitchen, eats in it, sustains it — and Mata Khivi is remembered as actively overseeing and nourishing it. Langar becomes the material expression of Sikh values: labour, sharing, inclusion, and care.</p>
+      <div class="key-idea">
+        <div class="ki-label">A note on memory</div>
+        <p>These women were once clearly honoured, yet their stories have faded. Mata Khivi — named in scripture — is still not given her due in many modern tellings. That quiet fading reveals something about emphasis, and whose labour gets remembered in religious traditions.</p>
+      </div>
+
+      <h3 class="sub-head">Bibi Amaro — devotion, memory, and the link to Guru Amar Das</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image8.jpeg" alt="Illustration related to Bibi Amaro">
+      </figure>
+      <div class="quote">
+        <p>"Bibi Amaro memorised Japuji, [Dakhani] Onkar and Sidh Ghost, and would recite these daily with great love." … "She would recite Gurbani at all times of the day."</p>
+        <p class="cite">Bansāvalīnāmā (1769), pp. 52 &amp; 54</p>
+      </div>
+      <p><strong>Bibi Amaro</strong>, Guru Angad's daughter, is remembered as intensely devoted and astonishingly grounded in Gurbani — having memorised Japji Sahib, Dakhani Oankar, and Siddh Gosht (memorising Japji alone would be a great accomplishment). Later sources (Suraj Prakash) describe her rising at Amrit Vela, bathing, and reciting Gurbani in a voice of such sweetness and force that her brilliance could not be fully grasped. Crucially, she is the <strong>direct link</strong> through which Guru Amar Das — then an elderly man, not yet Guru — first comes into Guru Angad's orbit: hearing Bibi Amaro singing Gurbani in the early morning, he is pierced by the Shabad and drawn to its source. Married into his family, she becomes the bridge between the second and third Gurus.</p>
+      <div class="key-idea">
+        <div class="ki-label">Key idea</div>
+        <p>If Bibi Amaro's singing of Gurbani is remembered as the very means by which a future Guru was awakened and drawn into discipleship, then women reciting, carrying, and transmitting Gurbani cannot be treated as secondary — which makes it striking that some Sikh sites today still bar women from performing kirtan. Projects like the <em>Mahalla 9</em> calendar work to recover these figures, never truly minor in the tradition itself, only muted in later retellings.</p>
+      </div>
+
+      <h3 class="sub-head">Guru Amar Das Ji &amp; the building of community</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image9.jpg" alt="Painting of Guru Amar Das Ji, Mahal Collection">
+        <figcaption>Guru Amar Das — Mahal Collection, 1775–1799.</figcaption>
+      </figure>
+      <div class="factbox">
+        <div class="fb-label">Guru Amar Das, 3rd Guru</div>
+        <ul>
+          <li>1479–1574 · reigned for 22 years · came to Guru Angad in old age and performed great seva</li>
+          <li>Organised festivals so Sikhs could gather twice a year — <strong>Vaisakhi</strong> &amp; <strong>Diwali</strong></li>
+          <li>Built the new city of <strong>Goindval</strong> and a step well, the <strong>Baolī Sāhib</strong></li>
+          <li>Set up the <strong>masand</strong> system across the 22 districts · gifted poet — <strong>900+ verses</strong> · continued collecting Gurbani (the Goindwal Pothis)</li>
+        </ul>
+      </div>
+      <p>Each Guru creates a lived social world: Guru Nanak had Kartarpur, Guru Angad had Khadur Sahib, Guru Amar Das develops Goindval, and Guru Ram Das will found Ramdaspur (Amritsar). The Sikh path is not only inward — it is embodied in settlement, labour, infrastructure, and organised communal life.</p>
+      <p>As the community expands, it needs to stay connected. Asked for shared gathering times, Guru Amar Das establishes <strong>Vaisakhi</strong> (spring) and <strong>Diwali</strong> (autumn) — not mere seasonal celebrations but deliberate means of binding a community that is already <strong>transregional</strong>, reaching across what is now Afghanistan, Pakistan, Maharashtra, Assam, and Bengal. The <strong>baoli</strong> (step well) at Goindval is both devotional (Japji Sahib recited descending its 84 steps) and practical — water for farmers and villagers — the same union of devotion and material care seen in langar and city-building. Akbar himself comes to meet Guru Amar Das at Goindval. And he is a major poet: <strong>907 compositions</strong> in Guru Granth Sahib, second only to Guru Nanak's 974.</p>
+
+      <h3 class="sub-head">The masand system</h3>
+      <p>Guru Amar Das assigns <span class="term">masand</span> leaders across the districts, mapped to the empire's 22 provincial divisions. These were not narrow administrators but <strong>spiritual guides</strong> for the local sangat — people could turn to them for instruction and direction. The word did not then carry its later negative charge: it derives from <em>masnad</em>, a cushion or seat, and seating signified authority and responsibility. Originally the masands were deeply practised Sikhs or capable administrators, an extension of the Guru's own arm into the regions. Only later, when the office became hereditary, did some begin extracting money and oppressing congregations — which is what gave the word its negative meaning. Their existence shows how far the Panth had spread and how much structure its growth now required.</p>
+
+      <h3 class="sub-head">The Goindwal Pothis — the oldest window into early scripture</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image10.jpg" alt="Folio from the Goindwal Pothis">
+      </figure>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image11.jpeg" alt="Folio from the Goindwal Pothis showing early Gurmukhi">
+      </figure>
+      <p>The <span class="term">Goindwal Pothis</span> are the oldest extant manuscript compilation (an earlier pothi linked to Guru Angad is remembered but lost). They let us see Sikh scriptural culture at an early stage: written in <strong>larivaar</strong>, with words joined rather than separated, and vowel signs not always marked in the developed form — a vowel later shown with a fuller sign may appear only as a small dot. The script is recognisably Gurmukhi but in an earlier phase. The page shown is identified as Ramkali, Mahalla Pehla, with the Mool Mantar above. Reading these takes real training — and that difficulty teaches something: the scripture did not descend in a final polished form but passed through material, scribal, and linguistic histories that are part of how the tradition took shape.</p>
+
+      <h3 class="sub-head">Bibi Bhani Ji — seva, grace &amp; the continuity of the lineage</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image12.jpg" alt="Fresco of Bibi Bhani holding up the throne">
+      </figure>
+      <div class="verse">
+        <div class="gurmukhi">ਸਤਿਗੁਰ ਭਏ ਦਇਆਲ ਅਭੇਦ ਭਗਤ ਬੀਬੀ ਕਰੀ ॥</div>
+        <div class="trans">The True Guru [Amar Das] bestowed his grace upon the devoted Bibi [Bhani], merging her with the Divine.</div>
+        <div class="cite">Mehima Prakash (1776), p. 266</div>
+      </div>
+      <p><strong>Bibi Bhani</strong>, daughter of Guru Amar Das, is remembered not merely as pious but as spiritually exalted — graced and "merged with the Divine." The central story: early one morning, while Guru Amar Das is in devotion, the leg of his seat is about to break; Bibi Bhani quietly places her hand beneath it so he will not fall. The wood cuts into her hand and she bleeds, but she does not cry out or interrupt his meditation, holding the seat up in silent seva. Moved, Guru Amar Das offers her a boon.</p>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image13.png" alt="Painting of Bibi Bhani, Rupa Collection">
+        <figcaption>Bibi Bhani — the Rupa Collection (18th century).</figcaption>
+      </figure>
+      <div class="factbox">
+        <div class="fb-label">The enlightened Bibi Bhani — root of the Sodhi line</div>
+        <ul>
+          <li>Daughter of Guru Amar Das · wife of Guru Ram Das</li>
+          <li>Mother of Guru Arjan · grandmother of Guru Hargobind</li>
+          <li>Great-grandmother of Guru Tegh Bahadur · great-great-grandmother of Guru Gobind Singh</li>
+        </ul>
+      </div>
+      <p>What she asks for is revealing: with succession disputes already appearing, she asks that the line of Guruship continue through her lineage — and so it does. She stands at the matriarchal root of the Sodhi line from Guru Ram Das to Guru Gobind Singh. Her place in Sikh memory is not decorative but foundational.</p>
+      <div class="key-idea">
+        <div class="ki-label">Sikh women and the shape of the tradition</div>
+        <p>Mata Khivi, Bibi Amaro, and Bibi Bhani together distinguish the Sikh tradition from ascetic traditions in which women are absent, secondary, or seen as obstacles. Here women nourish langar, preserve and sing Gurbani, draw future Gurus into the Guru's presence, receive grace, and stand at the centre of the Guru lineage. These roles are formative, not marginal — and this commitment will shape what is included in, and excluded from, Guru Granth Sahib.</p>
+      </div>
+
+      <h3 class="sub-head">Guru Ram Das Ji — counsel, city-building, continuation</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image14.jpg" alt="Painting of Guru Ram Das Ji, Rajasthan, 19th century">
+        <figcaption>Guru Ram Das — Rajasthan, 19th century.</figcaption>
+      </figure>
+      <div class="factbox">
+        <div class="fb-label">Guru Ram Das, 4th Guru</div>
+        <ul>
+          <li>1534–1581 · reigned for 7 years · son-in-law of Guru Amar Das (Sodhi clan)</li>
+          <li>Served as the Guru's counsel for legal and religious debates, even in imperial settings such as Akbar's court</li>
+          <li>Established the new city of Ramdaspur, later <strong>Amritsar</strong></li>
+          <li>Composed <strong>679 verses</strong> (fourth-largest contributor), including the <strong>Lāvāṅ</strong></li>
+        </ul>
+      </div>
+      <p>Before his appointment, Guru Ram Das already served Guru Amar Das closely, trusted to speak on the Guru's behalf — a sign of his stature. Like the Gurus before him he founds a new centre, Ramdaspur (Amritsar), favoured by Akbar with a grant of land that becomes the basis for the city. Poetry, leadership, settlement, and community-building go together once again; his bani includes the Lāvāṅ, still central to Sikh life.</p>
+
+      <div class="in-brief">
+        <div class="ib-label">In brief</div>
+        <ul>
+          <li>Each Guru builds a <strong>city</strong> (Kartarpur → Khadur → Goindval → Amritsar): the path is embodied, not only inward.</li>
+          <li><strong>Gurmukhi</strong>, festivals (Vaisakhi/Diwali), the <strong>masand</strong> network, and the <strong>Goindwal Pothis</strong> turn scattered devotion into an organised, transregional Panth.</li>
+          <li><strong>Mata Khivi, Bibi Amaro, Bibi Bhani</strong> are foundational — to langar, to Gurbani's transmission, and to the Guru lineage itself.</li>
+        </ul>
+      </div>
+
+      <h2 class="part-head" id="part5"><span class="part-kicker">Part 5</span><span class="part-title">Assembling the Adi Granth &amp; reading Gurbani</span></h2>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image15.jpg" alt="Painting of Guru Arjan Dev Ji">
+        <figcaption>Guru Arjan — Government Museum &amp; Art Gallery, 1800.</figcaption>
+      </figure>
+      <div class="factbox">
+        <div class="fb-label">Guru Arjan, 5th Guru</div>
+        <ul>
+          <li>1563–1605 · reigned for 25 years · youngest son of Guru Ram Das</li>
+          <li>Finalised the construction of <strong>Harimandir Sahib</strong> at Amritsar (marble then — gold-plated only in the 19th century under Ranjit Singh)</li>
+          <li>Assembled the <strong>Adi Granth</strong> · composed the most verses in Guru Granth Sahib (2,200+), including <strong>Sukhmani Sahib</strong></li>
+        </ul>
+      </div>
+      <p>By now succession disputes are more intense: Guru Arjan's eldest brother, <strong>Prithi Chand</strong>, contests the appointment. Yet Guru Arjan is the one who fulfils Guru Ram Das's vision — completing Harimandir Sahib and its sarovar. His far-reaching contribution is the assembly of the <span class="term">Adi Granth</span>, the earliest compiled form of what becomes Guru Granth Sahib.</p>
+
+      <h3 class="sub-head">The Adi Granth — who is in it, and why that matters</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image16.jpeg" alt="Fresco of Guru Arjan with the Bhagats and Bhai Gurdas as scribe">
+      </figure>
+      <p>At this stage the text contains the bani of the first five Gurus (Guru Tegh Bahadur's is added later, when Guru Gobind Singh gives the final form at Damdama Sahib). But it is already more than Guru bani: it includes the Bhagats — <strong>Kabir, Ravidas, Sheikh Farid, Jaidev, Namdev, Pipa, Trilochan, Beni,</strong> and others. The fresco shows the Bhagats gathered around Guru Arjan while <strong>Bhai Gurdas</strong> sits to one side as scribe — presenting Guru Arjan not as a mere collector but as the one who receives, orders, and authoritatively positions these voices within a scriptural whole. Once compiled, the Adi Granth is placed on the takht within Harimandir Sahib and given devotional authority: the sangat bows before the scripture, not before Guru Arjan, who sleeps on the floor beside it while the text rests higher.</p>
+      <div class="factbox">
+        <div class="fb-label">Why compile the Adi Granth?</div>
+        <ul>
+          <li><strong>Pashaura Singh</strong> — Akbar's 1598 visit, with its imperial entourage of artists and scribes, may have crystallised the value of an authoritative Sikh text to anchor the community.</li>
+          <li><strong>Gurbilās Pātshāhī 6 / Sūraj Prakāś</strong> — to create a stamp on legitimate Gurbani. Guru Arjan was shown forged writings passed off as Guru Nanak's (e.g. the yogic <em>Pran Sangli</em>); a definitive compilation would stop others composing texts, signing "Nanak," and claiming them as Gurbani.</li>
+          <li>The <strong>Mundavani</strong> seal at the end reinforces closure, authenticity, and protection.</li>
+        </ul>
+      </div>
+      <p>So the compilation is devotional, but also <strong>interpretive, protective, and communal</strong>: it defines what counts as Guru bani and guards the tradition from forgery and from drifting against its own inner grammar.</p>
+
+      <h3 class="sub-head">The structure — and why raag matters</h3>
+      <div class="factbox">
+        <div class="fb-label">The three broad sections of the Adi Granth</div>
+        <ul>
+          <li><strong>Liturgical prayers</strong> — Japu Jī ("meditation"), Sodar &amp; So Purakh, Sohilā (the early core of Nitnem)</li>
+          <li><strong>31 Rāgas</strong> — the bulk of the text, from Srī Rāga (14–93) to Rāg Jaijaivantī (1352–1429)</li>
+          <li><strong>Epilogue</strong> — Salok Vārān te Vadhīk (saloks beyond the vars), concluding with Mundāvaṇi &amp; Rāgamālā</li>
+        </ul>
+      </div>
+      <p>The organisation by raag is not decorative — it foregrounds the <strong>musical, performative</strong> character of the scripture. As Shackle and Mandair put it, "Guru Nanak and his successors wish their hymns to be sung to raags that express the emotions of the text, and the performance style to be compatible with the meaning of the hymn." Each raag evokes a mood, a <em>ras</em>, that shapes how the shabad is received. Some traditional exponents (Bhai Baldeep Singh and older kirtan lineages) hold that certain raags are <strong>distinctive to the Gurus themselves</strong>, shaped for particular shabads, not simply borrowed from Hindustani classical music.</p>
+      <p>So raag is essential to <strong>interpretation</strong>: performance works upon the self-conscious mind and draws it into relation with the deeper inward self, attuning consciousness to the Divine ground. The <em>ras</em> of the shabad is not separate from its musical form — this takes us back to Module 1's theme that the medium is part of the message. Gurbani cannot be reduced to verbal meaning alone; it is meant to be voiced, sung, and inwardly enacted.</p>
+
+      <h3 class="sub-head">What keeps Gurbani internally coherent — central themes</h3>
+      <div class="factbox">
+        <div class="fb-label">Four central themes (Pashaura Singh)</div>
+        <ul>
+          <li>The conception of divine <strong>Truth (sach)</strong> — grounded especially in the Mūl Mantar</li>
+          <li>The <strong>way to realise</strong> that Truth in lived experience — truth cannot stay abstract; it is realised through honest, moral living</li>
+          <li>Describing those who have become <strong>truthful (sachiār)</strong> — the saints who embody realisation</li>
+          <li>Exposing <strong>false religiosity</strong> — pakhand (hypocrisy) and dikhava (showmanship), the intermediary who exploits his position</li>
+        </ul>
+      </div>
+      <p>What is attacked in the fourth theme is not learning or visible religious identity in itself, but using religion as performance, status, or power. Truth in Guru Granth Sahib is never only contemplative — it is also <strong>discriminating</strong>, distinguishing living spirituality from religious fraud.</p>
+
+      <h3 class="sub-head">A traditional reading — three interwoven "chapters" (kāṇḍ)</h3>
+      <div class="verse">
+        <div class="gurmukhi">ਕਰਮੀ ਆਵੈ ਕਪੜਾ ਨਦਰੀ ਮੋਖੁ ਦੁਆਰੁ ॥<br>ਅੰਮ੍ਰਿਤ ਵੇਲਾ ਸਚੁ ਨਾਉ ਵਡਿਆਈ ਵੀਚਾਰੁ ॥<br>ਨਾਨਕ ਏਵੈ ਜਾਣੀਐ ਸਭੁ ਆਪੇ ਸਚਿਆਰੁ ॥੪॥</div>
+        <div class="trans">Through good deeds we receive this garment; through grace we reach salvation's gate. In the ambrosial hours, chant the True Name and contemplate the Divine's glory. O Nanak, it must be realised: of Himself, He is All and True.</div>
+        <div class="cite">Guru Nanak · Japji Sahib</div>
+      </div>
+      <p>The sampradāyik schools (Taksal, Nirmalas, the Giani Bunga) read Guru Granth Sahib through three broad <em>kāṇḍ</em>:</p>
+      <div class="factbox">
+        <div class="fb-label">The three kāṇḍ</div>
+        <ul>
+          <li><strong>Karam Kāṇḍ</strong> (action) — not empty ritual but the cultivation of right conduct and virtue: truthfulness (sat), contentment (santokh), compassion (daiā), righteousness (dharam), discernment (vivek), humility.</li>
+          <li><strong>Upāsanā / Bhakti Kāṇḍ</strong> (devotion) — kirtan, katha, seva, remembrance; a sustained devotional orientation that sees divinity everywhere.</li>
+          <li><strong>Gyān Kāṇḍ</strong> (wisdom) — seeing the Divine in all, and the dissolution of <em>haumai</em>, "I"-ness.</li>
+        </ul>
+      </div>
+      <p>These are not watertight compartments — they interpenetrate. In Japji Sahib, one line — <em>"karmi aavai kapra, nadri mokh duar"</em> — already holds all three: through right action (karam) one receives the robe (kapra, read in the Faridkot Teeka as a siropa, a robe of bhakti), and through grace one reaches liberation's gate. The next lines move from devotion (remembering the True Name at amrit vela) toward wisdom (realising the Divine is all and true). They are not a ladder to climb in order. Some verses lean devotional (Guru Arjan desiring "neither kingdom nor liberation, but only love for the Divine's lotus feet"); others lean toward wisdom (<em>"man tu jot saroop hai, aapna mool pachhan"</em> — O mind, you are the form of Divine light, recognise your origin); and <em>"vin gun kite bhagat na hoi"</em> shows their dependence — without cultivating virtue, devotion cannot truly take root.</p>
+
+      <h3 class="sub-head">The assembly process — and the Bhagats as devotees of Guru Nanak</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image17.jpg" alt="Manuscript folio related to the assembly of the Adi Granth">
+      </figure>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image18.jpeg" alt="Fresco of Guru Arjan and Bhai Gurdas, Baba Atal">
+        <figcaption>Guru Arjan and Bhai Gurdas — fresco at Baba Atal, Amritsar.</figcaption>
+      </figure>
+      <p>Inclusion in the scripture is not random — it reflects thematic and spiritual <strong>compatibility</strong>. Older narratives (Gurbilās Pātshāhī Chevīn) describe the Bhagats appearing before Guru Arjan to offer their writings; this is a symbolic telling, since the Goindwal Pothis show Bhagat bani was already being collected under Guru Amar Das. Its force is to express that the Bhagats belong <strong>within</strong> this revealed order — voices recognised as consonant with the Gurus' vision. The Goindwal Pothis even frame Bhagats like Kabir and Namdev as devotees of Guru Nanak (connecting back to B40, where Kabir is Baba Nanak's disciple). This shows in the very arrangement: within each raag, the Gurus' bani comes first in chronological order, then the Bhagats, with Kabir first among them. The order of the text is itself a theological ordering.</p>
+
+      <h3 class="sub-head">The Kartarpur Bir &amp; other voices</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image19.jpeg" alt="Folio of the Kartarpur Bir">
+      </figure>
+      <p>The <strong>Kartarpur Bir</strong> is the earliest manuscript form associated with Guru Arjan and Bhai Gurdas. Its opening folio bears Guru Arjan's own writing of the Mūl Mantar; another shows Rehras. The calligraphy, layout, and larivaar form are a different scriptural world — a reminder that the Adi Granth is a <strong>materially transmitted revelation</strong>, shaped and preserved through scribal labour.</p>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image20.jpeg" alt="Map of the transregional origins of contributors to Guru Granth Sahib">
+      </figure>
+      <p>The scripture gathers many voices: the <strong>Bhatt Bani</strong> (toward the end), verses of prominent Sikhs such as Balwand, and even a few compositions associated with Bhai Mardana. It is also genuinely <strong>multilingual and transregional</strong>: Guru Nanak carries strong Punjabi inflection (and some Persian verses), Guru Arjan moves into Braj Bhasha, Guru Tegh Bahadur writes almost entirely in Braj, and the Bhagats write from their own regional and sectarian worlds — Sheikh Farid from a Sufi orientation. Inclusion itself becomes an interpretation rather than a mere archive.</p>
+
+      <h3 class="sub-head">Four poets, and Guru Arjan draws a line</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image21.jpeg" alt="Illustration related to the four poets story">
+      </figure>
+      <p>A story from Gurbilās Pātshāhī Chevīn helps think through inclusion and exclusion. Four poets — <strong>Kahna (Ganna), Pilu, Chajju,</strong> and <strong>Shah Hussain</strong> — bring their verses to Guru Arjan asking for inclusion. The point is that inclusion is not automatic: a poem may contain something true or striking and still be left out, because the task is to gather writing in line with the inner shape of <strong>Gurmat</strong>.</p>
+      <ul class="notes-list">
+        <li><strong>Kahna</strong> speaks in a strongly non-dual register ("I am that reality the Vedas and Puranas sing of…"). The insight relates to Gyān Kāṇḍ and is, at a deep level, true — yet excluded, because such language <em>alone</em> can be seized by ego: people hear "I am that" and attach it to the little self rather than the dissolution of false identity. It lacks the devotional framing that protects it from egoic misuse.</li>
+        <li><strong>Pilu</strong> is rejected for life-denying despair — as if it were better not to be born. Guru Arjan's response: this human life is precisely where Hari is obtained. Gurmat acknowledges suffering but does not settle into bitterness toward existence.</li>
+        <li><strong>Chajju</strong> is rejected for speaking negatively of women, warning devotees to keep away from them. Guru Arjan rejects this directly: the Guru has established a <strong>grihasthi panth</strong>, a householder path rooted in family, relationship, and respect for women.</li>
+      </ul>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image22.jpeg" alt="Painting of Guru Nanak and Bibi Nanaki">
+      </figure>
+      <p>That this rejection of anti-women thinking is already present in old sources matters — it is not read back from modern concerns. It is grounded in Guru Nanak's own bani: when a fanatical ascetic enters the congregation and objects to the presence of women, Guru Nanak answers that human life itself comes through woman — birth, relation, all of it — and only the True One is beyond such relation. The attack on women is an attack on the very conditions of human existence; the ascetic mistakes avoidance for purity and exclusion for holiness. A verse attributed to Kabir <em>outside</em> Guru Granth Sahib — that women destroy bhakti, mukti, and gyan — was, tellingly, <strong>not included</strong>.</p>
+      <figure class="notes-fig">
+        <img src="images/ss101-l2/image23.jpeg" alt="Illustration related to wisdom and devotion">
+      </figure>
+      <div class="key-idea">
+        <div class="ki-label">Truth without bhakti is not enough</div>
+        <p>Returning to Kahna: Guru Arjan concedes the non-dual statement is, in the highest sense, true — but in Kalyug people hear it through ego, inflating the little self rather than dissolving it. So it must be joined to <strong>bhakti</strong>. An Ayurvedic image is used: wisdom alone is like ghee — rich but, taken by itself, it overburdens and "puffs up"; devotion is the sweetness that lets it be digested. The selection process is therefore itself a guide to interpretation: what is included is true <em>in a form that leads the seeker rightly</em>.</p>
+      </div>
+
+      <h3 class="sub-head">One line, more than one meaning</h3>
+      <p>In the older commentarial traditions, a single line of Gurbani can legitimately carry more than one meaning — which is why tikas offer several layers for the same pankti. Take <em>"Visar na dataar"</em> from Japji Sahib. Read <strong>devotionally</strong>: "May I not forget the One who gives to all" — placing agency with the Divine, a remembrance that sustenance and gifts are given, not self-produced. Read toward <strong>gyan</strong> (as in Suraj Prakash): the "Giver" is what I truly am beyond name, story, and ego — "May I not forget that I am that reality which gives to all," the dissolution of the false self into Divine light. The same line unfolds in more than one authentic direction; a kathavachak is expected to open a line through action, devotion, and wisdom together. Gurbani is not flattened into one interpretive lane.</p>
+
+      <h3 class="sub-head">Two ways of reading — dualistic &amp; non-dualistic</h3>
+      <p>Finally, Pashaura Singh's contrast of two broad modes. The <strong>dualistic</strong> style separates words from their setting — isolating them as single signifiers of one stable meaning, emphasising objectivity, rationality, and hierarchy, with paradox sitting uncomfortably and context secondary. It is associated with twentieth-century Singh Sabha interpretation, shaped by English education and Western historical method. The <strong>non-dualistic</strong> style is more holistic: words live within context; the <em>utanka</em> (situational background of a shabad) matters — who was being addressed, what provoked it, which metaphors were alive, how terms like Ram or Hari were being used. Here <strong>performance matters as much as information</strong>: a shabad is sung, heard, recited, and lived; its raag and recitation are part of its meaning. The sampradāyik traditions keep context, performance, recitation, and meaning together, preserving <em>santhya</em> (proper recitation): even though Gurbani critiques empty repetition, recitation done with love still bears fruit.</p>
+      <div class="key-idea">
+        <div class="ki-label">Gurbani as ever-fresh</div>
+        <p>Gurbani is described as "new every morning." Through practices like taking a <em>hukamnama</em>, the same bani speaks freshly into different situations — not because meaning is invented arbitrarily, but because the text, approached devotionally and contextually, is capacious enough to stay alive. The deeper question running through the whole module: is Gurbani a text to decode and master, or a revealed, sung, many-layered source of transformation to be entered through practice, devotion, context, and inherited wisdom?</p>
+      </div>
+
+      <div class="in-brief">
+        <div class="ib-label">In brief</div>
+        <ul>
+          <li>Guru Arjan assembles the <strong>Adi Granth</strong> — Gurus first, then the Bhagats (Kabir first) — sealed with the Mundavani to protect authentic Gurbani from forgery.</li>
+          <li>Its structure (liturgy → 31 raags → epilogue) teaches that Gurbani is meant to be <strong>sung</strong>: raag carries the ras and is essential to interpretation.</li>
+          <li>Inclusion is itself interpretation: truth is accepted only <strong>joined to bhakti</strong> (the four-poets story; the grihasthi panth's respect for women).</li>
+          <li>One line can hold many meanings; the <strong>non-dualistic</strong>, contextual, performative reading keeps Gurbani "new every morning."</li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="footer-text">Mūl Learnings</div>
+  <div class="footer-text">SS 101 · Module 2</div>
+</footer>
+</body>
+</html>

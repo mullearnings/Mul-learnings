@@ -35,8 +35,22 @@
   .placeholder { background: var(--surface); border: 1px solid #dde9e6; border-left: 3px solid var(--clay); padding: 2.6rem 2.4rem; max-width: 680px; }
   .placeholder .label { font-family: 'Cormorant Garamond', serif; font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-deep); display: block; margin-bottom: 1rem; }
   .placeholder p { color: #3a4a4a; line-height: 1.9; }
-  .back-link { display: inline-block; margin-top: 2rem; font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); text-decoration: none; transition: color 0.2s; }
+  .back-link { display: inline-block; margin-top: 2.5rem; font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); text-decoration: none; transition: color 0.2s; }
   .back-link:hover { color: var(--navy); }
+
+  .module-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.4rem; }
+  .module-card { background: var(--surface); border: 1px solid #dde9e6; border-top: 3px solid var(--accent); padding: 1.8rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 0.5rem; min-height: 210px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .module-card:hover { border-top-color: var(--clay); box-shadow: 0 4px 20px rgba(46,110,102,0.12); }
+  .module-card.soon { opacity: 0.55; pointer-events: none; border-top-color: #cfe0db; }
+  .mc-kicker { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: #6f857f; }
+  .mc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--ink); line-height: 1.2; }
+  .mc-desc { font-size: 0.96rem; color: var(--muted2); line-height: 1.65; flex: 1; }
+  .mc-sections { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.2rem; }
+  .mc-tag { font-family: 'Cormorant Garamond', serif; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 3px; }
+  .mc-tag.on { color: #fff; background: var(--accent); }
+  .mc-tag.off { color: #8aa39d; background: #eaf2ef; }
+  .mc-cta { font-family: 'Cormorant Garamond', serif; font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-top: 0.5rem; }
+  .mc-soon { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); margin-top: 0.5rem; }
 
   @media (max-width: 768px) {
     nav, .page-header, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
@@ -60,12 +74,58 @@
   <p class="page-desc">An introduction to the Sikh tradition, exploring the era from Guru Nanak to Guru Gobind Singh.</p>
 </div>
 <main>
-  <div class="section-label">Lessons</div>
-  <div class="placeholder">
-    <span class="label">Study in progress</span>
-    <p>This is the active course. Lesson notes — readings, themes, and reflections from each unit of SS 101 — will be gathered here as the term unfolds, in the same word-by-word, source-by-source spirit as the Gurbani studies.</p>
-    <a class="back-link" href="studysikhi.html">← Back to StudySikhi</a>
+  <div class="section-label">Modules</div>
+  <p style="font-size:1.02rem; color:var(--muted2); line-height:1.8; max-width:680px; margin-bottom:2rem;">The course runs across six modules, from Guru Nanak to Guru Gobind Singh. Each module has three sections — <strong style="color:var(--ink); font-weight:600;">Lecture Notes</strong>, <strong style="color:var(--ink); font-weight:600;">Discussion Q&amp;A</strong>, and <strong style="color:var(--ink); font-weight:600;">Active Recall</strong>.</p>
+
+  <div class="module-grid">
+
+    <a href="ss101-l1-notes.html" class="module-card">
+      <div class="mc-kicker">Module 1</div>
+      <div class="mc-title">From Guru Nanak — the world, method &amp; message</div>
+      <div class="mc-desc">The setting of 1469, reading history without colonial boxes, the Janam Sakhis, and the flavours of Guru Nanak's writing.</div>
+      <div class="mc-sections"><span class="mc-tag on">Notes</span><span class="mc-tag off">Q&amp;A soon</span><span class="mc-tag on">Recall</span></div>
+      <div class="mc-cta">Lecture Notes →</div>
+    </a>
+
+    <a href="ss101-l2-notes.html" class="module-card">
+      <div class="mc-kicker">Module 2</div>
+      <div class="mc-title">Community formation — Guru Angad to Guru Arjan</div>
+      <div class="mc-desc">The line of succession after Guru Nanak, the women who built the Panth, and the assembly of the Adi Granth.</div>
+      <div class="mc-sections"><span class="mc-tag on">Notes</span><span class="mc-tag off">Q&amp;A soon</span><span class="mc-tag off">Recall soon</span></div>
+      <div class="mc-cta">Lecture Notes →</div>
+    </a>
+
+    <div class="module-card soon">
+      <div class="mc-kicker">Module 3</div>
+      <div class="mc-title">Lesson 3</div>
+      <div class="mc-desc">To be added as the term unfolds.</div>
+      <div class="mc-soon">Coming soon</div>
+    </div>
+
+    <div class="module-card soon">
+      <div class="mc-kicker">Module 4</div>
+      <div class="mc-title">Lesson 4</div>
+      <div class="mc-desc">To be added as the term unfolds.</div>
+      <div class="mc-soon">Coming soon</div>
+    </div>
+
+    <div class="module-card soon">
+      <div class="mc-kicker">Module 5</div>
+      <div class="mc-title">Lesson 5</div>
+      <div class="mc-desc">To be added as the term unfolds.</div>
+      <div class="mc-soon">Coming soon</div>
+    </div>
+
+    <div class="module-card soon">
+      <div class="mc-kicker">Module 6</div>
+      <div class="mc-title">Lesson 6</div>
+      <div class="mc-desc">To be added as the term unfolds.</div>
+      <div class="mc-soon">Coming soon</div>
+    </div>
+
   </div>
+
+  <a class="back-link" href="studysikhi.html">← Back to StudySikhi</a>
 </main>
 <footer>
   <div class="footer-text">Mūl Learnings</div>

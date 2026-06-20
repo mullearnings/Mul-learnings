@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SS 101 · Lesson 1 — Mūl Learnings</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --accent: #2E6E66; --accent-deep: #1E4F48; --accent-tint: #dcebe7;
+    --clay: #C17A5B; --clay-deep: #a05f42;
+    --ss-bg: #f0f6f4; --surface: #ffffff; --ink: #1c322e; --muted2: #5f7a74;
+  }
+  body { background: var(--ss-bg); }
+  .nav-breadcrumb { display: flex; align-items: center; gap: 0.6rem; font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-breadcrumb a { color: #94c2ba; text-decoration: none; transition: color 0.15s; }
+  .nav-breadcrumb a:hover { color: var(--cream); }
+  .nav-breadcrumb .sep { color: #94c2ba; opacity: 0.5; }
+  .nav-breadcrumb .current { color: var(--cream); }
+  .page-header { background: var(--accent-deep); padding: 3.5rem 5rem 2.4rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: #94c2ba; margin-bottom: 1rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 2.9rem; font-weight: 300; color: #f0f6f4; line-height: 1.12; margin-bottom: 0.7rem; }
+  .page-desc { font-size: 1.05rem; color: #9bb7b1; line-height: 1.7; max-width: 620px; }
+  .subnav { background: var(--accent-deep); padding: 0 5rem; display: flex; gap: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .subnav a, .subnav span { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.9rem 0; text-decoration: none; color: #7ba89f; border-bottom: 2px solid transparent; }
+  .subnav a.active { color: #f0f6f4; border-bottom-color: var(--clay); }
+  .subnav .soon { color: #5b827a; cursor: default; }
+
+  main { flex: 1; padding: 3rem 5rem 6rem; background: var(--ss-bg); animation: appear 0.5s 0.1s ease both; }
+  .lecture-wrap { display: grid; grid-template-columns: 240px 1fr; gap: 3.5rem; align-items: start; }
+  .lecture-map { position: sticky; top: 1.5rem; max-height: calc(100vh - 3rem); overflow-y: auto; }
+  .map-label { font-family: 'Cormorant Garamond', serif; font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted2); margin-bottom: 1rem; }
+  .map-item { display: block; padding: 0.45rem 0; text-decoration: none; border-bottom: 1px solid #e2ece9; font-size: 0.86rem; line-height: 1.4; color: var(--ink); transition: color 0.15s; }
+  .map-item:hover { color: var(--accent); }
+  .map-item.dim { color: #9fb0ab; }
+  .map-item .mp { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: block; }
+  .map-item.dim .mp { color: #b6c5c0; }
+
+  .content { max-width: 740px; }
+  .content p { font-size: 1.06rem; line-height: 1.85; color: #2f3f3b; margin-bottom: 1.15rem; }
+  .content p strong { color: var(--ink); font-weight: 600; }
+  .term { font-weight: 600; color: var(--accent-deep); border-bottom: 1px solid #b9d6cf; }
+
+  .part-head { font-family: 'Cormorant Garamond', serif; font-weight: 400; color: var(--ink); margin: 3.8rem 0 0.4rem; line-height: 1.15; scroll-margin-top: 1.5rem; }
+  .part-head .part-kicker { display: block; font-size: 0.78rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--clay-deep); margin-bottom: 0.5rem; }
+  .part-head .part-title { font-size: 2rem; }
+  .part-head:first-child { margin-top: 0; }
+  .sub-head { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--ink); margin: 2.4rem 0 0.9rem; line-height: 1.25; scroll-margin-top: 1.5rem; }
+
+  .overview { background: var(--surface); border: 1px solid #dde9e6; border-top: 3px solid var(--accent); padding: 1.8rem 2rem; margin-bottom: 2.5rem; }
+  .overview h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.9rem; }
+  .overview p { font-size: 1.02rem; line-height: 1.8; color: #2f3f3b; margin-bottom: 1rem; }
+  .ov-q { font-family: 'Cormorant Garamond', serif; font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted2); margin: 1.2rem 0 0.6rem; }
+  .ov-list { margin: 0 0 0 1.2rem; }
+  .ov-list li { font-size: 1rem; line-height: 1.7; color: #2f3f3b; margin-bottom: 0.35rem; }
+  .ov-list li::marker { color: var(--clay); }
+  .terms { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
+  .terms span { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.06em; color: var(--accent-deep); background: var(--accent-tint); padding: 0.25rem 0.7rem; border-radius: 3px; }
+
+  .content ul.notes-list { margin: 0 0 1.4rem 1.3rem; }
+  .notes-list li { font-size: 1.04rem; line-height: 1.8; color: #2f3f3b; margin-bottom: 0.5rem; }
+  .notes-list li::marker { color: var(--accent); }
+
+  .key-idea { background: var(--accent-tint); border-left: 3px solid var(--accent); padding: 1.3rem 1.6rem; margin: 1.8rem 0; }
+  .key-idea .ki-label { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: 0.4rem; }
+  .key-idea p { font-size: 1.04rem; line-height: 1.8; color: var(--ink); margin: 0; }
+
+  .in-brief { background: var(--accent-deep); padding: 1.4rem 1.7rem; border-radius: 6px; margin: 2.4rem 0 0.5rem; }
+  .in-brief .ib-label { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: #94c2ba; margin-bottom: 0.6rem; }
+  .in-brief ul { margin: 0 0 0 1.1rem; }
+  .in-brief li { color: #dfeee9; font-size: 1rem; line-height: 1.65; margin-bottom: 0.4rem; }
+  .in-brief li::marker { color: var(--clay); }
+  .in-brief li strong { color: #fff; font-weight: 600; }
+
+  .factbox { background: var(--surface); border: 1px solid #dde9e6; border-left: 3px solid var(--clay); padding: 1.4rem 1.7rem; margin: 1.8rem 0; }
+  .factbox .fb-label { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay-deep); margin-bottom: 0.8rem; }
+  .factbox ul { margin: 0 0 0 1.1rem; }
+  .factbox li { font-size: 0.98rem; line-height: 1.6; color: #2f3f3b; margin-bottom: 0.4rem; }
+  .factbox li strong { color: var(--ink); }
+
+  .verse { background: var(--surface); border: 1px solid #dde9e6; border-radius: 4px; padding: 1.6rem 1.8rem; margin: 1.8rem 0; }
+  .verse .gurmukhi { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1.25rem; line-height: 2; color: var(--accent-deep); margin-bottom: 0.7rem; }
+  .verse .trans { font-size: 1.02rem; font-style: italic; line-height: 1.7; color: #3a4a4a; }
+  .verse .cite { font-family: 'Cormorant Garamond', serif; font-size: 0.76rem; letter-spacing: 0.1em; color: var(--muted2); margin-top: 0.8rem; }
+
+  figure.notes-fig { margin: 2rem 0; }
+  figure.notes-fig img { width: 100%; height: auto; border: 1px solid #d4e3df; border-radius: 4px; display: block; }
+  figure.notes-fig figcaption { font-size: 0.9rem; font-style: italic; color: var(--muted2); margin-top: 0.6rem; }
+
+
+  @media (max-width: 900px) {
+    nav, .page-header, .subnav, main { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .page-title { font-size: 2rem; }
+    .lecture-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .lecture-map { position: static; max-height: none; background: var(--surface); border: 1px solid #dde9e6; border-radius: 6px; padding: 1.2rem 1.4rem; }
+    .content { max-width: none; }
+  }
+</style>
+</head>
+<body>
+<div class="top-border"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Mūl <span>Learnings</span></a>
+  <div class="nav-breadcrumb">
+    <a href="studysikhi.html">StudySikhi</a><span class="sep">/</span>
+    <a href="ss101.html">SS 101</a><span class="sep">/</span>
+    <span class="current">Lesson 1</span>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="header-eyebrow">StudySikhi · SS 101 · Lesson 1</div>
+  <h1 class="page-title">From Guru Nanak — the world, the method &amp; the message</h1>
+  <p class="page-desc">The setting Guru Nanak was born into, how to read that history honestly, the sources for his life, and the core ideas in his writing.</p>
+</div>
+<div class="subnav">
+  <a href="ss101-l1-notes.html" class="active">Lecture Notes</a>
+  <span class="soon">Discussion Q&amp;A · soon</span>
+  <a href="ss101-l1-recall.html">Active Recall</a>
+</div>
+<main>
+  <div class="lecture-wrap">
+    <aside class="lecture-map">
+      <div class="map-label">In this lesson</div>
+      <a class="map-item" href="#overview"><span class="mp">Start</span>Overview &amp; key questions</a>
+      <a class="map-item" href="#part1"><span class="mp">Part 1</span>Getting started</a>
+      <a class="map-item" href="#part2"><span class="mp">Part 2</span>History without colonial boxes</a>
+      <a class="map-item" href="#part3"><span class="mp">Part 3</span>Guru Nanak in world history</a>
+      <a class="map-item" href="#part4"><span class="mp">Part 4</span>His life &amp; the Janam Sakhis</a>
+      <a class="map-item" href="#part5"><span class="mp">Part 5</span>Flavours of his writing</a>
+      <a class="map-item" href="#part6"><span class="mp">Part 6</span>Nirguna &amp; Sarguna</a>
+    </aside>
+
+    <div class="content">
+
+      <div class="overview" id="overview">
+        <h2>What this lesson sets up</h2>
+        <p>SS 101 traces the Sikh tradition from Guru Nanak to Guru Gobind Singh. Lesson 1 builds the foundation: the political and religious world of 1469, why colonial history-writing distorts that world, how to read the sources for Guru Nanak's life, and the core ideas — the "flavours" — of his writing, beginning with <span class="term">Naam</span>.</p>
+        <div class="ov-q">Hold these questions as you read</div>
+        <ul class="ov-list">
+          <li>How did religion actually function in precolonial Punjab — and how is that different from how we picture it now?</li>
+          <li>Why must precolonial history not be read through a colonial lens?</li>
+          <li>What kind of texts are the Janam Sakhis, and how should they be read?</li>
+          <li>What does Guru Nanak mean by Naam — and why devotion over definition?</li>
+        </ul>
+        <div class="ov-q">Key terms in this lesson</div>
+        <div class="terms"><span>Naam</span><span>Daan</span><span>Ishnān</span><span>Nirguna / Sarguna</span><span>Janam Sakhi</span><span>Udasi</span><span>bhakti</span><span>prema bhakti</span><span>vismād</span><span>sahaj</span></div>
+      </div>
+
+      <h2 class="part-head" id="part1"><span class="part-kicker">Part 1</span><span class="part-title">Getting started</span></h2>
+      <p>SS 101 is a journey through the Sikh tradition that will move from Guru Nanak to Guru Gobind Singh, the tenth and final Sikh Guru. This is not a series about isolated ideas; it is a tradition unfolding across history, studied in sequence.</p>
+      <p>Depth tracks effort. The mandatory readings should be done, but the additional readings are where much of the intellectual and spiritual payoff lies. Each lesson pairs at least one mandatory reading with a selection of further ones, chosen to remain useful long after the course ends — and to introduce you to <strong>leading Sikh academic scholars and important precolonial texts</strong>. The course teaches not only content but where knowledge comes from and whom to read.</p>
+      <p>Lesson 1 covers a wide arc:</p>
+      <ul class="notes-list">
+        <li>The <strong>sociopolitical context</strong> of Guru Nanak's time (drawing largely on the Asher &amp; Talbot reading) — who ruled when he was born in 1469, and who the major powers were. The Mughal Empire recurs throughout the course, so it is introduced from the start.</li>
+        <li>The <strong>major themes and ideas</strong> in Guru Nanak's writings — not exhaustively, but enough to form a base for later lessons. (Close interpretive analysis of Gurbani begins next lesson.)</li>
+        <li>The <strong>Janam Sakhis</strong>, the narrative traditions about Guru Nanak's life — and the methodological question of what kind of text they are before we read them.</li>
+        <li>The <strong>Divine</strong> through categories such as Paramatma, Rab, and Vaheguru, and the distinction of <span class="term">Sarguna and Nirguna</span> — with form and without form.</li>
+      </ul>
+      <p>A first warning frames everything that follows: religion in the precolonial period did not function the way many people imagine religion today. That reminder is meant to temper modern assumptions from the very beginning.</p>
+
+      <div class="in-brief">
+        <div class="ib-label">In brief</div>
+        <ul>
+          <li>The course runs <strong>Guru Nanak → Guru Gobind Singh</strong>, and depth depends on effort — the extra readings carry much of the payoff.</li>
+          <li>Lesson 1 sets up four things: the <strong>world of 1469</strong>, the <strong>Janam Sakhis</strong> as a kind of text, the <strong>core ideas</strong> of Guru Nanak's writing, and the <strong>Nirguna/Sarguna</strong> frame for the Divine.</li>
+        </ul>
+      </div>
+
+      <h2 class="part-head" id="part2"><span class="part-kicker">Part 2</span><span class="part-title">Reading history without colonial boxes</span></h2>
+      <p>Identities in the precolonial period were <strong>multivalent</strong>, and political and religious relationships were layered. Boundaries between traditions existed, but they were not lived in the rigid way modern people expect. It would not have been unusual for Muslims to take part in a Sikh darbar, court, or divan where kirtan was performed. In Darbar Sahib, Muslim <em>rababis</em> openly performed the seva of kirtan — a pattern visible into the twentieth century, when it changed, which is exactly why the older pattern must be kept in mind.</p>
+      <p>As Arvind-Pal Mandair argues, "religion" as we tend to understand it is a relatively recent invention, emerging in the nineteenth century through the intersection of various discourses. The point is not that people had no commitments before then, but that the modern idea of religion locks people into sealed categories and treats cross-participation with suspicion. Processes such as the colonial <strong>census</strong> are part of why. Begin, then, with the awareness that the very function of religion in the precolonial period was different.</p>
+      <p>That shared world had a shared vocabulary. Sufi texts from Guru Nanak's time, such as the <em>premakhyans</em>, often use names for the Divine that are not exclusively Quranic — not only Allah, but also Hari, Bishan, and Ram. So the question becomes: how are these names being used? Do they mean what they would in a Vaishnav setting, or are they reframed? A Hindu or Sikh could hear a Sufi recitation in a dargah and find the names familiar; a Vaishnav could hear praise of Hari or Ram through one lens while a Sufi preacher explained them through another. Traditions were not all the same — the symbolic and devotional space was simply more <strong>permeable</strong> than later models allow. The Sikh tradition had real boundaries and a distinct identity; what differed was how communities interacted.</p>
+
+      <h3 class="sub-head">The painting as evidence</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l1/image1.png" alt="Bishan Singh painting of Darbar Sahib, 1860s">
+        <figcaption>Harimandir Sahib (Darbar Sahib), painted by Bishan Singh, 1860s — believed to be in the Toor Collection.</figcaption>
+      </figure>
+      <p>The painting is not decoration; it is <strong>visual evidence</strong> for a historical claim, letting us see the mixed devotional world rather than only hear about it. Around the parkarma and the sarovar is a wide range of devotees. At the lower left, a figure with a conical blue turban and dhamalla — an <strong>Akali Nihang</strong> — carries a club on his shoulder. On the far left, a group of ash-covered ascetics grind a green cannabis drink. On the right, a woman with a child. Many kinds of people inhabited the same sacred space, and not all of them match a later imagination of who counts as Sikh in the Khalsa sense.</p>
+      <p>Though it belongs to the colonial period — British power was already established in Punjab — the painting preserves older continuities that remained visible into the late nineteenth century. Only in the early twentieth century did this world begin to break apart into hardened, antagonistic camps: Sikhs versus Muslims, Muslims versus Hindus, Hindus versus Sikhs. That opposition-driven model does not accurately describe the precolonial period before colonial intervention.</p>
+      <p>For those who want to go deeper, the lecture points to <strong>Harjot Oberoi</strong> on the construction of religious boundaries, Mandair's <em>The Specter of the West</em>, and <strong>Carl Ernst</strong> on Sufism and yoga (including Sufis adopting forms of Hatha Yoga). Should such borrowing be dismissed as dilution, or is the reality more complicated? Even the word <em>syncretic</em> may be too simple; we need better ways of talking about these interactions.</p>
+      <div class="key-idea">
+        <div class="ki-label">Key idea</div>
+        <p>When you meet precolonial Sikh material that looks "mixed," don't rush to label elements Hindu or Muslim and conclude it isn't "real" Sikhi. Across the tradition, concepts, metaphors, and narratives are <strong>redefined and uniquely used</strong> by each community — including the Sikh community.</p>
+      </div>
+
+      <h3 class="sub-head">The colonial lens: James Mill's three ages</h3>
+      <p>History must not be read through a colonial lens, because the categories used to tell history can quietly reshape how whole communities are imagined. <strong>James Mill</strong>, a Scottish writer associated with the East India Company, wrote influentially about Indian history, and his model of dividing it into three periods shaped both later understandings of the past and the way the British understood their own mission.</p>
+      <div class="factbox">
+        <div class="fb-label">Mill's three-age model — and why it must be challenged</div>
+        <ul>
+          <li><strong>Ancient Hindu golden age</strong> → <strong>long Muslim / Mughal "decline"</strong> → <strong>British "rescue"</strong> (railways, colleges, translation, legal reform, the ending of social evils such as sati).</li>
+          <li>This is not neutral history but a moral and political justification for imperial rule — comparable to modern imperial language, e.g. America framing its role in Afghanistan as "opening schools for women." Empire describes itself as humanitarian to legitimise domination.</li>
+          <li>It treats the long medieval period (~11th–19th century) as stagnant — which scholars have shown is simply false. That era produced remarkable paintings, texts, and culture. The model slanders a vast span of history and turns that slander into justification for rule.</li>
+          <li>It chops history into religious boxes, ignoring the deep interconnectedness of traditions.</li>
+        </ul>
+      </div>
+      <p>The numbers complicate the moral story. During the Mughal period, Muslims were only about <strong>fifteen percent</strong> of the subcontinent's population — a minority ruling a majority. When the Sikhs ruled Punjab under Maharaja Ranjit Singh, Sikhs were only around <strong>ten percent</strong> of Punjab's population. This does not erase conflict, but it complicates simplistic stories about who ruled whom.</p>
+      <p>If one only hears that Sikhs and Mughals were always enemies, the relationship is flattened. The harshness was real — the lecture explicitly names the executions of the fifth Guru and the ninth Guru under the orders of Jahangir and Aurangzeb. But the black-and-white telling leaves out the many forms of political and spiritual integration that also existed: the importance of the Sufi <strong>Mian Mir</strong>; the Janam Sakhi tradition in which Guru Nanak meets <strong>Kabir</strong>; and the way Guru Amar Das, assembling pothis that would eventually feed into Guru Arjan's compilation of the Adi Granth, included the compositions of Kabir and other Bhagats from across the subcontinent.</p>
+      <div class="key-idea">
+        <div class="ki-label">Carry this question forward</div>
+        <p>Why is there such <strong>deliberate creation of shared dialogue</strong>? This is one of the key historical and interpretive questions to hold through the whole course.</p>
+      </div>
+
+      <div class="in-brief">
+        <div class="ib-label">In brief</div>
+        <ul>
+          <li>Precolonial religion was <strong>permeable, not boxed</strong>; sealed, mutually exclusive "religion" is largely a nineteenth-century construct.</li>
+          <li>The Bishan Singh painting is <strong>evidence</strong> of that mixed devotional world.</li>
+          <li>Colonial history-writing (Mill's three ages) is <strong>imperial justification, not neutral truth</strong>; Sikh–Mughal history was entangled, not pure opposition.</li>
+        </ul>
+      </div>
+
+      <h2 class="part-head" id="part3"><span class="part-kicker">Part 3</span><span class="part-title">Guru Nanak in world history</span></h2>
+      <p>Guru Nanak was born in 1469 — not in a distant, timeless world, but in an age close to events many will recognise from European history. The Gutenberg press had recently transformed the circulation of texts. The Spanish Inquisition was underway. Columbus crossed the Atlantic in his lifetime. <strong>Martin Luther</strong> was writing the major works of the Protestant Reformation while Guru Nanak was alive — and the British later drew a parallel between Luther and Guru Nanak, both imaginable (through a Protestant lens) as figures challenging religious authorities and emphasising a direct relationship with the Divine. Shakespeare, by contrast, belongs not to Guru Nanak's lifetime but to the period of <strong>Guru Arjan</strong> — a comparison that also flags Guru Arjan as a prolific writer: he is the most prolific contributor to the Guru Granth Sahib, authoring the greatest number of its passages.</p>
+      <figure class="notes-fig">
+        <img src="images/ss101-l1/image2.png" alt="Historical timeline image from the lecture">
+        <figcaption>Placing Guru Nanak (b. 1469) alongside the wider world: Gutenberg, the Inquisition, Columbus, and Luther.</figcaption>
+      </figure>
+
+      <h3 class="sub-head">Before the Mughals: the Delhi Sultanate</h3>
+      <p>The period of Guru Nanak's birth is still <strong>before</strong> the rise of the Mughal Empire. The order then in place is what historians call the <strong>Delhi Sultanate</strong> — Turko-Afghan regimes ruling mainly the north of the subcontinent. The Lodhis, described as Afghan or Pathan rulers, were a key dynasty; their memory remained meaningful long after their fall (Ahmad Shah Durrani / Abdali, associated with the Vadda Ghallughara, even wrote of restoring the age of the Lodhi dynasty).</p>
+      <figure class="notes-fig">
+        <img src="images/ss101-l1/image3.png" alt="Tomb of Sikandar Lodhi">
+        <figcaption>The tomb of Sikandar Lodhi — a key ruler of the Delhi Sultanate era.</figcaption>
+      </figure>
+      <div class="factbox">
+        <div class="fb-label">"Muslim rule"? — a needed caution</div>
+        <ul>
+          <li>Don't imagine a straightforward Islamic state in a rigid civilizational sense — most scholars reject that simplification.</li>
+          <li>The Sultanate <strong>shared greatly with Indic polities</strong> of the time; the Sultans were rulers, not religious leaders, and generally continued existing Indic political practices.</li>
+          <li>Their main concern was not ideological transformation of society but <strong>secure access to agricultural surplus</strong> and trade routes linking the subcontinent with Afghanistan.</li>
+          <li>Political authority was <strong>fragmented</strong>; much of rule revolved around taxation and land revenue.</li>
+        </ul>
+      </div>
+
+      <h3 class="sub-head">Babur's conquest and a changing military world</h3>
+      <p>Guru Nanak himself records the battle between the Mughals and the Pathans, and the contrast between the two armies is striking. On one side, <strong>topaks</strong> — firearms and guns — used by the Mughals. On the other, <strong>hasti</strong> — war elephants — used by the Delhi Sultanate. The Afghans relied on an older style of Indian warfare while the Mughals brought new gunpowder methods and mounted techniques that let them overwhelm their opponents. That shift produced Babur's victory in <strong>1526</strong> and the founding of the Mughal Empire.</p>
+      <p>The word "Mughal" derives from "Mongol": Babur was of Turko-Mongol background, part Turk and part Mongol — which is why he does not look like what many casually imagine as a typical Indian Muslim ruler. His reign in India was short, only about five or six years. His son Humayun succeeded him, lost power to the Pathans, left the subcontinent through Afghanistan to Persia, and returned with Persian support (though he himself was not Persian). This sequence matters because Sikh literature repeatedly places the Gurus in relation to the Mughal emperors — it becomes part of Sikh narrative memory and historical self-understanding.</p>
+      <div class="factbox">
+        <div class="fb-label">The Mughal emperors across the Guru period</div>
+        <ul>
+          <li><strong>Babur</strong> — founds the empire, 1526 — time of Guru Nanak</li>
+          <li><strong>Humayun</strong> (1530–1556) — in <em>Mehma Prakash</em>, described meeting Guru Angad Dev Ji</li>
+          <li><strong>Akbar</strong> (1556–1605) — associated with Guru Amar Das, Guru Ram Das &amp; Guru Arjan</li>
+          <li><strong>Jahangir</strong> (1605–1627) — linked with Guru Hargobind</li>
+          <li><strong>Shah Jahan</strong> (1628–1658) — in conflict with Guru Hargobind</li>
+          <li><strong>Aurangzeb</strong> (1658–1707) — orders the execution of Guru Tegh Bahadur</li>
+          <li>Decline, 1707–1857. Guru Gobind Singh meets not Aurangzeb but his successor, Bahadur Shah.</li>
+        </ul>
+      </div>
+      <p>After Aurangzeb the empire enters major decline through the eighteenth century: the Marathas gain ground from the Deccan and the Sikhs increasingly gain territory in Punjab. The two timelines overlap with surprising neatness — Guru Nanak lives slightly before Babur's arrival, and Guru Gobind Singh passes away only one year after Aurangzeb.</p>
+
+      <h3 class="sub-head">Parallel Sikh lineages: the rival claimants</h3>
+      <p>An equally important complication lies <strong>within</strong> Sikh history. The line from Guru Nanak to Guru Gobind Singh is the orthodox lineage — but it was not the only one operating during this period. Although the tradition is commonly narrated as a smooth succession, the historical reality included influential rival groups competing for authority, prestige, and institutional power, sometimes through active struggle and attempts to enlist political authorities against one another.</p>
+      <figure class="notes-fig">
+        <img src="images/ss101-l1/image4.png" alt="Painting connected to a rival Sikh lineage">
+      </figure>
+      <div class="factbox">
+        <div class="fb-label">Heterodox / rival lineages</div>
+        <ul>
+          <li><strong>Prithi Chand</strong> (the line later called <em>Mīnā</em>, a derogatory term) — eldest son of Guru Ram Das, elder brother of Guru Arjan; disputed the succession. Succeeded by <strong>Meharban</strong>, then <strong>Harji</strong>.</li>
+          <li><strong>Ram Rai</strong> — eldest son of Guru Har Rai, elder brother of Guru Har Krishan; set himself up with a separate claim.</li>
+        </ul>
+      </div>
+      <p>A painting from Har Sahai in Punjab depicts Meharban seated on the throne — underscoring that this was not a trivial fringe presence. These groups also produced literature, often in poetic meters resembling Gurbani in form; some scholars, especially <strong>Hardeep Syan</strong>, read parts of Guru Gobind Singh's writing as responding to figures such as Harji. The internal contest was real and even dangerous: some of the poisonous accusations against Guru Arjan Dev Ji — whose execution Jahangir ordered — came, shockingly, from within his own family. Ram Rai's story ultimately includes a reconciliation near the end of his life, which the course will revisit in the period of Guru Gobind Singh.</p>
+
+      <h3 class="sub-head">The Udasis</h3>
+      <p>The <span class="term">Udasis</span> are the group linked to <strong>Sri Chand</strong>, Guru Nanak's son, who adopted an ascetic way of life from a young age. They did not live by the householder ideal Guru Nanak promoted — yet they should not be understood as a straightforward enemy tradition. Sri Chand is remembered as meeting the Gurus, and later Udasi groups at times sit within the darbar of Guru Gobind Singh; the mahant of the Udasi contingent in that period is even said to have fought in Guru Gobind Singh's first battle, proving his strength and loyalty. The Udasis often moved alongside the orthodox line in genuinely useful ways, especially in the eighteenth century.</p>
+      <p>Major interpretive differences emerge later, though, when Sikh literature is read through an Udasi lens versus the perspective of the <strong>Giani Bunga</strong>, a Sikh institution of the eighteenth century — Japji Sahib in particular becomes a site where these differences matter. This is another way the lesson prepares you not to flatten Sikh history into a single, uncontested voice.</p>
+      <div class="key-idea">
+        <div class="ki-label">A distinction to keep</div>
+        <p>Don't confuse a <strong>rival claimant</strong> (Prithi Chand, Ram Rai), a <strong>parallel tradition</strong> (the Udasis), and a <strong>simple outside opponent</strong>. The lecture is asking you to hold these as different categories.</p>
+      </div>
+
+      <div class="in-brief">
+        <div class="ib-label">In brief</div>
+        <ul>
+          <li>1469 sits in a recognisable world moment (Gutenberg, the Inquisition, Columbus, Luther); Guru Nanak's birth <strong>precedes the Mughals</strong> — the Delhi Sultanate ruled.</li>
+          <li>Babur's <strong>gunpowder</strong> wins in 1526; the Mughal emperors map neatly onto the Guru period.</li>
+          <li>Sikh history held <strong>rival lineages</strong> (Prithi Chand, Ram Rai) and <strong>parallel traditions</strong> (the Udasis) — not a single smooth line.</li>
+        </ul>
+      </div>
+
+      <h2 class="part-head" id="part4"><span class="part-kicker">Part 4</span><span class="part-title">His life &amp; the Janam Sakhis</span></h2>
+      <p>Guru Nanak was born in <strong>1469</strong> and passed away in <strong>1539</strong>, into the <strong>Bedī family</strong>, a Khatrī (merchant) caste household. The two great narrative sources for his life are the <span class="term">Janam Sakhi</span> literature and Bhai Gurdas's Vārān.</p>
+      <figure class="notes-fig">
+        <img src="images/ss101-l1/image5.png" alt="Fresco of Guru Nanak's birth, Baba Atal, Amritsar">
+        <figcaption>Guru Nanak's birth — fresco at Baba Atal, Amritsar. Mata Tripta holds the infant; a dai (midwife) at left; his elder sister Bibi Nanaki; and his father Kalyan Chand (Kalu Ji) at the far left.</figcaption>
+      </figure>
+      <p>Though this fresco was likely painted in the late nineteenth or early twentieth century — within the colonial period — it preserves <strong>precolonial Sikh narrative imagination</strong>. Above the birth scene, heavenly beings and deities descend; that iconography comes from the Janam Sakhi tradition, a reminder that Sikh narrative worlds travel through <strong>image as well as text</strong>.</p>
+
+      <h3 class="sub-head">How to read the Janam Sakhis</h3>
+      <p>The Janam Sakhis are narrative traditions recounting Guru Nanak's life, dating broadly from the late sixteenth into the eighteenth century. Several groups produced their own versions — the <strong>Meharban</strong>, <strong>Bala</strong>, and <strong>Puratan</strong> Janam Sakhis, plus an eighteenth-century text attributed to Bhai Mani Singh, the <strong>Gyan Ratnavali</strong> (still untranslated). There is not one Janam Sakhi but a <strong>family</strong> of related traditions.</p>
+      <p>They should not be read as modern history textbooks — they do not narrate Guru Nanak's life the way a standard history of the American Revolution narrates events. As Nikky-Guninder Kaur Singh writes, "Janam Sakhis tell the life stories of Guru Nanak in the language of <strong>myth and allegory</strong>. They depict the divine dispensation of Nanak, his concern for kindness, social cohesiveness, his stress on divine unity, and the consequent unity of humanity." Here myth and allegory are not insults or grounds for dismissal — they are storytelling techniques used to express Sikh philosophy and to <strong>illuminate Gurbani</strong>. Later materials can include dates, chronology, and named witnesses, but the project is to reveal the spiritual meaning of Guru Nanak's life, not to archive facts. Bhai Gurdas's Vars (he was a contemporary of Guru Arjan) sit alongside the Janam Sakhis as another such source, also working through allegory and myth.</p>
+      <div class="factbox">
+        <div class="fb-label">Janam Sakhī — what they cover</div>
+        <ul>
+          <li>Guru Nanak's birth and early life · professional employment</li>
+          <li>The start of his mission and his travels</li>
+          <li>The establishment of <strong>Kartarpur</strong></li>
+          <li>The appointment of <strong>Guru Angad</strong> as successor</li>
+          <li>Throughout, the <strong>shabad is the kernel</strong> of the narrative incident — the stories often function as commentary on Gurbani</li>
+        </ul>
+      </div>
+      <p>One emblematic detail: in the Janam Sakhi tradition, the midwife is astonished because Guru Nanak is born <strong>laughing rather than crying</strong>. Where almost every child enters the world crying, his opposite response signals who he is — entering in joy, wonder, and bliss, already seeing the Divine in everything. The story is less biological description than a claim about the kind of consciousness the tradition associates with him.</p>
+
+      <h3 class="sub-head">The gods saluting at birth</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l1/image8.jpg" alt="Janam Sakhi imagery of celestial beings saluting Guru Nanak">
+      </figure>
+      <p>The Puratan Janam Sakhi (the oldest tradition) describes the <strong>33 devas, 64 yoginis, 52 heroic beings, 6 celibates, 84 siddhas,</strong> and <strong>9 nathas</strong> all descending to salute Guru Nanak at his birth. These categories carry real prestige: the devas include Vishnu, Shiva, Brahma, Surya, Indra; the yoginis include Kali and Chandika; the heroes include Hanuman, Narasimha, Nandi; the siddhas are yogic adepts, especially Nath; the naths their major leaders.</p>
+      <p>But the story is not simply praising these beings. Kabir, in Guru Granth Sahib, says the devas are immersed in maya, the celibates are slaves to maya, the 84 siddhas are within maya's play, and the nine naths — even the sun and moon — are asleep in maya. So the Janam Sakhi is making a <strong>theological claim about Guru Nanak's status in relation to them</strong>.</p>
+      <div class="key-idea">
+        <div class="ki-label">Key idea · Julie Vig's "hegemonic resistance"</div>
+        <p>These narratives take a widely recognised sacred world and <strong>reorder</strong> it — placing all its prestigious figures beneath Guru Nanak. It is not passive borrowing of Indic imagery but a reordering of it. Seeing deities and concluding "this looks Hindu" is the wrong reading: scholars (Vig, Nikky-Guninder Kaur, Oberoi, Mandair) read it as <strong>symbolic and theological reworking, not dilution</strong>. The images are iconographic, not realistic — even Guru Nanak's small earrings are symbolic (engagement with the world, a life-affirming stance, associations with royalty and chivalry). Read them within the world that produced them.</p>
+      </div>
+
+      <h3 class="sub-head">The travels, and Mecca</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l1/image9.jpg" alt="Janam Sakhi painting of Guru Nanak's travels">
+      </figure>
+      <div class="factbox">
+        <div class="fb-label">The travels (Udāsīs)</div>
+        <ul>
+          <li>Four large travels — the <em>Udāsīs</em></li>
+          <li>Spreading the message · visiting festivals · pilgrimage sites</li>
+        </ul>
+      </div>
+      <p>The Janam Sakhis portray Guru Nanak travelling very widely — west toward Arabia and Iraq, north and east toward Tibet, south toward Sri Lanka — which helps explain Sikh memory and congregational traces across Afghanistan, Iran, Tibet, and present-day Pakistan. But the aim is not to map an exact route or supply dates like a historian; the travels and the conversations within them are <strong>pedagogical</strong>, used to explain Sikh philosophy and orient the listener toward Gurmat.</p>
+      <p>At <strong>Mecca</strong>, Guru Nanak lies with his feet pointed toward the Kaaba. A cleric objects; Guru Nanak tells him to turn his feet toward a place where the Divine does not reside. The cleric moves them, and wherever he turns them the Kaaba appears to shift to align. Whether or not it happened in that exact form, the pedagogical pattern (per Nikky-Guninder Kaur) is what matters: Guru Nanak takes an established sacred code and overturns it to <strong>unsettle assumptions and reorient toward the omnipresent, formless (nirguna) Divine</strong>. Respect for the shrine is not denied — it is placed within a larger awareness.</p>
+
+      <h3 class="sub-head">Guru Nanak and the yogis</h3>
+      <p>If there is one group with whom Guru Nanak most clearly clashes, it is the yogic tradition — especially <strong>Hatha Yoga</strong>. Drawing on Vogel's work, three contrasts stand out:</p>
+      <div class="factbox">
+        <div class="fb-label">Three contrasts with the yogic path</div>
+        <ul>
+          <li><strong>Grace vs effort</strong> — Guru Nanak emphasises <em>sahaj</em> (ease, spontaneity, grace); the yogic path emphasises force, discipline, and effort.</li>
+          <li><strong>Devotion vs technique</strong> — bhakti vs <em>jugti</em>; the Nath and Hatha practitioners develop breathwork, posture, and meditative control aimed at liberation or powers, whereas Guru Nanak points to devotion and the Guru's grace.</li>
+          <li><strong>Community vs solitude</strong> — Sikh practice emphasises <em>sangat</em>; yogic practice tends toward solitary withdrawal.</li>
+        </ul>
+      </div>
+      <div class="verse">
+        <div class="gurmukhi">ਸਬਦਿ ਜਿਤੀ ਸਿਧਿ ਮੰਡਲੀ ਕੀਤੋਸੁ ਅਪਣਾ ਪੰਥੁ ਨਿਰਾਲਾ ।<br>ਕਲਿਜੁਗ ਨਾਨਕ ਸੁਖਾਲਾ ॥੩੧॥</div>
+        <div class="trans">Through the Shabad, Guru Nanak conquered the Siddh assembly, and in doing so made his Path distinct. In the age of Kaliyug, Nanak taught the easy method of the Divine Name.</div>
+        <div class="cite">Bhai Gurdas · Vār 1, Pauri 31</div>
+      </div>
+      <p>The point is not crude triumphalism. In the Siddh Gosht, through the Shabad, Guru Nanak <strong>differentiated his path</strong> from the yogis' — marking out a distinct way rooted in devotion, grace, and communal life: the easy path of Nām.</p>
+
+      <div class="in-brief">
+        <div class="ib-label">In brief</div>
+        <ul>
+          <li>Guru Nanak: born <strong>1469</strong>, passed <strong>1539</strong>, Bedī (Khatrī) family. Sources: Janam Sakhis &amp; Bhai Gurdas.</li>
+          <li>Read the Janam Sakhis as <strong>theological storytelling</strong> (myth &amp; allegory), with the shabad as the kernel — not as modern history.</li>
+          <li>The gods saluting at birth = <strong>reordering</strong> the sacred hierarchy beneath Guru Nanak (Vig's hegemonic resistance), not Hindu dilution.</li>
+          <li>Travels and the Mecca story are <strong>pedagogical</strong>; against the yogis, Guru Nanak chooses grace, devotion, and sangat over force, technique, and solitude.</li>
+        </ul>
+      </div>
+
+      <h2 class="part-head" id="part5"><span class="part-kicker">Part 5</span><span class="part-title">The flavours of Guru Nanak's writing</span></h2>
+      <p>Guru Nanak's writing has many "flavours." Three form the central trinity — <strong>Nām, Dān, Ishnān</strong> — and around them sit the others.</p>
+      <div class="factbox">
+        <div class="fb-label">Flavours of Guru Nanak's writing</div>
+        <ul>
+          <li><strong>Divine Name</strong> — devotion (bhakti) · <strong>Charity</strong> (dān) · <strong>Cultivation of the body</strong> (ishnān)</li>
+          <li>Message of unity — non-duality (ektā) · social responsibility (sevā)</li>
+          <li>Affective messaging (kavitā / kirtan) · epigrammatic style</li>
+          <li>Wonder / joy (vismād) · fear (bhau) · jealousy (īrakhā)</li>
+        </ul>
+      </div>
+      <figure class="notes-fig">
+        <img src="images/ss101-l1/image6.png" alt="Painting of Guru Nanak's marriage, Kapany Collection">
+        <figcaption>Guru Nanak's marriage — Kapany Collection (19th century). Janam Sakhi manuscripts were frequently illustrated as well as written.</figcaption>
+      </figure>
+
+      <h3 class="sub-head">Nām — the Eternal Name</h3>
+      <figure class="notes-fig">
+        <img src="images/ss101-l1/image7.png" alt="Fresco of Guru Nanak's first day of school, Baba Atal">
+        <figcaption>Guru Nanak's first day of school — fresco at Baba Atal, Amritsar.</figcaption>
+      </figure>
+      <p>Tradition holds the following to be Guru Nanak's <strong>first composition</strong>, spoken on his first day of school with the pandit Brijnath. His father brings him to learn mathematics and writing — and the question becomes: if one is to spend a life writing and accounting, what is actually worth writing?</p>
+      <div class="verse">
+        <div class="gurmukhi">ਜਾਲਿ ਮੋਹੁ ਘਸਿ ਮਸੁ ਕਰਿ ਮਤਿ ਕਾਗਦੁ ਕਰਿ ਸਾਰੁ ॥<br>ਭਾਉ ਕਲਮ ਕਰਿ ਚਿਤੁ ਲੇਖਾਰੀ ਗੁਰ ਪੁਛਿ ਲਿਖੁ ਬੀਚਾਰੁ ॥<br>ਲਿਖੁ ਨਾਮੁ ਸਾਲਾਹ ਲਿਖੁ ਲਿਖੁ ਅੰਤੁ ਨ ਪਾਰਾਵਾਰੁ ॥੧॥</div>
+        <div class="trans">Burn attachment (<em>moh</em>) and grind it into ink; make the intellect into the purest paper. Let love be the pen and consciousness the scribe; then, seeking the Guru's instruction, write your reflections. Write the Name, write its praise — write that the Divine has no end or limit.</div>
+        <div class="cite">Guru Nanak · Guru Granth Sahib</div>
+      </div>
+      <p>It lays out a <strong>progressive practice of devotion</strong>: attachment (moh) is burned and ground into ink; the intellect (mati) is made into pure white paper — the mind purified so it can receive what is true; love (bhau) becomes the pen, consciousness the scribe; under the Guru's guidance one writes vichaar — and what one writes is Nām and praise of the One who has no far shore.</p>
+      <p>The emphasis falls not on intellectually mastering the Divine — which is impossible — but on <strong>experience through love</strong>. The Divine is <em>agam agochar</em>, beyond the reach of mind and senses. As Guru Nanak says in Japji Sahib:</p>
+      <div class="verse">
+        <div class="gurmukhi">ਜੇ ਕੋ ਆਖੈ ਬੋਲੁਵਿਗਾੜੁ ॥ ਤਾ ਲਿਖੀਐ ਸਿਰਿ ਗਾਵਾਰਾ ਗਾਵਾਰੁ ॥੨੬॥</div>
+        <div class="trans">Anyone who claims to have fully described or encompassed the Divine is written down as the fool of fools.</div>
+        <div class="cite">Guru Nanak · Japji Sahib</div>
+      </div>
+      <p>So <span class="term">Naam</span> is not a narrow formula. It can mean recitation, but more broadly it points to a quality of <strong>loving devotion</strong> — an affectionate, intimate relationship with the Divine. Guru Nanak is not handing over a blueprint of God; he is pointing toward a way of relating, rooted in love, praise, and lived experience.</p>
+
+      <h3 class="sub-head">Satnam, and the nine forms of bhakti</h3>
+      <p><strong>Satnam</strong> is one of Guru Nanak's characteristic paradoxes: <em>Sat</em> means true and eternal, while a <em>nām</em> is an identifier — and identifiers normally belong to time and change. How can the Name be true in an ultimate sense? This is wholly in keeping with his style, just as the Mool Mantar pairs <em>Akal Murat</em> — a form that is timeless and deathless. Guru Nanak repeatedly places the eternal and the temporal together to unsettle ordinary logic.</p>
+      <p>Precolonial Sikh literature on devotion fills this out. The <strong>Sikhan di Bhagat Mala</strong> (also <em>Bhagat Mala</em>) is attributed either to Bhai Mani Singh Shaheed (~1721) or to Giani Surat Singh of Amritsar's Giani Bunga (~1760–1780), with the knowledge understood as flowing from Bhai Mani Singh. It describes nine forms of devotional practice:</p>
+      <div class="factbox">
+        <div class="fb-label">Nine forms of bhakti (per the Bhagat Mala)</div>
+        <ul>
+          <li>Faithfully listening to the Guru's words</li>
+          <li>Performing <em>katha</em> (discourse/interpretation) and <em>kirtan</em> (singing Bani)</li>
+          <li>Remembering the Name (Ram / Hari / Vaheguru) with every breath</li>
+          <li>Focusing on the lotus-like feet of the Divine — serving the saints</li>
+          <li>Offering clothes to the saints</li>
+          <li>Saluting the lotus-like feet of the Guru and the gurdwaras</li>
+          <li>Recognising yourself as a devotional servant (<em>das</em>) and the Guru as Master</li>
+          <li>Recognising the Divine as your friend and helper, who will take care of you</li>
+          <li>Offering your mind and wealth to Vaheguru — regarding nothing as your own</li>
+        </ul>
+      </div>
+
+      <h3 class="sub-head">Prema bhakti — devotion that ripens</h3>
+      <p>This Sikh articulation connects to a wider Sanskritic and Vaishnava landscape. The same ninefold structure appears in the <strong>Bhagavata Purana</strong> (Canto 7, Ch. 5, vv. 23–24), where <strong>Prahlad</strong> sets out these forms — and Prahlad also appears in Gurbani (the Rehras line recalling that the tyrant demon was destroyed and Prahlad saved, when Narasingha bursts from a pillar to protect him from Hiranyakashipu). Sikh texts and older devotional worlds share reference points <strong>without collapsing into sameness</strong>.</p>
+      <p>The nine practices are only the first of <strong>three kinds</strong> of devotion (in texts such as Bhagat Mala and Suraj Prakash). The second is <span class="term">prema bhakti</span>, loving devotion. Its image is sap moving through a tree: at first the inner juice is not sweet — a person early in spiritual life may feel sorrow, especially facing the world's instability — but with the company of sadhus and the satsang, love deepens and the inner taste grows <strong>sweeter and sweeter</strong>, until it becomes the sweetness of love for the Divine itself. The fruit ripens and turns red. To become <em>ratta</em> (imbued), soaked in colour, is to be filled with <em>ras</em>, the essence of Divine love — Nanak speaks of those who are "red upon red." Devotion is a <strong>ripening</strong>, not only a duty.</p>
+
+      <h3 class="sub-head">Non-duality — devotion that dissolves the self</h3>
+      <p>The third kind of devotion grows out of that sweetness and leads toward the dissolution of difference between <em>Ishwar</em> and <em>Jeev</em>, the Divine and the individual. On the surface devotion looks dualistic — devotee and Divine, two — but a non-dual vision insists that in the deepest truth there is only One.</p>
+      <div class="verse">
+        <div class="gurmukhi">ਕਬੀਰ ਤੂੰ ਤੂੰ ਕਰਤਾ ਤੂ ਹੂਆ ਮੁਝ ਮਹਿ ਰਹਾ ਨ ਹੂੰ ॥<br>ਜਬ ਆਪਾ ਪਰ ਕਾ ਮਿਟਿ ਗਇਆ ਜਤ ਦੇਖਉ ਤਤ ਤੂ ॥੨੦੪॥</div>
+        <div class="trans">Kabir: repeating "You, You," I have become like You — nothing of "me" remains in myself. When the difference between myself and others is removed, then wherever I look, I see only You.</div>
+        <div class="cite">Kabir · Guru Granth Sahib</div>
+      </div>
+      <p>Gurbani lives <strong>inside this tension</strong>, moving between devotion and non-dual insight. As devotion intensifies, the hard boundary of the self — body, senses, private story — wears away, until the difference between "I" and "You" collapses and only You remains. The illustrated manuscript known as <strong>B40</strong> (a British Library label), dated 1733, depicts Guru Nanak in yellow with a rosary meeting Kabir. Many scholars doubt the meeting historically (Kabir may have lived earlier), but the Janam Sakhi includes it — best read as a <strong>meeting of minds</strong> rather than a factual report.</p>
+
+      <h3 class="sub-head">Dān — charity that redefines purity</h3>
+      <p><span class="term">Daan</span>, the second of the triad, is no minor moral add-on but a central, defining feature of Sikh practice — think of langar and the duty to feed and care for those in need. The story of <strong>Sacha Sauda</strong> ("the true bargain") makes it vivid. Young Guru Nanak is given seed money by his merchant father to learn trade — buy low in the next town, sell for profit. Passing through a winter forest, he meets half-clothed, undernourished ascetics; moved by compassion, he uses the money to <strong>buy them provisions</strong>. He hides at home, knowing his father will be angry; when found, his father is furious and Bibi Nanaki calms the scene. Guru Nanak explains that he has made the <strong>true investment</strong> — money used to feed the needy yields a deeper, more enduring profit.</p>
+      <div class="verse">
+        <div class="gurmukhi">ਪੁੰਨ ਦਾਨ ਕਾ ਕਰੇ ਸਰੀਰੁ ॥<br>ਸੋ ਗਿਰਹੀ ਗੰਗਾ ਕਾ ਨੀਰੁ ॥</div>
+        <div class="trans">Those who give donations and charity through the effort of their own body — such a householder is as pure as the water of the Ganges.</div>
+        <div class="cite">Guru Nanak · Guru Granth Sahib, 952</div>
+      </div>
+      <p>This overturns the conventional hierarchy of purity. The people praised are not renunciants or ritual specialists but <strong>householders who labour physically</strong> — work the fields, sweat, earn honestly. In many ascetic frameworks of the time such a person would not count as pure at all (married life, domestic obligation, bodily labour were seen as compromising; celibacy as higher). Guru Nanak reverses the whole value system: honest earning and compassionate giving make one "pure as the Ganges." This later becomes institutionalised as <strong>Daswandh</strong> — giving one-tenth of one's earnings for the Guru's work — making Dān a disciplined, communal expression of Sikh life.</p>
+
+      <h3 class="sub-head">Ishnān — cultivation of the body and senses</h3>
+      <div class="verse">
+        <div class="gurmukhi">ਨਾਵਹੁ ਧੋਵਹੁ ਤਿਲਕੁ ਚੜਾਵਹੁ ਸੁਚ ਵਿਣੁ ਸੋਚ ਨ ਹੋਈ ॥੬॥</div>
+        <div class="trans">Washing and bathing, adorning a tilak on your forehead — but without true (inner) purity, understanding does not arrive.</div>
+        <div class="cite">Guru Nanak · Guru Granth Sahib, 902</div>
+      </div>
+      <p>Though <span class="term">Ishnān</span> literally means bathing, in Guru Nanak's thought it widens into the cultivation of the body and, through it, the senses, mind, intellect, memory, and disposition. Once again he takes a term tied to ritual purity and <strong>redefines</strong> it — yet without dismissing the physical act: the Gurus are described as rising in the last watch of the night (<em>amrit vela</em>, roughly 3–6 a.m.) and bathing before sunrise as a regular discipline. Bathing matters, but only when joined to a wider discipline of embodied cultivation.</p>
+      <p>From here Ishnān develops into a theory of the <strong>senses</strong>. The five senses are not useless or merely dangerous but powerful, to be honed — <em>ਪੰਚ ਪਰਵਾਣ ਪੰਚ ਪਰਧਾਨੁ</em>, the "five" become honoured when rightly channelled. Neglected, they pull toward vice; disciplined, they prepare one for devotion and finer perception. Drawing on Nikky-Guninder Kaur, the senses are "critical aesthetic agents" through which one enters Guru Nanak's poetics — wonder and the felt quality of Gurbani are accessed through proper sensory engagement. Virtues therefore have bodily dimensions (contentment, restraint, patience, forgiveness; limiting food, rising early, steadiness). Later tradition critiques <em>hatha</em> — forceful yogic striving — as a path to liberation, yet still values embodied discipline such as waking in the ambrosial hours to contemplate the Divine. The flavours can be separated for teaching, but in Guru Nanak's writing they are deeply interwoven.</p>
+
+      <h3 class="sub-head">The message of unity — and social responsibility</h3>
+      <p>In the famous Janam Sakhi episode, Guru Nanak disappears into the river for three days, is taken to Sachkhand (the realm of truth), beholds the Formless (Nirankār), receives the cup of the Amrit of Nām, and is commissioned to spread it. He emerges saying <strong>"Na koi Hindu, na Musalman"</strong> — there is no Hindu, no Muslim. He is not denying social identities literally; he is saying they are external and superficial, and that people have forgotten the deeper Divine unity present in all. We see labels, dress, and affiliation first, and only then decide how to treat one another — Guru Nanak overturns that order.</p>
+      <div class="verse">
+        <div class="gurmukhi">ਜਾਂਤੇ ਛੂਟਿ ਗਯੋ ਭ੍ਰਮ ਉਰ ਕਾ ॥ ਤਿਹਂ ਆਗੇ ਹਿੰਦੂ ਕਿਆ ਤੁਰਕਾ ॥</div>
+        <div class="trans">Those who are released from the delusion of the heart — before them, who is a Hindu and who a Turk?</div>
+        <div class="cite">Dasam Granth, 155</div>
+      </div>
+      <p>The vision extends beyond people to trees, water, and the natural world — a unified reality, which is also why Gurbani resists partisan religious argument: it is not interested in proving one group's God superior, and the tradition is not fundamentally conversionist but concerned with <strong>reorienting perception toward truth</strong>. Guru Nanak is remembered as the Pir of the Muslims and the Guru of the Hindus.</p>
+      <p>From this unity follows a strong doctrine of <strong>social responsibility</strong>: once the self/other distinction dissolves, one cannot remain indifferent to suffering.</p>
+      <div class="verse">
+        <div class="gurmukhi">ਨੀਚਾ ਅੰਦਰਿ ਨੀਚ ਜਾਤਿ ਨੀਚੀ ਹੂ ਅਤਿ ਨੀਚੁ ॥ ਨਾਨਕੁ ਤਿਨ ਕੈ ਸੰਗਿ ਸਾਥਿ ਵਡਿਆ ਸਿਉ ਕਿਆ ਰੀਸ ॥<br>ਜਿਥੈ ਨੀਚ ਸਮਾਲੀਅਨਿ ਤਿਥੈ ਨਦਰਿ ਤੇਰੀ ਬਖਸੀਸ ॥੪॥੩॥</div>
+        <div class="trans">Nanak seeks the company of the lowest of the low — what is the worth of emulating elites? Where the unfortunate are cared for, there Your Graceful Sight abides.</div>
+        <div class="cite">Guru Nanak · Guru Granth Sahib, 15</div>
+      </div>
+      <p>When Babur invaded and committed atrocities, Guru Nanak documented them and spoke for the voiceless; some scholars suggest he was imprisoned for the critique, after which Babur came to meet him, struck by his presence, and released him. His non-duality becomes <strong>practical compassion</strong>: a direct attack on caste prejudice and social hierarchy.</p>
+      <div class="key-idea">
+        <div class="ki-label">Ideas become practice · langar</div>
+        <p>Langar was not merely a communal meal but a deliberate <strong>dismantling of caste hierarchy</strong>. High-status people would have found it deeply offensive to sit level with those considered "polluting" — yet everyone had to sit together. People often prepared prashad at home and brought it to a shared vessel for redistribution, so higher castes might consume food made by those they would otherwise refuse to touch. Even seating height carried meaning: in old paintings importance is shown by how high one sits, which is why Guru Granth Sahib occupies the highest place — and everyone else sits level. A sophisticated social intervention.</p>
+      </div>
+
+      <h3 class="sub-head">Affective messaging — poetry &amp; music</h3>
+      <div class="factbox">
+        <div class="fb-label">Poetry &amp; music</div>
+        <ul>
+          <li>Bhai <strong>Mardana</strong> the Rababi — Guru Nanak's lifelong companion</li>
+          <li>Scripture written and set to <strong>Raag</strong></li>
+          <li>Affective, experiential messaging</li>
+        </ul>
+      </div>
+      <p>Guru Nanak is shown with Bhai Mardana, who plays the rabab (donated, in Janam Sakhi tradition, by Bhai Faranda) while Guru Nanak recites. Gurbani is not simply written text: it is composed in <strong>raag</strong>, and most of the Guru Granth Sahib is organised by these musical modes. The form itself signals the intention — Gurbani is not a step-by-step manual but poetry, in meter, set to music, <strong>meant to be experienced</strong>. This connects back to Ishnān: it is received through hearing, rhythm, mood, and feeling, not only intellectual explanation.</p>
+      <p>Poetry does not strike the mind like prose. Its rearranged syntax, ornament, and rhythm let a line be <strong>felt before it can be paraphrased</strong> — which is why a trained Gyani in a katha setting can hear a poetic line and unpack it aloud on the spot. This is why poetry and music are tied to prema bhakti: devotion as emotional participation — love, longing, remembrance, the pain of separation. When people object to singing as <em>haraam</em>, Guru Nanak answers that music is only the <strong>bowl</strong>: one can fill it with poison or with ambrosial nectar. The medium is charged by what it carries.</p>
+      <p>Marshall McLuhan's phrase "the medium is the message" applies: the communal, musical form is itself part of the meaning. Guru Nanak sings in the company of others, in sangat — Sikh spiritual life is not a purely private exercise, because shared emotion intensifies experience (like a film in a full theatre). Michael Shapiro notes the deep unity of <strong>form and content</strong> in Gurbani — "the formal aspects of the texts, including their metrical, poetic, and linguistic structure, are fully at one with their content" ("The Theology of the Locative Case in Sacred Sikh Scripture"). Grammar, poetics, imagery, and musicality are not decorative extras; they are how meaning is made — which is why traditional scholarship trained Gyanis in grammar, poetics, and narrative together, to taste more of the flavour.</p>
+
+      <h3 class="sub-head">Epigrammatic style</h3>
+      <div class="verse">
+        <div class="gurmukhi">ਲੈ ਕਢਿ ਕਾਗਲੁ ਦਸੇ ਰਾਹੁ ॥ ਭਾੜਿ ਕਰੇ ਵੀਆਹੁ ॥<br>ਸੁਣਿ ਵੇਖਹੁ ਲੋਕਾ ਏਹੁ ਵਿਡਾਣੁ ॥ ਮਨਿ ਅੰਧਾ ਨਾਉ ਸੁਜਾਣੁ ॥੪॥</div>
+        <div class="trans">Taking money, he performs the wedding; crafting horoscopes, he tells them the way. Hear and see, people, this wondrous thing — blind in his mind, yet "wise" by name.</div>
+        <div class="cite">Guru Nanak · Guru Granth Sahib, 471</div>
+      </div>
+      <p>Guru Nanak can be dense, concise, witty, and piercing. His critique of pandits who perform rituals, take money, and present themselves as wise while driven by self-interest is memorable precisely because it is so tightly made — it strikes the senses immediately; a listener may laugh or wince before fully unpacking it. This sharpness is one of the ways his language works upon the listener.</p>
+
+      <h3 class="sub-head">Aesthetics &amp; vismād (wonder)</h3>
+      <p>Drawing on Nikky-Guninder Kaur, Guru Nanak relates to the One as <strong>father, mother, brother, friend, lover, and husband</strong>; his maternal imagery is especially striking (gestation, birth, lactation), alongside intimate, sensuous images — bride and groom, fisherman and fish, water and trap, the ruby swallowed by the fish. These do not merely embellish; they <strong>enlarge experience</strong> and break ordinary habits of thought, and his paradoxes push the listener toward a wider perception of reality.</p>
+      <div class="verse">
+        <div class="gurmukhi">ਵਿਸਮਾਦੁ ਰੂਪ ਵਿਸਮਾਦੁ ਰੰਗ … ਵਿਸਮਾਦੁ ਧਰਤੀ ਵਿਸਮਾਦੁ ਖਾਣਿ ॥</div>
+        <div class="trans">Wondrous the forms, wondrous the hues … wondrous this earth, wondrous its species.</div>
+        <div class="cite">Guru Nanak · Asa di Var</div>
+      </div>
+      <p><span class="term">Vismād</span> — wondrous joy — is the abiding mood of his corpus. The One shines through endless multiplicity; oneness does not erase difference. As soon as the boundary of one thing collapses into Divine presence, his astonishment moves to the next, so that he seems almost perpetually inebriated with wonder. His vision is not flat or abstract but full of beauty, variety, and amazement — the world saturated with the Divine.</p>
+
+      <h3 class="sub-head">Fear / awe</h3>
+      <div class="verse">
+        <div class="gurmukhi">ਭਉ ਮੁਚੁ ਭਾਰਾ ਵਡਾ ਤੋਲੁ ॥ ਮਨ ਮਤਿ ਹਉਲੀ ਬੋਲੇ ਬੋਲੁ ॥<br>ਸਿਰਿ ਧਰਿ ਚਲੀਐ ਸਹੀਐ ਭਾਰੁ ॥ ਨਦਰੀ ਕਰਮੀ ਗੁਰ ਬੀਚਾਰੁ ॥੧॥<br>ਭੈ ਬਿਨੁ ਕੋਇ ਨ ਲੰਘਸਿ ਪਾਰਿ ॥ ਭੈ ਭਉ ਰਾਖਿਆ ਭਾਇ ਸਵਾਰਿ ॥੧॥ ਰਹਾਉ ॥</div>
+        <div class="trans">Fear is overpowering, so very heavy in worth; the self-willed mind (manmati) is light, as are its words. When one walks with this weight placed on the head, the Graceful Glance and the Guru's contemplation are obtained. Without fear, no one crosses over; fear retains love, nourishing it.</div>
+        <div class="cite">Guru Nanak · Guru Granth Sahib, 151</div>
+      </div>
+      <p>The word <em>fear</em> (bhai / bhau) is often dismissed today — people say Sikhi is "not a fear-based tradition" — but ਭੈ and ਭਉ appear repeatedly in Guru Granth Sahib. The question is what Guru Nanak <strong>means</strong> by it. It is not modern guilt or anxiety before a punishing God. In Sanskrit aesthetics fear and wonder are distinct rasas, but Western discussions of the <strong>sublime</strong> (Kant, Hume) show fear and awe can be closely related — standing before something so vast that experience hovers between astonishment and trembling. Fear and love are not opposites here; fear <strong>steadies</strong> love and keeps devotion grounded. When Babur offers him seven handfuls of cannabis, Guru Nanak refuses — <em>ਭਉ ਤੇਰਾ ਭਾਂਗ ਖਲੜੀ ਮੇਰਾ ਚੀਤੁ</em> — his true intoxicant is awe of the Divine, his bowl his own consciousness, "and it has made me wild for You and free from the world."</p>
+      <div class="verse">
+        <div class="gurmukhi">ਆਪੈ ਦੋਸੁ ਨ ਦੇਈ ਕਰਤਾ ਜਮੁ ਕਰਿ ਮੁਗਲੁ ਚੜਾਇਆ ॥<br>ਏਤੀ ਮਾਰ ਪਈ ਕਰਲਾਣੇ ਤੈਂ ਕੀ ਦਰਦੁ ਨ ਆਇਆ ॥੧॥</div>
+        <div class="trans">The Creator assigns no blame to Himself, sending the Mughal as the form of Death. With such shrieking and killing — did You feel no compassion?</div>
+        <div class="cite">Guru Nanak · Guru Granth Sahib, 360</div>
+      </div>
+      <p>Emotional engagement is not limited to serenity. Loving devotion can include <strong>questioning, pain, and protest</strong>: witnessing Babur's atrocities, Guru Nanak cries out to the Divine in anguish — not from disbelief but from deep involvement. Gurbani allows the cry of pain; a real relationship can include grief and even complaint, parallel to Indic traditions where intense emotion of any kind keeps the Divine at the centre of awareness.</p>
+
+      <h3 class="sub-head">Jealousy</h3>
+      <div class="verse">
+        <div class="gurmukhi">ਆਪੇ ਬਹੁ ਬਿਧਿ ਰੰਗੁਲਾ ਸਖੀਏ ਮੇਰਾ ਲਾਲੁ ॥<br>ਨਿਤ ਰਵੈ ਸੋਹਾਗਣੀ ਦੇਖੁ ਹਮਾਰਾ ਹਾਲੁ ॥੩॥</div>
+        <div class="trans">O friends! My Beloved is, in so many ways, delightful — continually ravishing the fortunate brides; but look at my state!</div>
+        <div class="cite">Guru Nanak · Guru Granth Sahib, 23</div>
+      </div>
+      <p>This is not ordinary material jealousy but a <strong>spiritual jealousy born of longing</strong>: seeing saints and lovers of God experiencing bliss and nearness, one aches for that same union. It is the pain of separation — voiced through the longing woman who sees the fortunate bride united with the beloved and grieves her own distance. Jealousy becomes a devotional emotion rooted in yearning, not rivalry.</p>
+
+      <div class="in-brief">
+        <div class="ib-label">In brief</div>
+        <ul>
+          <li>The trinity is <strong>Nām, Dān, Ishnān</strong>; Nām is loving devotion, not a formula — experience over mastery, since the Divine is <em>agam agochar</em>.</li>
+          <li>Devotion ripens: nine practices → <strong>prema bhakti</strong> (increasing sweetness) → <strong>non-duality</strong> (self dissolves into the One).</li>
+          <li><strong>Dān</strong> redefines purity around honest labour and giving (Daswandh); <strong>Ishnān</strong> cultivates body and senses.</li>
+          <li>Unity ("na koi Hindu, na Musalman") becomes <strong>social responsibility</strong> and langar's dismantling of caste; Gurbani is poetry-and-music, meant to be <strong>felt</strong>.</li>
+          <li>The emotional range is full: wonder (<em>vismād</em>), awe (<em>bhau</em>), even protest and longing.</li>
+        </ul>
+      </div>
+
+      <h2 class="part-head" id="part6"><span class="part-kicker">Part 6</span><span class="part-title">Conceptualising the Divine — Nirguna &amp; Sarguna</span></h2>
+      <div class="factbox">
+        <div class="fb-label">The confusion with Vaishnava terminology</div>
+        <ul>
+          <li><strong>Nirguna</strong> — the Divine without form · <strong>Sarguna</strong> — the Divine with form</li>
+          <li>When Gurbani says Ram or Hari, does it mean the Vaishnava conception of the Divine?</li>
+          <li>Why does the Adi Granth sometimes praise Ramchandra and sometimes subordinate him?</li>
+          <li>Does Gurbani only speak of the Nirguna Divine?</li>
+        </ul>
+      </div>
+      <figure class="notes-fig">
+        <img src="images/ss101-l1/image10.jpg" alt="Sarguna / Vaishnava imagery in Sikh art">
+      </figure>
+      <p>Because words like <strong>Ram</strong> and <strong>Hari</strong> are associated with traditions devoted to Vishnu, people sometimes assume Guru Nanak must be speaking in a straightforwardly Vaishnava sense when they appear in Gurbani. That is not accurate. Guru Nanak often writes of the Divine in <span class="term">Nirguna</span> terms — formless, omnipresent, unborn, eternal, not reducible to a single historical or mythic personality such as Krishna or Ramchandra. This is precisely what makes his writing <strong>accessible across communities</strong>: Sufis, Vaishnavas, and others can each connect to it.</p>
+      <p>Yet Guru Granth Sahib also contains <span class="term">Sarguna</span> language — the Divine spoken of through form, drawing on imagery connected to Krishna, Ram, and the gopis:</p>
+      <div class="verse">
+        <div class="gurmukhi">ਤੇਰੇ ਬੰਕੇ ਲੋਇਣ ਦੰਤ ਰੀਸਾਲਾ ॥ ਸੋਹਣੇ ਨਕ ਜਿਨ ਲੰਮੜੇ ਵਾਲਾ ॥<br>ਕੰਚਨ ਕਾਇਆ ਸੁਇਨੇ ਕੀ ਢਾਲਾ ॥ ਸੋਵੰਨ ਢਾਲਾ ਕ੍ਰਿਸਨ ਮਾਲਾ ਜਪਹੁ ਤੁਸੀ ਸਹੇਲੀਹੋ ॥</div>
+        <div class="trans">Your eyes are so beautiful, your teeth delightful; your nose so graceful, your hair so long. Your body is precious, cast in gold, wearing a Krishan rosary — chant, O my companions!</div>
+        <div class="cite">Guru Granth Sahib, 567</div>
+      </div>
+      <p>Gurbani draws on these familiar narratives and emotional worlds but is <strong>not bound by the theological limits</strong> of the traditions the images come from. The Gurus repurpose these names and stories rather than simply repeating Vaishnava theology unchanged.</p>
+      <h3 class="sub-head">Guru Arjan's distinction: symbol vs identification</h3>
+      <p>In the Bhagat Mala, someone asks Guru Arjan why Guru Granth Sahib sometimes praises Ramchandra and sometimes subordinates him to the formless Divine — is that not contradictory? His answer distinguishes <strong>two ways of relating to Sarguna language</strong>:</p>
+      <div class="verse">
+        <div class="gurmukhi">ਏਕ ਲਖ ਦੇ ਉਪਾਸਕ ਹੈਨ। ਇਕ ਵਾਚ ਦੇ ਉਪਾਸਕ ਹੈਨ। … ਤੁਸਾਂ ਲਖ ਦੇ ਉਪਾਸਕ ਹੋਵਣਾ ਤੇ ਨਿਰਵੈਰ ਹੋਵਣਾ।</div>
+        <div class="trans">One is a worshipper of the symbol / characteristic / virtue; the other a worshipper of the identification / name. The first knows the power-consciousness of the Deathless Being within all and bears no hatred toward anyone. The second falls into rivalry — the worshipper of Krishna dislikes the worshipper of Ram, and vice versa. "You shall be worshippers of the symbol and virtue, and become fearless (nirvair)" — and their liberation came through this very teaching.</div>
+        <div class="cite">Bhagat Mala (associated with Bhai Mani Singh), 78</div>
+      </div>
+      <p>The <strong>worshipper of the symbol</strong> understands that when Krishna, Ram, or other images are used, the real point is the Divine quality being expressed — beauty, love, intimacy — and that all consciousness is rooted in Akal Purakh. Such a person hears Krishna, Ram, or Allah without becoming sectarian. The <strong>worshipper of the name as identification</strong> gets stuck in partisan rivalry over labels. Guru Arjan's point: everything is already Divine, so draw on the symbols and names of many traditions, but grasp their <strong>essence</strong> rather than be captured by their partisan form — and you remain free of rivalry, nirvair, fearless.</p>
+
+      <h3 class="sub-head">Review</h3>
+      <div class="factbox">
+        <div class="fb-label">What Lesson 1 covered</div>
+        <ul>
+          <li>The <strong>sociopolitical landscape</strong> — the Delhi Sultanate, the rise of the Mughals, Babur's arrival</li>
+          <li>A few of the many <strong>flavours</strong> within Guru Nanak's writings</li>
+          <li><strong>Fruitful approaches</strong> to reading the Janam Sakhis</li>
+          <li>Conceptualising the Divine — the <strong>Sarguna / Nirguna</strong> paradox</li>
+        </ul>
+      </div>
+      <p>Guru Nanak's teachings contain layers within layers within layers — "banana leaves within banana leaves within banana leaves" — an endless unfolding one could return to for a lifetime. This lesson is only a brief taste; the next lessons go further into Gurbani itself, especially how it is interpreted. Approach the Janam Sakhis fruitfully — not as literal historical reports but as narratives that explain Gurbani and illuminate Sikh practice — and hold the Divine as both <strong>Nirguna</strong> (beyond form and conceptual grasp) and <strong>Sarguna</strong> (spoken through qualities such as purifier of the fallen and nourisher of devotees).</p>
+
+
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="footer-text">Mūl Learnings</div>
+  <div class="footer-text">SS 101 · Lesson 1</div>
+</footer>
+</body>
+</html>
