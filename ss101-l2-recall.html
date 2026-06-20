@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SS 101 · Module 2 · Active Recall — Mūl Learnings</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Gurmukhi:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --accent: #2E6E66; --accent-deep: #1E4F48; --accent-tint: #dcebe7;
+    --clay: #C17A5B; --clay-deep: #a05f42;
+    --ss-bg: #f0f6f4; --surface: #ffffff; --ink: #1c322e; --muted2: #5f7a74;
+  }
+  body { background: var(--ss-bg); }
+  .nav-breadcrumb { display: flex; align-items: center; gap: 0.6rem; font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-breadcrumb a { color: #94c2ba; text-decoration: none; transition: color 0.15s; }
+  .nav-breadcrumb a:hover { color: var(--cream); }
+  .nav-breadcrumb .sep { color: #94c2ba; opacity: 0.5; }
+  .nav-breadcrumb .current { color: var(--cream); }
+  .page-header { background: var(--accent-deep); padding: 3.5rem 5rem 2.4rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .header-eyebrow { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: #94c2ba; margin-bottom: 1rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: #f0f6f4; line-height: 1.14; margin-bottom: 0.7rem; }
+  .page-desc { font-size: 1.05rem; color: #9bb7b1; line-height: 1.7; max-width: 620px; }
+  .subnav { background: var(--accent-deep); padding: 0 5rem; display: flex; gap: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .subnav a, .subnav span { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.9rem 0; text-decoration: none; color: #7ba89f; border-bottom: 2px solid transparent; }
+  .subnav a.active { color: #f0f6f4; border-bottom-color: var(--clay); }
+  .subnav a:hover { color: #cfe6e0; }
+  .subnav .soon { color: #5b827a; cursor: default; }
+
+  main { flex: 1; padding: 2.5rem 5rem 6rem; background: var(--ss-bg); animation: appear 0.5s 0.1s ease both; max-width: 1100px; }
+
+  .how { background: var(--surface); border: 1px solid #dde9e6; border-left: 3px solid var(--clay); padding: 1.3rem 1.6rem; margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7; color: #2f3f3b; }
+  .how strong { color: var(--ink); }
+
+  .progress { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.2rem; }
+  .bar { flex: 1; min-width: 180px; height: 8px; background: #d7e6e1; border-radius: 5px; overflow: hidden; }
+  .bar > span { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.3s; }
+  .pcount { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.08em; color: var(--accent-deep); white-space: nowrap; }
+  .btn { font-family: 'Cormorant Garamond', serif; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); background: none; border: 1px solid #cdded8; border-radius: 4px; padding: 0.4rem 0.8rem; cursor: pointer; transition: all 0.15s; }
+  .btn:hover { color: var(--accent-deep); border-color: var(--accent); }
+
+  .group-label { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--clay-deep); margin: 2.6rem 0 1.2rem; display: flex; align-items: center; gap: 1rem; }
+  .group-label::after { content: ''; flex: 1; height: 1px; background: #cfe0db; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1rem; }
+  .card { background: var(--surface); border: 1px solid #dde9e6; border-top: 3px solid var(--accent); border-radius: 4px; padding: 1.4rem 1.5rem 1.2rem; cursor: pointer; position: relative; transition: box-shadow 0.15s; }
+  .card:hover { box-shadow: 0 4px 16px rgba(46,110,102,0.1); }
+  .card.known { border-top-color: var(--clay); background: #fbfdfc; }
+  .card .q { font-family: 'Cormorant Garamond', serif; font-size: 1.18rem; line-height: 1.35; color: var(--ink); padding-right: 1.8rem; }
+  .card .q .gm { font-family: 'Noto Sans Gurmukhi', sans-serif; font-size: 1.05rem; color: var(--accent-deep); display: block; margin-top: 0.4rem; line-height: 1.8; }
+  .card .a { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.25s ease, opacity 0.25s ease, margin 0.25s; font-size: 1rem; line-height: 1.7; color: #3a4a4a; }
+  .card.open .a { max-height: 600px; opacity: 1; margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px dashed #cfe0db; }
+  .card .hint { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: #9fb4ae; margin-top: 0.9rem; }
+  .card.open .hint { display: none; }
+  .star { position: absolute; top: 1rem; right: 1rem; width: 26px; height: 26px; border: none; background: none; cursor: pointer; color: #c3d4ce; font-size: 1.2rem; line-height: 1; padding: 0; transition: color 0.15s; }
+  .star:hover { color: var(--clay); }
+  .card.known .star { color: var(--clay); }
+  .card .think-tag { font-family: 'Cormorant Garamond', serif; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clay-deep); display: block; margin-bottom: 0.5rem; }
+
+  @media (max-width: 768px) {
+    nav, .page-header, .subnav, main { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .page-title { font-size: 2rem; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="top-border"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Mūl <span>Learnings</span></a>
+  <div class="nav-breadcrumb">
+    <a href="studysikhi.html">StudySikhi</a><span class="sep">/</span>
+    <a href="ss101.html">SS 101</a><span class="sep">/</span>
+    <span class="current">Module 2</span>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="header-eyebrow">StudySikhi · SS 101 · Module 2</div>
+  <h1 class="page-title">Active Recall</h1>
+  <p class="page-desc">Test yourself before you check. Retrieval — not re-reading — is what builds lasting memory.</p>
+</div>
+<div class="subnav">
+  <a href="ss101-l2-notes.html">Lecture Notes</a>
+  <span class="soon">Discussion Q&amp;A · soon</span>
+  <a href="ss101-l2-recall.html" class="active">Active Recall</a>
+</div>
+<main>
+  <div class="how">
+    <strong>How to use:</strong> read each prompt and try to answer it <strong>out loud or in your head first</strong> — really pull for it — then tap the card to check. Tap the star to mark a card "known"; your progress is saved on this device. Come back over several days: spacing the recall is what makes it stick.
+  </div>
+  <div class="progress">
+    <div class="bar"><span id="fill"></span></div>
+    <div class="pcount" id="pcount">0 of 0 marked known</div>
+    <button class="btn" id="reset">Reset progress</button>
+  </div>
+
+  <div id="deck">
+
+    <div class="group-label">Part 1 · Entering the bhakti world</div>
+    <div class="cards">
+      <div class="card"><div class="q">What three features define the bhakti movement?</div><div class="a">A direct, <strong>individual connection</strong> to the Divine; the <strong>removal of intermediaries</strong> (pandit, sheikh/qazi class); and <strong>communal gatherings</strong> (sangat/satsang) — not solitary withdrawal.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What is the "founder myth," and how is it challenged?</div><div class="a">The view (esp. McLeod) that Guru Nanak sits <em>within</em> the existing bhakti stream, with a distinct Sikh identity emerging only later (Khalsa). It's challenged by early sources — Bhai Gurdas's "<em>apnā panth nirālā</em>" and the Persian <strong>Dabistan</strong> — showing a distinct community forming early.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">In the B40 Janam Sakhi, how is the Kabir–Nanak relationship framed?</div><div class="a"><strong>Reversed:</strong> Kabir becomes the <em>Sikh/disciple</em> of Guru Nanak, praising him as the giver of salvation and diminishing even Ramananda (Kabir's own remembered guru).</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Why does the question of the Kabir–Nanak meeting matter so much?</div><div class="a">It <strong>frames authority</strong> — was it equality, succession, discipleship, or correction? Underneath: did Guru Nanak inherit Kabir's path, or stand on his own authority?</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Part 2 · Kartarpur &amp; honest work</div>
+    <div class="cards">
+      <div class="card"><div class="q">What does Kartarpur represent?</div><div class="a"><strong>Settled, ethical, communal life</strong> — transformed participation in the world rather than wandering withdrawal. The path embodied in how one lives, works, and shares.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What is the ideal at the heart of the GGS 1245 shabad?</div><div class="a">The one who <strong>works hard for what he eats and gives some to others</strong> knows the path — joining labour, honesty, sustenance, and generosity, and rejecting both exploitative religiosity and escapist renunciation.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What is the threefold pattern of Sikh life?</div><div class="a"><strong>Nām Japo · Kirat Karo · Vand Chhako</strong> — recite the Divine Name, earn an honest livelihood, and share with others.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">How is the langar "the teaching enacted"?</div><div class="a">At Kartarpur, Guru Nanak <strong>farms the land and feeds the community from that labour</strong> — remembrance, ethical work, and generosity joined in one practice, continued by the later Gurus.</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Part 3 · One light, many bodies</div>
+    <div class="cards">
+      <div class="card"><div class="q">What does "one light, many bodies" mean?</div><div class="a">Succession transfers the same <strong>jyot</strong> (light), mission, and authority — not just leadership. As Ramkali ki Vār puts it, "the King merely changed his body."</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What is "Mahalla," and what does it teach?</div><div class="a">The title for the Guru authors in scripture (from Arabic <em>hulul</em>, "descent"): Guru Nanak = Mahalla Pehla, Guru Angad = Duja, and so on. The headings themselves <strong>teach the doctrine of succession</strong>.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">How do the Gurus sign their verses — and why?</div><div class="a">They all sign "<strong>Nanak</strong>" (not Angad, Amar Das, etc.), placing their writing within a <strong>single current of Guruship</strong> — Nanak's light speaking through successive forms.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Which sources — inside and outside — attest the "one light" idea?</div><div class="a"><strong>Inside:</strong> Guru Gobind Singh's <em>Bachittra Nāṭak</em>. <strong>Outside:</strong> the Persian <em>Dabistan</em> (1645), describing Nanak passing into Angad, Amar Das, Ram Das, Arjan.</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Part 4 · The Gurus &amp; the Panth</div>
+    <div class="cards">
+      <div class="card"><div class="q">Who was Lehna, and what changed him?</div><div class="a">A devotee of the goddess Durga. Passing through Kartarpur, he heard Guru Nanak's praise and stopped; in the narrative he sees Durga herself doing seva there — recognising Guru Nanak's supremacy. He served, was tested, and became <strong>Guru Angad</strong>.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What did Guru Angad formalise, and why does it matter?</div><div class="a"><strong>Gurmukhi</strong>. A distinct script helps create and sustain a distinct community — marking out a Sikh mode of preserving and transmitting revelation, apart from Devanagari and Persian/Arabic.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Why is Mata Khivi significant?</div><div class="a">She is <strong>named in Guru Granth Sahib</strong> (GGS 967) for the langar — showing the kitchen was a central, honoured institution, which she actively oversaw and nourished.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">How was Bibi Amaro the "bridge" between the 2nd and 3rd Gurus?</div><div class="a">She had memorised Japji, Dakhani Oankar, and Siddh Gosht; hearing her <strong>sing Gurbani</strong> at dawn, Guru Amar Das was pierced by the Shabad and drawn to its source — and so to Guru Angad.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What did Guru Amar Das build and organise?</div><div class="a"><strong>Goindval</strong> and its baoli (step well); the <strong>Vaisakhi &amp; Diwali</strong> gatherings; the <strong>masand</strong> system; 900+ verses; and the <strong>Goindwal Pothis</strong>.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What were the masands originally — and how did the word turn negative?</div><div class="a">Originally <strong>district spiritual guides and administrators</strong>, an extension of the Guru's arm (from <em>masnad</em>, "seat"). Only later, when the office became <strong>hereditary</strong>, did some grow corrupt — giving the word its negative charge.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Why do the Goindwal Pothis matter?</div><div class="a">They are the <strong>oldest extant manuscript compilation</strong> and show early Gurmukhi (larivaar, undeveloped vowel signs) — a reminder that scripture passed through material, scribal, and linguistic histories.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Who was Bibi Bhani, and what boon did she ask for?</div><div class="a">Daughter of Guru Amar Das (the throne-leg seva story). She asked that <strong>Guruship continue through her lineage</strong> — making her the matriarch of the Sodhi line (wife of Guru Ram Das, mother of Guru Arjan, on to Guru Gobind Singh).</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What broader point do Mata Khivi, Bibi Amaro &amp; Bibi Bhani make together?</div><div class="a">Sikh women were <strong>formative, not peripheral</strong> — nourishing langar, transmitting Gurbani, drawing future Gurus into the Guru's presence, and standing at the centre of the lineage.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">What did Guru Ram Das establish?</div><div class="a">The city of <strong>Ramdaspur</strong> (later Amritsar), on land favoured by Akbar; 679 verses, including the <strong>Lāvāṅ</strong>.</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Part 5 · Assembling the Adi Granth</div>
+    <div class="cards">
+      <div class="card"><div class="q">Why did Guru Arjan compile the Adi Granth?</div><div class="a">To make an <strong>authoritative stamp on legitimate Gurbani</strong> — guarding against forgeries (e.g. the <em>Pran Sangli</em> passed off as Nanak's), sealed with the Mundavani. Also as a sign of community authority (Pashaura Singh; Akbar's 1598 visit).</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Besides the Gurus, whose voices are in the Adi Granth?</div><div class="a">The <strong>Bhagats</strong> — Kabir, Ravidas, Sheikh Farid, Namdev, Jaidev, Pipa, Trilochan, Beni, and others — plus the Bhatt Bani, Balwand, and even Bhai Mardana.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">How is devotional authority given to the Adi Granth once compiled?</div><div class="a">It is placed on the <strong>takht</strong> in Harimandir Sahib; the sangat bows to the <strong>scripture, not to Guru Arjan</strong>, who sleeps on the floor beside it while it rests higher.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">The three broad sections of the Adi Granth?</div><div class="a"><strong>Liturgical prayers</strong> (Japji, Sodar, So Purakh, Sohila) → <strong>31 raags</strong> (the bulk, Srī Rāg to Jaijaivantī) → <strong>epilogue</strong> (saloks, Mundāvaṇi, Rāgamālā).</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Why does raag matter for interpretation?</div><div class="a">Gurbani is meant to be <strong>sung</strong>: the raag carries the <em>ras</em>/mood and works on the mind, drawing it toward the inward self. The musical form is part of the meaning — the medium is part of the message.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">The three kāṇḍ in the traditional (sampradāyik) reading?</div><div class="a"><strong>Karam</strong> (action/virtue) · <strong>Upāsanā / Bhakti</strong> (devotion) · <strong>Gyān</strong> (wisdom) — interwoven throughout Gurbani, not a rigid ladder.</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">In the four-poets story, why is Kahna's true non-dual verse excluded?</div><div class="a">Because <strong>truth without bhakti is dangerous</strong> — in Kalyug the ego seizes "I am that." Wisdom must be joined to devotion (the image: ghee needs sweetness to be digested).</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Why is Chajju's verse rejected — and what does that reveal?</div><div class="a">It speaks <strong>against women</strong>. The Guru established a <strong>grihasthi (householder) panth</strong> that respects women — so anti-women thought is excluded. (Grounded already in Guru Nanak's own defence of women.)</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">"One line, more than one meaning" — give the example.</div><div class="a"><em>"Visar na dātār"</em> reads <strong>devotionally</strong> ("may I not forget the One who gives to all") and toward <strong>gyan</strong> ("may I not forget that I am that reality which gives to all").</div><div class="hint">Tap to reveal</div></div>
+      <div class="card"><div class="q">Dualistic vs non-dualistic ways of reading Gurbani?</div><div class="a"><strong>Dualistic</strong> isolates words for one fixed meaning (Singh Sabha / rationalist). <strong>Non-dualistic</strong> is holistic — context, the <em>utanka</em>, performance, raag, recitation — keeping Gurbani "new every morning."</div><div class="hint">Tap to reveal</div></div>
+    </div>
+
+    <div class="group-label">Sit with these</div>
+    <div class="cards">
+      <div class="card"><div class="q"><span class="think-tag">Reflect</span>What becomes possible when devotion takes form in food, memory, song, cities, and water — not inward feeling alone?</div><div class="a">No fixed answer — hold it against Kartarpur, langar, the baoli, the festivals, and the building of community as the lived shape of Sikh teaching.</div><div class="hint">Tap for a nudge</div></div>
+      <div class="card"><div class="q"><span class="think-tag">Reflect</span>What am I really seeking from Gurbani — a meaning to pin down and master, or a truth to enter through practice, devotion, and context?</div><div class="a">No fixed answer — weigh the dualistic vs non-dualistic readings, and the idea of Gurbani as ever-fresh, disclosed through hukam, recitation, and raag.</div><div class="hint">Tap for a nudge</div></div>
+    </div>
+
+  </div>
+</main>
+<footer>
+  <div class="footer-text">Mūl Learnings</div>
+  <div class="footer-text">SS 101 · Module 2 · Active Recall</div>
+</footer>
+<script>
+  (function () {
+    var KEY = 'ss101-l2-recall-known';
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+    cards.forEach(function (c, i) { c.dataset.id = 'c' + i;
+      var star = document.createElement('button');
+      star.className = 'star'; star.setAttribute('aria-label', 'Mark known'); star.innerHTML = '&#9733;';
+      c.appendChild(star);
+    });
+    var known = {};
+    try { known = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { known = {}; }
+    var fill = document.getElementById('fill');
+    var pcount = document.getElementById('pcount');
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(known)); } catch (e) {} }
+    function refresh() {
+      var n = 0;
+      cards.forEach(function (c) {
+        if (known[c.dataset.id]) { c.classList.add('known'); n++; } else { c.classList.remove('known'); }
+      });
+      var pct = cards.length ? Math.round(n / cards.length * 100) : 0;
+      fill.style.width = pct + '%';
+      pcount.textContent = n + ' of ' + cards.length + ' marked known';
+    }
+    cards.forEach(function (c) {
+      c.addEventListener('click', function (e) {
+        if (e.target.classList.contains('star')) {
+          known[c.dataset.id] = !known[c.dataset.id];
+          if (!known[c.dataset.id]) delete known[c.dataset.id];
+          save(); refresh(); return;
+        }
+        c.classList.toggle('open');
+      });
+    });
+    document.getElementById('reset').addEventListener('click', function () {
+      known = {}; save(); refresh();
+      cards.forEach(function (c) { c.classList.remove('open'); });
+    });
+    refresh();
+  })();
+</script>
+</body>
+</html>
